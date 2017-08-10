@@ -91,7 +91,9 @@
         "blog_letter_spacing": "0.5px",
         "blog_line_height": "54px",
         "type_base_letter_spacing": "0px",
-        "body_font_size": "24",
+
+        "body_font_size": "14",
+
         "body_font_weight": "400",
         "body_line_height": "26px",
         "body-text-transform": "none",
@@ -192,6 +194,12 @@
                     "display_search": true,
                     "logo_alignment": "center",
                     "logo_max_width": "100"
+                }
+            },
+            "slideshow": {
+                "type": "slideshow",
+                "settings": {
+                   
                 }
             },
             "collection-list": {
@@ -457,7 +465,8 @@
                 }
             }
         },
-        "content_for_index": [
+        "content_for_index": [  
+            "slideshow",          
             "collection-list",
             "collection",
             "promotion",
