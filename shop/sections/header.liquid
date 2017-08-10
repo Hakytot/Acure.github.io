@@ -56,10 +56,15 @@
             {% if section.settings.show_minicart %} {% include 'minicart' %} {% endif %}         
             {% if section.settings.display_search %} 
                 <div class="site-actions-search"> 
-                    <i class="showhide icon ion-android-search"></i>     
-                    <div class="showhide-open search-field">                
-                        {% include 'search' %}
-                    </div>                   
+                    <a class="popup-modal" href="#search-modal">
+                        <i class="icon ion-android-search"></i>     
+                    </a>                    
+                    <section id="search-modal" class="mfp-hide white-popup-block">
+                        <div class="search-field">                
+                            {% include 'search' %}
+                        </div>                   
+                        <p><a class="popup-modal-dismiss" href="#">Close</a></p>
+                    </section>                                            
                 </div>
             {% endif %}            
         </div>                                               

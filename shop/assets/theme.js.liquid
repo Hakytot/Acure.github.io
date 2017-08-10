@@ -45,6 +45,21 @@ jQuery(document).ready(function($) {
         .slideUp();        
     });
 
+    /* click toggle show hide jquery ===================================== */
+    $(function () {
+        $('.popup-modal').magnificPopup({
+            type: 'inline',
+            preloader: false,
+            focus: '#username',
+            modal: true
+        });
+        $(document).on('click', '.popup-modal-dismiss', function (e) {
+            e.preventDefault();
+            $.magnificPopup.close();
+        });
+    });
+    
+
     /* Video Story ===================================== */
     jQuery("#video_story").fitVids();
 
@@ -185,14 +200,3 @@ function initMap() {
     });
 }
 
-/* click toggle show hide jquery ===================================== */
-(function($) {
-    function toggle(e) {
-        var $target = $(e.target);    
-        $target.toggleClass('is-showing');
-        $target.next('div.showhide-open').slideToggle(200);
-    }  
-    $('.showhide')
-    .addClass('is-ready')
-    .on('click', toggle);
-})(jQuery);

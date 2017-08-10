@@ -11,7 +11,7 @@
     },
     /*General Options*/
     {
-        "name": "General",
+        "name": "General",        
         "settings": [
         {
             "type": "header",
@@ -783,67 +783,16 @@
                     "group": "Cursive | Google Web Fonts"
                 }]
             },
-            // Body Font Size
+            // Body Font Size            
             {
-                "type": "select",
-                "id": "body_font_size",
-                "label": "Base size",
-                "options": [
-                    {
-                        "value": "12px",
-                        "label": "12"
-                    },
-                    {
-                        "value": "13px",
-                        "label": "13"
-                    },
-                    {
-                        "value": "14px",
-                        "label": "14"
-                    },
-                    {
-                        "value": "15px",
-                        "label": "15"
-                    },
-                    {
-                        "value": "16px",
-                        "label": "16"
-                    },
-                    {
-                        "value": "17px",
-                        "label": "17"
-                    },
-                    {
-                        "value": "18px",
-                        "label": "18"
-                    },
-                    {
-                        "value": "19px",
-                        "label": "19"
-                    },
-                    {
-                        "value": "20px",
-                        "label": "20"
-                    },
-                    {
-                        "value": "21px",
-                        "label": "21"
-                    },
-                    {
-                        "value": "22px",
-                        "label": "22"
-                    },
-                    {
-                        "value": "23px",
-                        "label": "23"
-                    },
-                    {
-                        "value": "24px",
-                        "label": "24"
-                    }
-
-                ],
-                "default": "14px"
+                "type":      "range",
+                "id":        "body_font_size",
+                "min":       12,
+                "max":        36,
+                "step":       1,
+                "unit":       "px",
+                "label":     "Font size",
+                "default":   24
             },
             // Body Font Weight
             {

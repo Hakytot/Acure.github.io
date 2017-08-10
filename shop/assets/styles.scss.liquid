@@ -90,7 +90,7 @@ $linkHoverColor: {{ settings.link_hover_color }} !default;
 
 /* Body Font */
 $bodyFontStack: {{ base_family }} !default;
-$bodyFontSize: {{ settings.body_font_size }} !default;
+$bodyFontSize: {{ settings.body_font_size }}px !default;
 $bodyFontWeight: {{ settings.body_font_weight }} !default;
 $bodyTransform: {{ settings.body-text-transform }} !default;
 $bodyLineHeight: {{ settings.body_line_height }} !default;
@@ -1184,6 +1184,7 @@ b, strong{
     color: $primaryColor;
     font-weight: 700;
 }
+
 textarea{
     font-family: $bodyFontStack;    
     text-transform: $bodyTransform;
@@ -1193,7 +1194,6 @@ textarea{
 .fallback-text{
     display: none;
 }
-
 
 .showhide {
     display: block;
