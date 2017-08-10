@@ -1,0 +1,104 @@
+{% if section.settings.promotion_enable %}
+    <section class="promotion {{ section.settings.alignment }} {% if section.settings.image != blank %}lazy{% endif %} {% if section.settings.body %}promotion__overlay{% endif %}" {% if section.settings.image %} style="background-image: url('{{ section.settings.image | img_url: '1920x' }}');"{% endif %}>        
+        {% if section.settings.image == blank %}
+            <div class="placeholder-background">
+                {{ 'lifestyle-1' | placeholder_svg_tag: 'placeholder-svg' }}
+            </div>
+        {% endif %}
+        {% unless section.settings.hide_text %}
+            <div class="promotion-container promotion_container_{{ section.settings.vertical }}">                       
+                {% if section.settings.body != blank %}
+                    <div class="promotion__text promotion_size__{% if section.settings.size %}{{ section.settings.size }}{% endif %}">
+                        {{ section.settings.body | html }}
+                    </div>
+                {% endif %}            
+                {% if section.settings.button_enable %}
+                    {% if section.settings.button_label != blank and section.settings.button_url != blank %}
+                        <p class="promotion__button"><a class="btn btn--secondary" href="{{ section.settings.button_url }}"><span>{{ section.settings.button_label | escape }}</span></a></p>
+                    {% endif %}                    
+                {% endif %}
+            </div>
+        {% endunless %}      
+    </section>
+{% endif %}
+
+{% schema %}
+{
+    "name": "Promotion",
+    "class": "shopify-section__promotion",
+    "settings": [{
+        "type": "checkbox",
+        "id": "promotion_enable",
+        "label": "Enable Promotion",
+        "default": true
+    }, {
+        "type": "checkbox",
+        "id": "button_enable",
+        "label": "Enable Button",
+        "default": false
+    }, {
+        "type": "image_picker",
+        "id": "image",
+        "label": "Image"
+    }, {
+        "type": "richtext",
+        "id": "body",
+        "label": "Text",
+        "default": "<p>Use a short, catchy sentence to showcase <br/>your store.</p>"
+    }, {
+        "type": "select",
+        "id": "size",
+        "label": "Text Szie",
+        "default": "large",
+        "options": [{
+            "value": "small",
+            "label": "Small"
+        }, {
+            "value": "medium",
+            "label": "Medium"
+        }, {
+            "value": "large",
+            "label": "Large"
+        }]
+    }, {
+        "type": "select",
+        "id": "alignment",
+        "label": "Text Alignment",
+        "default": "text-center",
+        "options": [{
+            "value": "text-left",
+            "label": "Left"
+        }, {
+            "value": "text-right",
+            "label": "Right"
+        }, {
+            "value": "text-center",
+            "label": "Center"
+        }]
+    }, {
+        "type": "select",
+        "id": "vertical",
+        "label": "Vertical Alignment",
+        "default": "middle",
+        "options": [{
+            "value": "top",
+            "label": "Top"
+        }, {
+            "value": "middle",
+            "label": "Center"
+        }, {
+            "value": "bottom",
+            "label": "Bottom"
+        }]
+    }, {
+        "type": "url",
+        "id": "button_url",
+        "label": "Button Link"
+    }, {
+        "type": "text",
+        "id": "button_label",
+        "label": "Button Label",
+        "default": "Shop The Collections"
+    }]
+}
+{% endschema %}

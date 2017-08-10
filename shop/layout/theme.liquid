@@ -1,0 +1,56 @@
+<!doctype html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if IE 9 ]><html class="ie9 no-js"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html class="no-js"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <!--[if IE]>    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <![endif]-->
+
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="{{ settings.color_button }}">
+  <link rel="canonical" href="{{ canonical_url }}">
+    {% if settings.favicon != blank %}
+        <link rel="shortcut icon" href="{{ settings.favicon | img_url: '32x32' }}" type="image/png">
+    {% endif %}    
+    {% capture seo_title %}
+        {{ page_title }}
+    {% if current_tags %}
+        {%- assign meta_tags = current_tags | join: ', ' %} &ndash; {{ 'general.meta.tags' | t: tags: meta_tags -}}
+    {% endif %}
+    {% if current_page != 1 %}
+        &ndash; {{ 'general.meta.page' | t: page: current_page }}
+    {% endif %}
+    {% unless page_title contains shop.name %}
+        &ndash; {{ shop.name }}
+    {% endunless %}
+    {% endcapture %}
+    <title>{{ seo_title }}</title>
+    {% if page_description %}
+    <meta name="description" content="{{ page_description | escape }}">
+    {% endif %}
+    {% include 'social-meta-tags' %}
+    {% include 'header-styles' %} 
+    {% include 'header-scripts' %} 
+    {{ content_for_header }}
+</head>
+<body class="template-{{ template | split: '.' | first }}">
+    {% include "mobile-drawer" %}
+    {% include "cart-drawer" %}        
+    <div id="PageContainer" class="is-moved-by-drawer">
+        {% section 'header' %}    
+        <main class="main-content volus-content {% if template == 'index' %}index-content{% endif %} template-{{ template | split: '.' | first }}" id="MainContent" role="main">
+            {{ content_for_layout }}
+        </main>
+        {% section 'footer' %}
+        {% include 'footer-tapbar' %}
+        {% include 'currencies' %}        
+    </div>
+    {% if settings.enable_newsletter_popup %}
+        {% include 'newsletter-popup' %}    
+    {% endif %}
+    {% include "footer-scripts" %}    
+</body>
+</html>  

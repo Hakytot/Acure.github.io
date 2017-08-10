@@ -1,0 +1,194 @@
+{% case section.settings.size %}
+    {% when 'small' %}        
+        {%- assign featured_image_size = '450x450' -%}
+    {% when 'medium' %}
+        {%- assign featured_image_size = '630x630' -%}
+    {% when 'large' %}
+        {%- assign featured_image_size = '830x830' -%}
+{% endcase %}
+
+{%- assign limit = section.settings.limit -%}
+
+{% paginate blog.articles by limit %}
+<section id="{{ section.id }}" class="page">
+    <div class="container">
+        {% if section.settings.enable_breadcrumb %}
+            {% include 'breadcrumb' %}      
+        {% endif %} 
+
+        {% if section.settings.show_page_title %}
+            <header class="page-header text-center">                    
+                {% if current_tags %}
+                    <h2 class="page-title"><span>{{ blog.title | link_to: blog.url }} &mdash; {{ current_tags.first }}</span></h2>
+                {% else %}
+                    <h2 class="page-title"><span>{{ blog.title }}</span></h2>                    
+                {% endif %}
+            </header>
+        {% endif %}
+
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <div class="page-content blog-content">
+                    {% for article in blog.articles %}
+                        <div class="article text-center">
+                            {% if section.settings.show_featured_image and article.image %}
+                                <figure class="article-image">
+                                    <a class="article__featured-image" href="{{ article.url }}">
+                                        {{ article | img_url: featured_image_size | img_tag: article.title }}
+                                    </a>                            
+                                </figure>
+                            {% endif %}    
+
+                            <ul class="text-center list-unstyled list-inline blog-article-meta">                                
+                                {% if section.settings.blog_show_author %}
+                                    <li class="article-list__item">                                                                             
+                                        <span class="article-label">{{ 'blogs.article.author' | t }}</span>  
+                                        <span>{{ article.author }}</span>
+                                    </li>
+                                {% endif %}                          
+                                {% if section.settings.blog_show_date %}
+                                    <li class="article-list__item">
+                                        <span class="article-label">{{ 'blogs.article.date' | t }}</span>                                       
+                                        <time datetime="{{ article.published_at | date: '%Y-%m-%d' }}">
+                                            {{ article.published_at | date: format: 'month_day_year' }}
+                                        </time>
+                                    </li>
+                                {% endif %}                                  
+                            </ul>  
+
+                            {% if section.settings.show_article_title %}
+                                <h4 class="article-title"><a href="{{ article.url }}">{{ article.title }}</a></h4>     
+                            {% endif %}  
+
+                            {% if section.settings.blog_show_description %}
+                                <div class="article-description rte text-left">
+                                    {% if article.excerpt.size > 0 %}
+                                        {{ article.excerpt }}                                
+                                    {% else %}
+                                        {{ article.content | strip_html | truncatewords: 40 }}
+                                    {% endif %}
+                                </div>
+                            {% endif %}                    
+
+                            {% if section.settings.blog_show_comment or section.settings.blog_show_tags %}
+                                <ul class="text-center list-unstyled list-inline blog-article-meta"> 
+                                    {% if section.settings.blog_show_comment and blog.comments_enabled? %}
+                                        <li>
+                                            <a href="{{ article.url }}#comments">                            
+                                                <span>{{ article.comments_count }}</span>
+                                                {{ article.comments_count | pluralize: 'comment','comments' }}                            
+                                            </a>
+                                        </li>                                    
+                                    {% endif %}
+                                    {% if section.settings.blog_show_tags %}
+                                        {% include 'tags-article' %}
+                                    {% endif %}                
+                                </ul>
+                            {% endif %}                    
+
+                            {% if section.settings.blog_show_button %}
+                                <div class="article-button text-center">
+                                    <a class="btn btn--primary" href="{{ article.url }}">{{ 'blogs.article.read_more' | t }}</a>
+                                </div>
+                            {% endif %}
+                        </div>   
+                        {% unless forloop.last %}<hr>{% endunless %}
+                    {% endfor %}
+                    {% if section.settings.blog_show_pagination and paginate.pages > 1 %}
+                        <hr>
+                        <div class="pagination article-pagination">
+                            {{ paginate | default_pagination }}
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>  
+    </div>
+</section>
+{% endpaginate %}
+
+
+{% schema %}
+{
+    "name": "Blog page",
+    "class": "shopify-section__blog-template",
+    "settings": [{
+        "type": "checkbox",
+        "id": "enable_breadcrumb",
+        "label": "Enable Breadcrumb",
+        "default": true
+    }, {
+        "type": "checkbox",
+        "id": "show_page_title",
+        "label": "Show page title",
+        "default": true
+    }, {
+        "type": "checkbox",
+        "id": "show_article_title",
+        "label": "Show article title",
+        "default": true
+    }, {
+        "type": "checkbox",
+        "id": "show_featured_image",
+        "label": "Show featured image",
+        "default": true
+    }, {
+        "type": "checkbox",
+        "id": "blog_show_author",
+        "label": "Show author",
+        "default": true
+    }, {
+        "type": "checkbox",
+        "id": "blog_show_date",
+        "label": "Show date",
+        "default": true
+    }, {
+        "type": "checkbox",
+        "id": "blog_show_comment",
+        "label": "Show comment count",
+        "default": true
+    }, {
+        "type": "checkbox",
+        "id": "blog_show_tags",
+        "label": "Show tags",
+        "default": true
+    }, {
+        "type": "checkbox",
+        "id": "blog_show_description",
+        "label": "Show description",
+        "default": false
+    }, {
+        "type": "checkbox",
+        "id": "blog_show_button",
+        "label": "Show button read more",
+        "default": true
+    }, {
+        "type": "checkbox",
+        "id": "blog_show_pagination",
+        "label": "Show pagination",
+        "default": true
+    }, {
+        "type": "select",
+        "id": "size",
+        "default": "medium",
+        "options": [
+            { "value": "small", "label": "Small" },
+            { "value": "medium", "label": "Medium" },
+            { "value": "large", "label": "Large" }
+        ],
+        "label": "Featured image size"
+    }, {
+        "type": "select",
+        "id": "limit",
+        "default": "4",
+        "options": [
+            { "value": "2", "label": "2 Post" },
+            { "value": "3", "label": "3 Post" },
+            { "value": "4", "label": "4 Post" },
+            { "value": "5", "label": "5 Post" },
+            { "value": "6", "label": "6 Post" }
+        ],
+        "label": "Posts per page"
+    }]
+}
+{% endschema %}

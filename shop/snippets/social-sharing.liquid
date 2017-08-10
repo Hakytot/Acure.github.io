@@ -1,0 +1,46 @@
+<div class="social-sharing">
+    <h2 class="product-single__share_title label-text"><span>{{ 'general.social.share_this' | t }}</span></h2>
+    {% capture shareurl %}{{ shop.url }}{{ product.url }}{% endcapture %}    
+    <div class="product-single__share_container">
+        {% if settings.share_twitter %}
+            <a target="_blank" class="btn btn--small btn--link btn--share share-twitter" title="{{ 'general.social.alt_text.share_on_twitter' | t }}" href="http://twitter.com/home?status=Check%20out%20this%20{%if template contains "article" or template contains "blog"%}blog%20post{% elsif template contains "product" %}product{%endif%}:+{{ shareurl }}">
+                <span class="btn--inner">
+                    <i aria-hidden="true" class="flaticon icon social twitter"></i>
+                    <span class="share-title" aria-hidden="true">{{ 'general.social.share_on_twitter' | t }}</span>    
+                </span>           
+            </a>
+        {% endif %}    
+        {% if settings.share_facebook %}
+            <a target="_blank" class="btn btn--small btn--link btn--share share-facebook" title="{{ 'general.social.alt_text.share_on_facebook' | t }}" href="//www.facebook.com/sharer.php?u={{ shop.url | append: share_permalink }}">
+                <span class="btn--inner">
+                    <i aria-hidden="true" class="flaticon icon social facebook"></i>
+                    <span class="share-title" aria-hidden="true">{{ 'general.social.share_on_facebook' | t }}</span>                                
+                </span>
+            </a>
+        {% endif %}    
+        {% if settings.share_pinterest %}
+            <a target="_blank" class="btn btn--small btn--link btn--share share-pinterest" title="{{ 'general.social.alt_text.share_on_pinterest' | t }}" href="http://pinterest.com/pin/create/button/?url={{ shareurl }}&media={{ product.featured_image | product_img_url: 'original' }}&description={{ product.title | strip_html | escape | replace: ' ', '%20' }}">
+                <span class="btn--inner">
+                    <i aria-hidden="true" class="flaticon icon social pinterest"></i>
+                    <span class="share-title" aria-hidden="true">{{ 'general.social.share_on_pinterest' | t }}</span>   
+                </span>
+            </a>
+        {% endif %}   
+        {% if settings.share_tumblr %}
+            <a target="_blank" class="btn btn--small btn--link btn--share share-tumblr" title="{{ 'general.social.alt_text.share_on_tumblr' | t }}" href="http://www.tumblr.com/share/link?url={{ shareurl | replace: 'http://', '' }}">
+                <span class="btn--inner">
+                    <i aria-hidden="true" class="flaticon icon social tumblr"></i>
+                    <span class="share-title" aria-hidden="true">{{ 'general.social.share_on_tumblr' | t }}</span> 
+                </span>  
+            </a>
+        {% endif %}
+        {% if settings.share_googleplus %}
+            <a target="_blank" class="btn btn--small btn--link btn--share share-googleplus" title="{{ 'general.social.alt_text.share_on_googleplus' | t }}" href="https://plus.google.com/share?url={{ shareurl }}" onclick="javascript:window.open(this.href,  '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;">            
+                <span class="btn--inner">
+                    <i aria-hidden="true" class="icon pf pf-google-wallet"></i>
+                    <span class="share-title" aria-hidden="true">{{ 'general.social.share_on_googleplus' | t }}</span>              
+                </span>
+            </a>
+        {% endif %}        
+    </div>
+</div>

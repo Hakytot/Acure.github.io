@@ -1,0 +1,73 @@
+{% if settings.enable_mega_nav %}
+{% assign items_list = settings.megamenu_items | split:"," | strip | downcase %}
+{% endif %}
+
+<ul class="header__links list-unstyled list-inline nav-main-menu {{ settings.megamenu_items_align }}">     
+    {%- assign main_link_list = settings.main_linklist -%}  
+    {% for link in linklists[main_link_list].links %}
+    {% if linklists[link.handle] != empty %}
+    {% assign test = link.title | strip | downcase %}
+    <li class="menu__link dropdown parent__menu{% if settings.enable_mega_nav and items_list contains test or link.title == 'Catalog' %} has-mega-nav{% endif %}">
+        <a href="{{ link.url }}" class="link{% if link.active %} active{% endif %}">
+            {% if link.title == 'Catalog' and settings.catalog_label_override.size > 0 %}
+                <span class="menu-item-title">{{ settings.catalog_label_override }}</span>
+                {% if settings.enable_dropdown_menu or settings.enable_mega_nav %}                   
+                    <span class="icon icon-down lnr lnr-chevron-down">&nbsp;</span>
+                    <span class="icon icon-up lnr lnr-chevron-up">&nbsp;</span>
+                {% endif %}
+            {% else %}                    
+                <span>{{ link.title }}</span>
+                {% if settings.enable_dropdown_menu or settings.enable_mega_nav %}      
+                    <span class="icon icon-down lnr lnr-chevron-down">&nbsp;</span>
+                    <span class="icon icon-up lnr lnr-chevron-up">&nbsp;</span>
+                {% endif %}
+            {% endif %}              
+        </a>             
+                                
+        {% if settings.enable_mega_nav and items_list contains test %}               
+            {% include 'megamenu' %}            
+        {% else %}                        
+
+        {% if settings.enable_dropdown_menu %}                
+        <!-- dropdown menu -->
+        {% assign child_list_handle = link.title | handleize %}
+        <ul class="dropdown-menu list-unstyled dropdown-menu__level_1">
+            {% for childlink in linklists[child_list_handle].links %}
+                {% if linklists[childlink.handle] != empty %}
+                <li class="menu__link dropdown">
+                    <a href="{{ childlink.url }}" class="link{% if childlink.active %} active{% endif %}">{{ childlink.title | escape }}</a>
+                    {% assign grand_child_list_handle = childlink.title | handleize %}
+                    <ul class="dropdown-menu list-unstyled dropdown-menu__level_2">                      
+                        {% for childlink2 in linklists[grand_child_list_handle].links %}
+                            {% if linklists[childlink2.handle] != empty %}
+                            <li class="menu__link dropdown">
+                                <a href="{{ childlink2.url }}" class="link{% if childlink2.active %} active{% endif %}"><span>{{ childlink2.title | escape }}</span></a>                                    
+                                {% assign third_child_list_handle = childlink2.title | handleize %}
+                                <ul class="dropdown-menu list-unstyled dropdown-menu__level_3">                                    
+                                    {% for childlink3 in linklists[third_child_list_handle].links %}
+                                        <li class="menu__link">
+                                            <a href="{{ childlink3.url }}" class="link{% if link.active %} active{% endif %}">{{ childlink3.title | escape }}</a>
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                            </li>                          
+                            {% else %}
+                            <li class="menu__link"><a href="{{ childlink2.url }}" class="link{% if link.active %} active{% endif %}">{{ childlink2.title | escape }}</a></li>
+                            {% endif %}
+                        {% endfor %}
+                    </ul>
+                </li>
+            {% else %}
+                <li class="menu__link"><a href="{{ childlink.url }}" class="link{% if link.active %} active{% endif %}">{{ childlink.title | escape }}</a></li>
+            {% endif %}      
+            {% endfor %}
+        </ul>
+        <!-- end dropdown menu -->
+        {% endif %}        
+        {% endif %}        
+    </li>
+    {% else %}
+        <li class="menu__link parent__menu"><a href="{{ link.url }}" class="link{% if link.active %} active{% endif %}">{{ link.title }}</a></li>
+    {% endif %}
+    {% endfor %}
+</ul>

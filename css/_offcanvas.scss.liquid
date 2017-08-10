@@ -1,0 +1,458 @@
+#MainContent{
+    height: 100%;
+    @include transition(transform 0.3s ease-out 0s, all 0.4s ease 0s);    
+    width: 100%;
+    &:after{        
+        content: "";
+        display: block;
+        height: 100%;
+        width: 100%;
+        left: 0;        
+        @include opacity(0);
+        position: fixed;
+        visibility: hidden;
+        top: 0;
+        @include transition(opacity 0s ease 0s, all 0.4s ease 0s);           
+        z-index: -10;        
+    }
+}
+
+body{   
+    &.js-drawer-open{
+        position: relative;
+        &:before{
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            @include opacity(1);
+            visibility: visible;
+            z-index: 100;
+            background: rgba(#000000, .80);
+        }
+        #MainContent{
+            &:after{
+                @include opacity(1);
+                visibility: visible;
+                z-index: 100;
+            }
+        }
+    }
+}
+
+
+.clearfix {
+    &:after {
+        content: '';
+        display: table;
+        clear: both;
+    }
+    *zoom: 1;
+}
+
+#NavDrawer{
+    .drawer__close{
+        top: 0;
+    }
+}
+
+.mobile-nav {    
+    margin: 0px;
+    padding: 0px;
+    li {
+        margin-bottom: 0;
+    }
+}
+
+.mobile-nav__search {
+    padding: 10px 0;
+    @include clearfix();
+    .search-form,
+    .search-bar {
+        margin-bottom: 0;
+        overflow: hidden;
+        padding: 10px 0;
+    }
+}
+
+.mobile-nav__item {
+    position: relative;
+    display: block;
+    .mobile-nav > &:last-child:after {
+        display: none;
+    }
+    &:last-child {
+        a {
+            border-bottom: 0px;
+        }
+    }
+}
+
+.mobile-nav__toggle button {
+    outline: none;    
+    text-align: center;
+    @include rem(width, 50px);
+    @include rem(height, 53px);
+    @include rem(font-size, 14px);
+    &:hover,
+    &:active,
+    &:focus {        
+        background: transparent;
+    }
+}
+
+.mobile-nav__item a {
+    display: block;
+}
+
+.mobile-nav__item a,
+.mobile-nav__toggle button {
+    outline: none;
+    font-weight: 700 !important;
+    background: none transparent;
+    @include rem(padding, 12px 20px);    
+    @include rem(border-width, 0 0 1px 0);    
+    &:hover,
+    &:active,
+    &:focus {
+        background: none transparent;
+    }
+    &:before,
+    &:after{
+        display: none;
+    }
+}
+
+.mobile-nav__has-sublist {
+    display: table;
+    width: 100%;
+    .mobile-nav__link {
+        display: table-cell;
+        vertical-align: middle;
+        width: 100%;
+    }
+}
+
+.mobile-nav__toggle {
+    display: table-cell;
+    vertical-align: middle;
+    width: 100%;
+}
+
+.mobile-nav__toggle-open {
+    .mobile-nav--expanded & {
+        display: none;
+    }
+}
+
+.mobile-nav__toggle-close {
+    display: none;
+    .mobile-nav--expanded & {
+        display: block;
+    }
+}
+
+.mobile-nav__sublist {
+    margin: 0;
+    max-height: 0;
+    visibility: hidden;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+    @include opacity(0);
+    @include css3-prefix(transition, all 300ms cubic-bezier(0.8, 0, 0.26, 1) 0s);
+    @include backface();
+    .mobile-nav--expanded + & {
+        visibility: visible;
+        max-height: 700px;
+        @include opacity(1);
+        @include css3-prefix(transition, all 700ms cubic-bezier(0.8, 0, 0.26, 1) 0s);
+    }
+    
+    .mobile-nav__link {
+        padding-left: 26px;
+        font-weight: 300 !important;
+    }
+}
+
+/*============================================================================
+  #Drawers
+==============================================================================*/
+.drawer {
+    background: #ffffff;
+    height: 100%;
+    overflow: hidden;
+    position: fixed;
+    top: 0;
+    border: 0;
+    z-index: 999999;
+    display: block;
+    visibility: hidden;    
+    @include rem(width, $drawerNavWidth);
+    @include rem(padding,0);    
+    @include backface-visibility (hidden);    
+    @include box-sizing(border-box);
+}
+
+.drawer--left {     
+    @include rtl-left(-$drawerNavWidth);   
+    @include css3-prefix(transition, $drawerTransition);
+    .js-drawer-open-left & {        
+        @include rtl-left(0);    
+        visibility: visible;       
+        .lt-ie9 & {
+            @include rtl-left(0);
+            visibility: visible;
+        }
+    }
+}
+
+.drawer--right {    
+    @include css3-prefix(transition, $drawerTransition);    
+    @include rtl-right(-$drawerCartWidth);    
+    .js-drawer-open-right & {        
+        @include rtl-right(0);        
+        visibility: visible;
+        .lt-ie9 & {
+            @include rtl-right(0);
+            visibility: visible;
+        }
+    }
+}
+
+.drawer__header {    
+    position: relative;
+    width: 100%;
+    border-bottom: 1px solid #ff0000;  
+    padding: 0;    
+    @include rem(height, 50px);
+    button{
+        outline: none;
+    }
+}
+
+.cart-drawer__empty-text{
+    @include mobile{        
+        @include rem(margin, 170px 40px);        
+    }
+    @include tablet{        
+        @include rem(margin, 90px 30px);
+    }
+    @include rem(margin, 60px);
+}
+
+.drawer__title {   
+    @include mobile{        
+        margin: 0;
+        @include rem(height, 50px);
+        @include rem(line-height, 50px);                
+    }
+    @include tablet{        
+        margin: 0;
+        @include rem(height, 50px);
+        @include rem(line-height, 50px);                
+    }
+    text-align: center;
+    
+    font-weight: 300;
+    @include rem(font-size,18px);
+    @include rem(margin, 29px 0);
+}
+.drawer__close{
+    @include mobile{
+        top: 0;
+    }
+    @include tablet{
+        top: 0;
+    }
+    position: absolute;            
+    @include rtl-right(0);
+    @include rem(top, -15px);
+    button,
+    .btn--close{
+        background: transparent;
+        padding: 0;
+        border: 0px;
+        
+        @include rem(width, 50px);
+        @include rem(height, 50px);    
+        @include rem(font-size, 26px);
+        &:hover,
+        &:active,
+        &:focus{
+            border:0;
+            background: transparent;
+           
+        }  
+        &:before,
+        &:after{
+            display: none;
+        }
+    }     
+}
+
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) {
+    .drawer.drawer--left {
+        display: none;
+    }
+}
+
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) {
+    .drawer.drawer--left {
+        display: none;
+    }
+}
+
+// Extra large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) {
+    .drawer.drawer--left {
+        display: none;
+    }
+}
+
+@media only screen and (max-width: 320px) {
+    .drawer {
+        width: 100%;
+    }
+}
+
+#CartCount{       
+    @include tablet{
+        @include rem(font-size, 12px);
+        @include rtl-float-right;                                
+        @include rem(height, 22px);
+        @include rem(line-height, 22px);
+        @include rem(width, 22px);
+        @include border-radius(50px);
+        @include rem(margin-top, 2px);
+        background: #ffffff;
+        font-weight: 700;
+        text-align: center;                         
+    }             
+}
+
+#CartContainer{  
+    @include mobile{
+        @include rem(padding, 10px);        
+    }  
+    @include tablet{
+        @include rem(padding, 20px);        
+    }
+    height: 100%;
+    position: relative;
+    @include rem(padding, 40px);    
+    .ajaxcart__product{
+        @include rem(margin-bottom, 25px);
+        @include rem(padding-bottom, 25px);
+        border-bottom: 1px solid #ff0000;  
+        .product-name{
+            margin-top: 0;            
+            font-weight: 700;
+            @include rem(font-size,14px);
+            @include rem(line-height,20px);
+        }        
+    }
+    .ajaxcart__body{
+        label{
+            display: inline-block;            
+            @include rem(margin-bottom, 10px);
+        }
+    }
+    .ajaxcart__footer{   
+        @include mobile{
+            position: static;
+            padding: 0;            
+            @include rem(margin-top, 20px);            
+        }     
+        @include tablet{
+            position: static;
+            padding: 0;
+            @include rem(margin-top, 20px);
+        }
+        @include desktop-small{
+            position: static;
+            padding: 0;
+            @include rem(margin-top, 20px);            
+        }
+        position: absolute;        
+        width: 100%;  
+        @include rtl-left(0);
+        @include rem(padding, 40px);        
+        @include rem(bottom, 100px);
+        .btn{            
+            @include rem(margin, 0 10px 0 0);
+        }
+        .ajaxcart__footer_top{
+            padding: 0;            
+        }
+        .grid__item_label{
+            width: percentage(.9);
+        }
+        .grid__item_price{
+            width: percentage(.1);
+        }        
+        .ajaxcart__total_label{            
+            @include rem(padding, 30px 0 20px 0);
+            text-align: center;
+        }
+        .ajaxcart__button{
+            text-align: center;
+        }
+    }
+    .ajaxcart__product_left{
+        @include rtl-float-left;
+        &.three-quarters{            
+            @include rem(margin-left, 18px);
+        }
+    }
+    .product-title{
+        margin-top: 0;        
+        @include rem(font-size, 14px);
+        @include rem(line-height,20px);
+    }    
+    .product-price{
+        @include rem(font-size, 16px);        
+        @include rtl-text-align-right;        
+        width: percentage(.1);
+    }
+    .product-qty{
+        width: percentage(.6);
+    }
+    .ajaxcart__product-meta{
+        display: inline-block;
+        padding: 3px 0 0 0;
+    }
+    .ajaxcart__qty{
+        @include flexbox;
+        .ajaxcart__qty-adjust{
+            margin: 0;
+            padding: 0;
+            border: 0;
+            cursor: pointer;            
+            display: block;
+            @include flex(1,1,1);      
+            @include rem(width,26px);
+            @include rem(height,26px);            
+            &:before,
+            &:after{
+                display: none;
+            }
+            
+        }
+        .ajaxcart__qty-num{           
+            margin: 0;           
+            text-align: center;             
+            font-weight: 300;   
+            @include flex(1,1,1);      
+            @include rem(font-size, 11px);
+            @include rem(padding, 2px);            
+            @include rem(width, 33px);
+            @include rem(height, 26px);
+            @include rem(min-width, 33px);
+        }
+    }
+}

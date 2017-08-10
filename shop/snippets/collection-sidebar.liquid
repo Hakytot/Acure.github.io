@@ -1,0 +1,89 @@
+{% if section.settings.show_sidebar_categires %}
+    <div class="sidebar_filter categires_filter"> 
+        <h4 class="sidebar_filter_title"><span>{{ 'collections.sidebar.categires' | t }}</span></h4>
+        <ul class="list-unstyled sidebar_filter_content">
+            {% capture collection_title %}{{ collection.title }}{% endcapture %}
+            {% for collection in collections %}
+                <li class="sidebar_filter_link {% if collection_title == collection.title %}sidebar_filter_active{% endif %}"><a href="{{ collection.url }}" title="{{ collection.title }}">{{ collection.title }} <span class="count">{{collection.products_count}}</span></a></li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endif %}
+
+{% if section.settings.show_sidebar_types %}
+    {% if collection.all_types.size > 0 %}       
+    <div class="sidebar_filter types_filter">
+        <h4 class="sidebar_filter_title"><span>{{ 'collections.sidebar.types' | t }}</span></h4>
+        <ul class="list-unstyled sidebar_filter_content">
+            {% for type in collection.all_types %}
+                {% if collection.current_type == type %}
+                    <li class="sidebar_filter_active sidebar_filter_link">
+                        {{ type }}
+                    </li>
+                    {% else %}
+                    <li class="sidebar_filter_link">
+                        {{ type | link_to_type }}
+                    </li>
+                {% endif %}
+            {% endfor %}
+        </ul>            
+    {% else %}
+        <p>Add a type to your products for this list to build itself. All lists are created in <strong>collection-sidebar.liquid</strong>.</p>    
+    {% endif %} 
+    </div>    
+{% endif %}
+
+{% if section.settings.show_sidebar_tags %}
+    {% if collection.all_tags.size > 0 %}
+    <div class="sidebar_filter tags_filter"> 
+        <h4 class="sidebar_filter_title"><span>{{ 'collections.sidebar.tags' | t }}</span></h4>
+        <ul class="list-unstyled sidebar_filter_content">
+            <li{% unless current_tags %} class="sidebar_filter_active sidebar_filter_link"{% endunless %}>    
+                {% if collection.handle %}
+                    <a href="/collections/{{ collection.handle }}">All {{ collection.title }}</a>      
+                {% elsif collection.current_type %}
+                    <a href="{{ collection.current_type | url_for_type }}">All {{ collection.title }}</a>
+                {% elsif collection.current_vendor %}
+                    <a href="{{ collection.current_vendor | url_for_vendor }}">All {{ collection.title }}</a>
+                {% endif %}
+            </li>
+            {% for tag in collection.all_tags %}
+                {% if current_tags contains tag %}
+                    <li class="sidebar_filter_active sidebar_filter_link">
+                        {{ tag | link_to_remove_tag: tag }}
+                    </li>
+                {% else %}
+                    <li class="sidebar_filter_link">          
+                        {{ tag | link_to_tag: tag }}
+                    </li>
+                {% endif %}
+            {% endfor %}
+        </ul>        
+    {% else %}
+        <p>Add tags to your products for this list to build itself.</p>
+    {% endif %}
+    </div>
+{% endif %}
+
+{% if section.settings.show_sidebar_vendors %}
+    {% if collection.all_vendors.size > 0 %}
+    <div class="sidebar_filter vendors_filter">
+        <h4 class="sidebar_filter_title"><span>{{ 'collections.sidebar.vendors' | t }}</span></h4>
+        <ul class="list-unstyled sidebar_filter_content">
+            {% for vendor in collection.all_vendors %}
+                {% if collection.current_vendor == vendor %}
+                    <li class="sidebar_filter_active sidebar_filter_link">
+                        {{ vendor }}
+                    </li>
+                    {% else %}
+                    <li class="sidebar_filter_link">
+                        {{ vendor | link_to_vendor }}
+                    </li>
+                {% endif %}
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>Add a vendor to your product for this list to build itself.</p>
+    {% endif %}
+    </div>
+{% endif %}

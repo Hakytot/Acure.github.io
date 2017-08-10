@@ -1,0 +1,440 @@
+/*================ Typography ================*/
+
+@import url('_typo.scss.liquid');
+
+/*================ Variables ================*/
+
+@import url('_variables.scss.liquid');
+
+/*================ Mixins ================*/
+
+@import url('_mixins.scss.liquid');
+
+/*================ Global Style Sheet ================*/
+
+@import url('_base_styles.scss.liquid');
+
+/*================ Button ================*/
+
+@import url('_button.scss.liquid');
+
+/*================ Offcanvas ================*/
+
+@import url('_offcanvas.scss.liquid');
+
+/*================ Icons ================*/
+
+@import url('_icons.scss.liquid');
+
+#faq-template{
+  .tabs{
+    > li{
+      color: $primaryColor;
+       &.current{          
+        color: #FFFFFF;     
+        background-color: $primaryColor;
+      }
+    }
+  }
+}
+
+.label-text,
+.fallback-text{
+  color:$primaryColor;
+  font-family: $buttonFontStack;
+  text-transform: uppercase;    
+  letter-spacing: 1px;  
+  font-weight: 700;
+  @include rem(font-size, 14px);  
+}
+
+.comment-details,
+.article-heading{
+  color:$primaryColor;
+  font-family: $buttonFontStack;
+}
+
+.blog-content .article-list li{
+  font-family: $buttonFontStack;
+}
+
+.page-title{    
+   @include desktop-small{
+    @include rem(font-size, 36px);                
+    @include rem(line-height, 46px);
+  } 
+  @include mobile{
+    @include rem(font-size, 24px);        
+    @include rem(line-height, 34px);
+    @include rem(margin-bottom, 15px);
+  }  
+   @include tablet{
+    @include rem(font-size, 36px);        
+    @include rem(line-height, 46px);
+    @include rem(margin-bottom, 10px);
+  }  
+  color: $headingColor;
+  font-family: $headerFontStack;
+  font-weight: $headerFontWeight;      
+  text-transform: $headerTransform;
+  letter-spacing: $headerLetterSpacing;
+  @include rem(font-size, $headerFontSize);    
+}
+
+/*================ Breadcrumbs ================*/
+
+@import url('_breadcrumbs.scss.liquid');
+
+
+.single-product_pagination{
+  font-family: $breadcrumbFontStack;  
+  font-weight: $breadcrumbFontWeight;
+  text-transform: $breadcrumbTransform;
+  @include rem(letter-spacing, $breadcrumbLetterSpacing);
+  @include rem(line-height, $breadcrumbLineHeight);
+  @include rem(font-size, $breadcrumbFontSize);
+}
+
+.filters-toolbar__item{
+  font-family: $breadcrumbFontStack;  
+  font-weight: $breadcrumbFontWeight;
+  text-transform: $breadcrumbTransform;
+  @include rem(letter-spacing, $breadcrumbLetterSpacing);
+  @include rem(line-height, $breadcrumbLineHeight);
+  @include rem(font-size, $breadcrumbFontSize);
+  color: $linkColor;
+}
+
+.search-bar #input-search{
+  font-family: $bodyFontStack;    
+}
+
+/* Apply Type Style */
+.widget-title{  
+  color: $headingColor;
+  font-family: $headerFontStack;
+  font-weight: $headerFontWeight;      
+  text-transform: $headerTransform;
+  letter-spacing: $headerLetterSpacing;
+  @include desktop-small{
+    @include rem(font-size, $headerFontSize - 20px);  
+  }
+  @include rem(font-size, $headerFontSize);  
+  @include mobile-small{
+    font-size: 24px !important;
+    @include rem(margin-bottom, 40px);  
+  }  
+  span::before{
+    
+}
+&.widget-title__light{
+        span::before{
+            
+        }    
+    }
+}
+
+.widget-small-title{
+  color: $headingColor;
+  font-family: $headerFontStack;
+  font-weight: $headerFontWeight;      
+  text-transform: $headerTransform;  
+   span::before{
+    
+  }
+}
+
+.blog-article-meta{
+  font-family: $buttonFontStack;
+}
+
+h1 .note a, h2 .note a, h3 .note a, h4 .note a, h5 .note a, h6 .note a {
+  color: {{ settings.link_color }};
+}
+
+
+/*================ Header ================*/
+
+@import url('_header.scss.liquid');
+
+/*================ Footer ================*/
+
+@import url('_footer.scss.liquid');
+
+/*================ Menu ================*/
+
+@import url('_menu.scss.liquid');
+
+/*================ Promotion ================*/
+
+@import url('_promotion.scss.liquid');
+
+
+input[type="button"], input[type="reset"], input[type="submit"]{
+     &:hover,&:focus,&:active{
+          color: $buttonHover;  
+          background-color: $buttonBackgroundHover;
+          border-color: $buttonBorderHover; 
+     }          
+}
+
+input[type="search"],
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="datetime-local"],
+input[type="date"],
+input[type="month"],
+input[type="number"],
+input[type="range"],
+input[type="tel"],
+input[type="time"]{    
+  background-color: $inputFormBg;  
+}
+
+.page{
+  #customer_register_link{
+    font-family: $buttonFontStack;
+    font-size: $buttonFontSize;
+    font-weight: $buttonFontWeight;
+    text-transform: $buttonTransform;
+    letter-spacing: $buttonLetterSpacing;
+    background-color: $buttonBackgroundHover;
+    color: $buttonHover;    
+    @include rem(padding, 14px 40px);
+  }
+}
+
+/* Form */
+.subscribe-button{
+    color: {{ settings.button-text-color}};    
+    background-color: {{ settings.button-background-color}};  
+}
+.subscribe-button:hover,.subscribe-button:focus,.subscribe-button:active{
+    color: {{ settings.button-text-hover-color}};      
+    background-color: {{ settings.button-background-hover}}; 
+}
+
+button, optgroup{
+  font-family: $buttonFontStack;
+  color: $primaryColor;  
+}
+
+select{
+  background-image: url({{ 'select.svg' | asset_url }});   
+  background-size: 10px auto;  
+}
+
+/* Products */
+.product-sale-label{
+    color: {{ settings.product-sale-color}};  
+    background-color: {{ settings.product-sale-background-color}};  
+}
+.product-reviews-badge .spr-icon.spr-icon-star-empty{  
+    color: {{ settings.product-reviews-star}};      
+}
+.product-item .btn-add-to-cart, .product-item .popup-modal{
+    color: {{ settings.product-button-icon}};  
+}  
+
+.single-product{
+    .product-single__title{
+      color: {{ settings.product-name-label}};         
+}
+.product-single__price{
+    color: {{ settings.product-price-color}};
+}
+.selector, label{            
+    font-family: $buttonFontStack;
+    color: $primaryColor;     
+}
+.product-single__vendor{
+    font-family: $buttonFontStack;
+    color: $primaryColor; 
+}
+select{
+    background-image: url({{ 'select.svg' | asset_url }});     
+    @include rem(min-width, 130px);
+    font-size: 12px;
+}
+}
+.product-price{
+    color: {{ settings.product-price-color}};  
+}
+.product-item__placeholder{
+    @include overlay(1);
+}
+.product__title{
+    color: {{ settings.product-name-label}};  
+    &:hover{
+      color: {{ settings.product-name-hover}};   
+  }
+}
+.grid-view-item{        
+  .grid-view-item__vendor{
+    font-family: $buttonFontStack;
+  }
+  .btn--link{
+    font-family: $buttonFontStack;
+  }
+  .grid-view-item__box{
+      border-color: darken($borderColor, 0.35);
+  }    
+  .grid-view-item__title{
+    font-weight: 300;
+  }
+}
+
+.product-single__placeholder,.tell-story-placeholder{
+  @include overlay(1);
+}
+
+
+/* Links and Buttons */
+a {
+  color: $linkColor;
+}
+a:hover,a:focus,a:active{
+  color: $linkHoverColor;
+}
+
+
+/* Featured Blog */
+.featured-blog{
+  background-color: $featuredBlog;
+  color: $featuredBlogLabel;
+  .entry-title{   
+     @include tablet{
+      @include rem(font-size, 24px);      
+      @include rem(line-height, 34px);
+    } 
+    @include mobile{
+      @include rem(font-size, 18px);      
+      @include rem(line-height, 28px);
+    }
+    font-family: $blogFontStack;
+    font-weight: $blogFontWeight;
+    @include rem(font-size, $blogFontSize);
+    text-transform: $blogTransform;
+    letter-spacing: $blogLetterSpacing;
+    line-height: $blogLineHeight;    
+    a{      
+      color: $featuredBlogLabel;      
+  }    
+}  
+}
+
+/* Collections */
+.collection-list{
+    color: $collectionListColor;
+    background-color: rgba($collectionListBgColor, $collectionListOverlayOpacity); 
+    .widget-title{
+        color: $collectionListColor;
+    }
+    .collection-grid-item__overlay{  
+        @include overlay_light(1);        
+    }
+    .collection-grid-item__title{
+        color: $collectionListColor;
+    }
+    .collection-item-info{
+      .collection-item-title{
+        font-family: $bodyFontStack;
+        text-transform: none;
+        letter-spacing: normal;
+      }
+    }
+}
+
+.collection-template{  
+  .has-collection-image{            
+    border: 1px solid rgba($borderColor, .80);
+  }    
+}
+
+.collection-grid-item{
+  .collection-grid-item__overlay{  
+    @include overlay(1); 
+  }
+}
+
+/* Newsletter */
+#CoverPop-cover{
+    .newsletter-form-field{
+        color:darken($borderColor, 10%);
+        border-color: $borderColor;
+    }
+}
+
+
+/* Mimic a background image by wrapping the placeholder svg with this class */
+.placeholder-background {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  .icon {
+      border: 0;
+  }
+}
+
+.cart-table .product-name{
+  line-height: 30px;
+}
+
+
+/*================ Responsive Table ================*/
+
+$breakpoint-alpha: 768px; 
+
+table {
+  margin: 1em 0;
+  min-width: 265px;     
+  th {
+    display: none; 
+  }  
+  td {
+    display: block;     
+    &:first-child {
+      padding-top: .5em;
+    }
+    &:last-child {
+      padding-bottom: .5em;
+    }
+  }  
+  th, td {
+    text-align: left;    
+    @media (min-width: $breakpoint-alpha) {
+      display: table-cell;
+      padding: .25em .5em;      
+      &:first-child {
+        padding-left: 0;
+      }      
+      &:last-child {
+        padding-right: 0;
+      }
+    }
+  }  
+}
+
+
+/*================ Mobile ================*/
+
+@media only screen and (max-width : 768px) {  
+    .widget-title{
+        @include rem(font-size,28px);
+    }
+    .single-product .product-single__photos.carousel, 
+    .single-product .product-single__photos.zoom{
+        margin-bottom: 40px;
+    } 
+}
+
+@media only screen and (max-width : 320px) {
+    .cart__row{
+        button{
+            padding: 10px 30px;
+        }
+    }
+}

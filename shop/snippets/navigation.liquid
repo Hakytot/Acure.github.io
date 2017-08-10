@@ -1,0 +1,18 @@
+{% if settings.enable_menu %}                        
+    <div id="nav" class="volus-mainmenu">                                   
+        <nav class="header__main-nav hidden-xs">
+            {% include 'dropdown-menu' %}                    
+        </nav>
+        <div class="large--hide medium-down--show hidden-md hidden-lg hidden-sm">
+            <div class="grid">
+                <div class="grid__item one-half">
+                    <div class="site-nav--mobile">
+                        <button type="button" class="icon-fallback-text site-nav__link js-drawer-open-left" aria-controls="NavDrawer" aria-expanded="false">
+                            <span class="lnr lnr-menu" aria-hidden="true"></span>                  
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>          
+    </div>                                 
+{% endif %}

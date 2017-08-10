@@ -1,0 +1,7 @@
+<form action="/search" method="get" class="search search-bar" role="search"> 
+	<input type="search" name="q" class="search_box input-search" placeholder="{{ 'layout.header.search' | t }}" value="{{ search.terms | escape }}" aria-label="{{ 'layout.header.search' | t }}">   
+	<button type="submit" class="search-submit">
+		<i class="icon ion-android-search"></i>
+		<span class="fallback-text">{{ 'general.search.submit' | t }}</span>
+	</button>
+</form>

@@ -1,0 +1,479 @@
+{
+    "current": {
+        "color_primary": "#ff7055",
+        "color_secondary": "#88bd6e",
+        "color_accent": "#131516",
+        "color_borders": "#e0e0e0",        
+        "body_bg_color": "#FFFFFF",
+        "link_hover_color": "#ff7055",        
+        "body_font_color": "#555f61",
+        "link_color": "#232323",
+
+        "button-text-color": "#FFFFFF",
+        "button-text-hover-color": "#FFFFFF",
+        "button-background-color": "#ff7055",
+        "button-background-hover": "#ff7055",
+        "button-border-color": "#ff7055",
+        "button-border-hover": "#ff7055",
+        "button_second_color": "#ff7055",
+        "button_second_hover_color": "#ff7055",
+        "button_second_bg_color": "#ff7055",
+        "button_second_bg_hover_color": "#ff7055",
+        "button-font": "Google_Sintony_400,700_sans",
+        "button-font-size": "14px",
+        "button-font-weight": "700",
+        "button-text-transform": "uppercase",
+        "button-letter-spacing": "0px",
+        "button-border-size": "2px",
+
+        "breadcrumb_font_type": "Google_Poppins_300,400,500,600,700_sans",
+        "breadcrumb_font_size": "10px",
+        "breadcrumb_font_weight": "700",
+        "breadcrumb_text_transform": "uppercase",
+        "breadcrumb_letter_spacing": "1px",
+        "breadcrumb_line_height": "30px",
+
+        "heading_font": "Google_Sintony_400,700_sans",
+        "heading_font_weight": "700",
+        "heading_font_size": "60px",
+        "heading_text_transform": "none",
+        "heading_letter_spacing": "0px",
+        "heading_color": "#232323",
+
+        "menu_font": "Google_Sintony_400,700_sans",
+        "menu_font_size": "12px",
+        "menu_font_weight": "700",
+        "menu_text_transform": "uppercase",
+        "menu_letter_spacing": "0px",
+        "nav_link_color": "#131516",
+        "mainmenu_link_hover_color": "#ff7055",
+        "enable_menu": true,
+        "enable_mega_nav": false,
+        "enable_dropdown_menu": true,
+        "catalog_label_override": "Shop",
+        "megamenu_items": "Catalog",
+        "megamenu_items_align": "text-left",
+        "megamenu-width": "670",
+        "top-level-columns": "col-lg-4 col-md-4",
+        "meganav-limit": "4",
+        "main_linklist": "main-menu",
+
+        "header_bg_color": "#FFFFFF",
+        "header_color": "#131516",
+        "header_link_color": "#131516",
+        "header_link_hover_color": "#131516",
+
+        "footer_color": "#FFFFFF",
+        "footer_bg_color": "#232323",        
+        "footer_link_color": "#FFFFFF",
+        "footer_link_hover": "#FFFFFF",
+        "product-sale-color": "#FFFFFF",
+        "product-sale-background-color": "#ff7055",
+        "product-name-label": "#232323",
+        "product-name-hover": "#232323",
+        "product-reviews-star": "#ff7055",
+        "product-price-color": "#232323",
+        "product-button-icon": "#2a363b",
+        "checkout_banner_background_color": "#FFFFFF",
+        "checkout_accent_color": "#2a9dcc",
+        "checkout_button_color": "#2a9dcc",
+        "checkout_call_to_action_color": "#8fc243",
+
+        "color_image_overlay_text": "#FFFFFF",
+        "color_image_overlay": "#000000",
+        "collection_list_color": "#FFFFFF",
+        "collection_list_bg_color": "#171717",
+        "collection_list_overlay": "#FFFFFF",        
+        "featured_blog_bg": "#171717",
+        "featured_blog_label": "#FFFFFF",
+        "input_form_field_label": "#232323",
+        "input_form_field_bg": "#F6F6F6",
+        "collection_list_overlay_opacity": "0.2",
+        "image_overlay_opacity": "0.2",
+        "type_base_family": "Google_Poppins_300,400,500,600,700_sans",
+        "blog_font_type": "Google_Sintony_400,700_sans",
+        "blog_font_size": "48px",
+        "blog_font_weight": "300",
+        "blog_text_transform": "uppercase",
+        "blog_letter_spacing": "0.5px",
+        "blog_line_height": "54px",
+
+        "type_base_letter_spacing": "0px",
+        "body_font_size": "14px",
+        "body_font_weight": "400",
+        "body_line_height": "26px",        
+        "body-text-transform": "none",
+
+        "use_favicon": true,
+        "ajax_cart_method": "drawer",
+        "cart_notes_enable": true,
+        "share_facebook": true,
+        "share_twitter": true,
+        "share_pinterest": true,
+        "share_tumblr": true,
+        "share_googleplus": true,
+        "google_link": "",
+        "youtube_link": "",
+        "pinterest_link": "",
+        "tumblr_link": "",
+        "twitter_link": "http://twitter.com/shopify",
+        "facebook_link": "http://facebook.com/shopify",
+        "instagram_link": "http://instagram.com/shopify",
+        "dribbble_link": "",
+        "show_newsletter_title": true,
+        "enable_newsletter_popup": true,
+        "newsletter_form_action": "//volusthemes.us16.list-manage.com/subscribe/post?u=75fe530d7fe1cfcffe483e1b2&amp;id=4fc165ad52",
+        "newsletter_popup_title": "Newsletter Signup!",
+        "newsletter_description": "<p>You can write the headline and text for this popup in the theme settings (General > Mailing List Options). You can also control how often the popup is displayed or disable it entirely.</p> <p><em>Looking for the amazing products showcased in this demo store? You can buy them at Shop Dixi Boho Jewelry & Accessories</em></p>",
+        "currency_enable": true,
+        "currency_format": "money_with_currency_format",
+        "supported_currencies": "GBP CAD USD EUR",
+        "default_currency": "CAD",        
+        "slogan": "Modern Store",
+        "show_minicart": true,
+        "display_search": true,
+        "offer_text": "Welcome to my Modern Store",
+        "offer_show": true,
+        "featured_product_enable": false,
+        "show_sale_circle": true,
+        "product_reviews_enable": true,
+        "footer_display_social": true,
+        "gallery_1_alt": "Gallery Photo 1",
+        "gallery_2_alt": "Gallery Photo 2",
+        "gallery_3_alt": "Gallery Photo 3",
+        "gallery_4_alt": "Gallery Photo 4",
+        "gallery_5_alt": "Gallery Photo 5",
+        "gallery_6_alt": "Gallery Photo 6",
+        "homepage": "frontpage",
+        "homepage_products_count": "8",
+        "homepage_listing_image_size": "large",
+        "latest_enable": true,
+        "latest_enable_row": "women",
+        "enable_parallax": true,
+        "footer_instagram_enable": true,
+        "instagram_user_id": "4825648167",
+        "instagram-access-token": "4825648167.1677ed0.46c532ec2d574060a762d1802a55fc94",
+        "instagram_widget_title": "Dixi Boho Jewelry",
+        "enable_instagram_widget_title": true,
+        "instagram_widget_title_align": "text-center",
+        "show_instagram_name": true,
+        "instagram_limit": "6",
+        "collection_enable": true,
+        "collection_title_enable": false,
+        "collection_title": "Featured Collections",        
+        "collection_tags": true,
+        "collection_sort": true,
+        "products_per_row": "4",
+        "checkout_use_header_image": false,
+        "checkout_logo": "",
+        "checkout_headline": "",
+        "slide_1": true,
+        "slide_1_link": "/collections/all",
+        "slide_2": true,
+        "slide_2_link": "/collections/all",
+        "slide_3": false,
+        "slide_3_link": "",
+        "slide_4": false,
+        "slide_4_link": "",
+        "customer_layout": "theme",
+        "accept_visa": "true",
+        "accept_mastercard": "true",
+        "accept_amex": "true",
+        "accept_discover": "true",
+        "accept_paypal": "true",
+        "accept_google": "true",
+        "accept_bitcoin": "true",
+        "mailing_list_form_action": "",
+        "content_width": "9",
+        "override_catalog": "adfs",
+        "offer_link": "",
+        "slide_1_alt": "",
+        "slide_2_alt": "",
+        "slide_3_alt": "",
+        "slide_4_alt": "",
+        "sections": {
+            "header": {
+                "type": "header",
+                "settings": {
+                    "sticky_enable": false,
+                    "show_minicart": true,
+                    "show_customer_accounts": false,
+                    "display_search": true,
+                    "logo_alignment": "center",
+                    "logo_max_width": "100"
+                }
+            },
+            "collection-list": {
+                "type": "collection-list",
+                "settings": {
+                    "enable_title": false,
+                    "title": "Collections",
+                    "alignment": "text-center",
+                    "grid": "2",
+                    "size": "large"
+                }
+            },
+            "collection": {
+                "type": "collection",
+                "settings": {
+                    "show_featured_collection": true,
+                    "show_view_all": true,
+                    "show_heading_title": true,
+                    "show_vendor": true,
+                    "show_shorthand": true,
+                    "show_label_sale": false,
+                    "title": "Faves this week",
+                    "grid": "3",
+                    "rows": "1",
+                    "alignment": "text-center",
+                    "shorthand_letter_lable": "j"
+                }
+            },
+            "list-collections-template": {
+                "type": "list-collections-template",
+                "settings": {
+                    "enable_breadcrumb": true,
+                    "show_title": true,
+                    "grid": "3"
+                }
+            },
+            "promotion": {
+                "type": "promotion",
+                "settings": {
+                    "size": "large",
+                    "promotion_enable": true,
+                    "button_enable": false,
+                    "alignment": "text-center",
+                    "vertical": "middle",
+                    "body": "<p>Use a short, catchy sentence to showcase <br/>your store.</p>",
+                    "button_url": "shopify://collections/all",
+                    "button_label": "Shop The Collections"
+                }
+            },
+            "featured-blog": {
+                "type": "featured-blog",
+                "settings": {
+                    "enable_featured_blog": true,
+                    "show_blog_title": true,
+                    "show_blog_excerpt": true,
+                    "vertical": "middle",
+                    "alignment": "top",
+                    "blog": "news",
+                    "post_limit": "2",
+                    "image_size": "medium"
+                }
+            },
+            "tell-story": {
+                "type": "tell-story",
+                "settings": {
+                    "show_title": true,
+                    "show_description": true,
+                    "show_button": true,
+                    "title": "Tell Me About Dixi Boho Jewelry",
+                    "description": "<p>This is your About section. It’s a great space to tell your story and to describe who you are and what you do. If you're a business, talk about how you started and tell the story of your professional journey. People want to know the real you, so don't be afraid to share personal anecdotes. Explain your core values and how you, your organization, or your business stand out from the crowd. <br><br> This is a great space to write long text about your company and your services. You can use this space to go into a little more detail about your company. Talk about your team and what services you provide. Tell your visitors the story </p>",
+                    "button_label": "Read About Me",
+                    "button_link": "shopify://pages/contact"
+                }
+            },
+            "product-template": {
+                "type": "product-template",
+                "settings": {
+                    "show_vendor": true,
+                    "show_label_sale": false,
+                    "show_breadcrumb": true,
+                    "enable_zoom": true,
+                    "enable_product_video": false,
+                    "show_navigation": true,
+                    "show_back_collection": true,
+                    "show_share_buttons": true,
+                    "image_size": "large",
+                    "image_type": "carousel",
+                    "image_zoom_position": "inner",
+                    "product_description_alignment": "below",
+                    "contact_link": "customercare@dixibohojewelry.com",
+                    "short_description": "<p>This is your classic product description blurb. Lucky for you, there is no character limit, so feel free to give your customers all the nitty gritty details. This is just a demo shop, but you can shop this product for real on the Jewelry Shop site.</p>",
+                    "size_chart_content": "<p>For an easy to use printable ring sizing chart</p>",
+                    "product_video_url": "https://www.youtube.com/watch?v=_9VUPq3SxOc"
+                }
+            },
+            "related-products": {
+                "type": "related-products",
+                "settings": {
+                    "show_related_products": false,
+                    "alignment": "text-center",
+                    "show_vendor": true,
+                    "show_shorthand": true,
+                    "show_section_title": true,
+                    "related_title": "Other fine products",
+                    "related_grid_num": "3",
+                    "related_grid_row": "1",
+                    "shorthand_letter_lable": "j"
+                }
+            },
+            "collection-grid-template": {
+                "type": "collection-grid-template",
+                "settings": {
+                    "show_breadcrumb": true,
+                    "show_collection_image": true,
+                    "show_vendor": true,
+                    "show_collection_pagination": true,
+                    "sort_enable": true,
+                    "collection_view_layout_enable": true,
+                    "tags_enable": true,
+                    "show_shorthand": true,
+                    "sidebar_layout": "fullwidth",
+                    "show_sidebar_categires": true,
+                    "show_sidebar_types": true,
+                    "show_sidebar_vendors": true,
+                    "show_sidebar_tags": true,
+                    "grid": "3",
+                    "rows": "3",
+                    "col_width": "large",
+                    "shorthand_letter_lable": "j"
+                }
+            },
+            "collection-list-template": {
+                "type": "collection-list-template",
+                "settings": {
+                    "show_breadcrumb": true,
+                    "show_collection_image": true,
+                    "show_vendor": true,
+                    "show_product_label": true,
+                    "show_collection_pagination": true,
+                    "sort_enable": true,
+                    "collection_view_layout_enable": true,
+                    "tags_enable": true,
+                    "sidebar_layout": "fullwidth",
+                    "show_sidebar_categires": true,
+                    "show_sidebar_types": true,
+                    "show_sidebar_vendors": true,
+                    "show_sidebar_tags": true,
+                    "products_per_page": "4",
+                    "col_width": "large"
+                }
+            },
+            "search-template": {
+                "type": "search-template",
+                "settings": {
+                    "show_breadcrumb": true,
+                    "show_page_title": true,
+                    "show_vendor": true,
+                    "show_product_label": true,
+                    "show_collection_pagination": false,
+                    "products_per_page": "8",
+                    "col_width": "small"
+                }
+            },
+            "faq-template": {
+                "type": "faq-template",
+                "settings": {
+                    "enable_breadcrumb": true,
+                    "show_page_title": true,
+                    "show_sub_page_title": true,
+                    "sub_page_title": "<p>For general questions regarding our services or products, please check below to see if we have answered them. <br> Can't find your answers? Don't worry, we've got you covered. Please contact us <a href=\"contact\"><em>here</em></a>.</p>"
+                }
+            },
+            "about-template": {
+                "type": "about-template",
+                "settings": {
+                    "enable_breadcrumb": true,
+                    "show_page_title": true,
+                    "enable_video_story": true,
+                    "video_story_url": "https://player.vimeo.com/video/210603721?color=a67ef1&title=0&byline=0&portrait=0"
+                }
+            },
+            "blog-template": {
+                "type": "blog-template",
+                "settings": {
+                    "enable_breadcrumb": false,
+                    "show_page_title": true,
+                    "show_article_title": true,
+                    "show_featured_image": true,
+                    "blog_show_author": true,
+                    "blog_show_date": true,
+                    "blog_show_comment": true,
+                    "blog_show_tags": true,
+                    "blog_show_description": false,
+                    "blog_show_button": true,
+                    "blog_show_pagination": true,
+                    "size": "large",
+                    "limit": "4"
+                }
+            },
+            "article-template": {
+                "type": "article-template",
+                "settings": {
+                    "enable_breadcrumb": false,
+                    "show_article_title": true,
+                    "show_article_featured_image": true,
+                    "blog_show_author": true,
+                    "blog_show_date": true,
+                    "blog_show_tag": true,
+                    "blog_show_number_comments": false,
+                    "blog_show_share_article": true,
+                    "blog_show_pagination": true,
+                    "blog_show_previous_next": true,
+                    "blog_show_comment_form": true,
+                    "size": "large"
+                }
+            },
+            "contact-template": {
+                "type": "contact-template",
+                "settings": {
+                    "enable_breadcrumb": true,
+                    "show_page_title": true,
+                    "show_page_content": true,
+                    "show_map": false,
+                    "map_title": "My Our Store",
+                    "address": "<p>123 Fake St.<br>Toronto, Canada</p><p>Mon - Fri, 10am - 9pm<br>Saturday, 11am - 9pm<br>Sunday, 11am - 5pm</p>",
+                    "api_key": "AIzaSyCeVG19nvMuUmClkNvFJHjQm165LcpJ_Hw"
+                }
+            },
+            "shipping-returns-template": {
+                "type": "shipping-returns-template",
+                "settings": {
+                    "enable_breadcrumb": true,
+                    "show_page_title": true
+                }
+            },
+            "password-header": {
+                "type": "password-header",
+                "settings": {
+                    "logo_max_width": "100",
+                    "header": "Coming Soon"
+                }
+            },
+            "password-content": {
+                "type": "password-content",
+                "settings": {
+                    "newsletter_enable": true,
+                    "newsletter_form_heading": "Be the first to know when we launch.",
+                    "newsletter_placeholder": "Email address",
+                    "newsletter_button_text": "Notify me"
+                }
+            },
+            "password-footer": {
+                "type": "password-footer",
+                "settings": {
+                    "show_share_buttons": true,
+                    "social_message": "Spread the word"
+                }
+            },
+            "footer": {
+                "type": "footer",
+                "settings": {
+                    "footer_linklist_two": ""
+                }
+            }
+        },
+        "content_for_index": [            
+            "collection-list",
+            "collection",
+            "promotion",
+            "featured-blog"
+        ]
+    },
+    "presets": {
+        "Light": {}
+    }
+}

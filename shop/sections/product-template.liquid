@@ -1,0 +1,325 @@
+<div class="single-product">
+    <div itemscope itemtype="http://schema.org/Product" class="container">
+    <meta itemprop="name" content="{{ product.title }}">
+    <meta itemprop="url" content="{{ shop.url }}{{ product.url }}">
+    <meta itemprop="image" content="{{ product.featured_image.src | img_url: '800x' }}">
+
+    {%- assign current_variant = product.selected_or_first_available_variant -%}
+    {%- assign product_thumb_size = '60x78' -%}
+    {%- assign product_image_zoom_size = '970x1256' -%}
+    {%- assign product_image_scale = '2' -%}
+    {%- assign enable_zoom = section.settings.enable_zoom -%}
+
+    {% case section.settings.image_size %}
+    {% when 'small' %}
+        {%- assign product_image_width = 'col-lg-4 col-md-4 col-sm-12' -%}
+        {%- assign product_description_width = 'col-lg-8 col-md-8 col-sm-12' -%}
+        {%- assign product_thumbnail_width = 'product_thumbnail_small' -%}
+        {%- assign product_image_size = '508x658' -%}
+    {% when 'medium' %} 
+        {%- assign product_image_width = 'col-lg-5 col-md-5 col-sm-12' -%}
+        {%- assign product_description_width = 'col-lg-7 col-md-7 col-sm-12' -%}
+        {%- assign product_thumbnail_width = 'product_thumbnail_medium' -%}   
+        {%- assign product_image_size = '645x835' -%}
+    {% when 'large' %}    
+        {%- assign product_image_width = 'col-lg-6 col-md-6 col-sm-12' -%}
+        {%- assign product_description_width = 'col-lg-6 col-md-6 col-sm-12' -%}
+        {%- assign product_thumbnail_width = 'product_thumbnail_large' -%}
+        {%- assign product_image_size = '782x1013' -%}
+    {% when 'full' %}
+        {%- assign product_image_width = 'col-lg-12 col-md-12' -%}
+        {%- assign product_description_width = 'col-lg-12 col-md-12 text-center' -%}
+        {%- assign product_thumbnail_width = 'product_thumbnail_full' -%}
+        {%- assign product_image_size = '970x1256' -%}
+        {%- assign enable_zoom = false -%}
+    {% endcase %}
+    
+        {% if section.settings.show_breadcrumb %}
+            {% include 'breadcrumb' %}        
+        {% endif %}
+
+        {% if section.settings.show_navigation %}                
+            {% if collection %}
+                {% if collection.previous_product or collection.next_product %}
+                    <div class="product-single__navigation">                                
+                        {% if collection.next_product %}
+                            <div class="arrow-icon arrow-next">
+                                {{ 'products.general.next_product_html' | t | link_to: collection.next_product }}
+                            </div>  
+                        {% endif %}
+                        {% if collection.previous_product %}                                    
+                            <div class="arrow-icon arrow-prev">
+                                {{ 'products.general.previous_product_html' | t | link_to: collection.previous_product }}
+                            </div>                                            
+                        {% endif %}
+                    </div>
+                {% endif %}
+            {% endif %}                
+        {% endif %}
+
+        <div class="product-single">
+            <div class="row">
+                <div class="{{ product_image_width }}{% if section.settings.image_size == 'full' %} product-single__photos--full{% endif %}">
+                    {% include 'product-single-photo' %}
+                </div>
+                <div class="{{ product_description_width }}{% if section.settings.image_type == 'scroller' %} sticky{% endif %}{% if section.settings.image_size == 'full' %} product-single__content--full{% endif %}">
+                    <div class="product-single__content">
+                        <header  class="product-single__vendor_name">
+                            <h1 itemprop="name" class="product-single__title">
+                                <span>{{ product.title }}</span>
+                            </h1>                    
+                            {% if section.settings.show_vendor %}
+                                <p itemprop="brand" class="product-single__vendor">{{ product.vendor }}</p>
+                            {% endif %}
+                        </header>
+                        {% if section.settings.short_description != blank %}
+                            <div class="product-single__short_description">  
+                                {{ section.settings.short_description | strip }}     
+                            </div>
+                        {% endif %}                    
+                        <div itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+                            {% include 'product-single-form' %}               
+                        </div>
+                        {% if section.settings.product_description_alignment == 'above' %}
+                            <div class="product-single__tabs product_single_tabs_{{ section.settings.product_description_alignment }}">
+                                <ul class="list-unstyled tabs">
+                                    <li class="product-single__tab__item current tab_item" data-tab="tab-1">
+                                        <span class="label-text">{{ 'products.product.details' | t }}</span>
+                                    </li>
+                                    <li class="product-single__tab__item tab_item" data-tab="tab-2">
+                                        <span class="label-text">{{ 'products.product.size_chart' | t }}</span>
+                                    </li>    
+                                    {% if section.settings.contact_link != blank %}
+                                        <li class="product-single__tab__item">
+                                            <a class="label-text" href="mailto:{{ section.settings.contact_link | escape }}?subject=feedback" "{{ 'products.product.contact' | t }}">{{ 'products.product.contact' | t }}</a>                                                                
+                                        </li>
+                                    {% endif %}                            
+                                </ul>
+                                <div id="tab-1" class="tab-content current product-description rte" itemprop="description">
+                                    {{ product.description }}                                                   
+                                </div>
+                                <div id="tab-2" class="tab-content">
+                                    <h4 class="size_chart_title">{{ 'products.product.size_chart_title' | t }}</h4>
+                                    {% if section.settings.size_chart_content != blank and section.settings.size_chart_photo %}
+                                        <div class="size_chart_content">
+                                            <p>{{ section.settings.size_chart_content | strip }}</p>
+                                            {% if section.settings.size_chart_photo %}
+                                                <hr>
+                                                <div class="size_chart_photo">
+                                                    <img src="{{ section.settings.size_chart_photo | img_url: '600x' }}" alt="{{ 'products.product.size_chart' | t }}" class="lazy">
+                                                </div>
+                                            {% endif %}                                                                                   
+                                        </div>            
+                                    {% endif %}                                                        
+                                </div>    
+                            </div>
+                        {% endif %}                  
+                        {% if section.settings.show_share_buttons %}
+                            {% include 'social-sharing', share_title: product.title, share_permalink: product.url, share_image: product %}
+                        {% endif %} 
+                    </div>                   
+                </div>
+            </div>          
+        </div>
+
+        {% if section.settings.product_description_alignment == 'below' %}            
+            <div class="product-single__tabs text-center product_single_tabs_{{ section.settings.product_description_alignment }}">
+                <ul class="list-unstyled tabs">
+                    <li class="product-single__tab__item current tab_item" data-tab="tab-1">
+                        <span class="label-text">{{ 'products.product.details' | t }}</span>
+                    </li>
+                    <li class="product-single__tab__item tab_item" data-tab="tab-2">
+                        <span class="label-text">{{ 'products.product.size_chart' | t }}</span>
+                    </li>    
+                    {% if section.settings.contact_link != blank %}
+                        <li class="product-single__tab__item">
+                            <a class="label-text" href="mailto:{{ section.settings.contact_link | escape }}?subject=feedback" "{{ 'products.product.contact' | t }}">{{ 'products.product.contact' | t }}</a>                                                                
+                        </li>
+                    {% endif %}                            
+                </ul>
+                <div id="tab-1" class="tab-content current product-description rte" itemprop="description">
+                    {{ product.description }}                                          
+                </div>
+                <div id="tab-2" class="tab-content">
+                    <h4 class="size_chart_title">{{ 'products.product.size_chart_title' | t }}</h4>
+                    {% if section.settings.size_chart_content != blank and section.settings.size_chart_photo %}
+                        <div class="size_chart_content">
+                            <p>{{ section.settings.size_chart_content | strip }}</p>
+                            {% if section.settings.size_chart_photo %}
+                                <hr>
+                                <div class="size_chart_photo">
+                                    <img src="{{ section.settings.size_chart_photo | img_url: '600x' }}" alt="{{ 'products.product.size_chart' | t }}" class="lazy">
+                                </div>
+                            {% endif %}                                                                                   
+                        </div>            
+                    {% endif %}                                                        
+                </div>    
+            </div>            
+        {% endif %}      
+
+        {% if section.settings.show_back_collection and collection %}
+            <div class="text-center product-single__return">
+                <a href="{{ collection.url }}" class="btn btn--primary btn--has-icon-before return-link">
+                    <span class="lnr lnr-arrow-left"></span>                
+                    {{ 'products.product.back_to_collection' | t: title: collection.title }}
+                </a>
+            </div>    
+        {% endif %}
+    </div>    
+    {{ 'option_selection.js' | shopify_asset_url | script_tag }}
+    <script>
+        var selectCallback = function(variant, selector) {
+            timber.productPage({
+                money_format: "{{ shop.money_format }}",
+                variant: variant,
+                selector: selector
+            });
+        };
+        jQuery(function($) {
+            new Shopify.OptionSelectors('productSelect', {
+                product: {{ product | json }},
+                onVariantSelected: selectCallback,
+                enableHistoryState: true
+            });    
+            {% if product.options.size == 1 and product.options.first != 'Title' %}
+                $('.selector-wrapper:eq(0)').prepend('<label for="productSelect-option-0">{{ product.options.first | escape }}</label>');
+            {% endif %}
+
+            {% if product.variants.size == 1 and product.variants.first.title contains 'Default' %}
+                $('.selector-wrapper').hide();
+            {% endif %}
+        });
+    </script>
+</div>
+
+{% unless product == empty %}
+    <script type="application/json" id="ProductJson-{{ section.id }}">
+        {{ product | json }}
+    </script>
+{% endunless %}
+
+{% schema %}
+{
+    "name": "Product Page",
+    "class": "shopify-section__product-template",
+    "settings": [{
+        "type": "checkbox",
+        "id": "show_breadcrumb",
+        "label": "Show Breadcrumb",
+        "default": true
+    }, {
+        "type": "checkbox",
+        "id": "show_navigation",
+        "label": "Show Navigation",
+        "default": true
+    }, {
+        "type": "checkbox",
+        "id": "show_back_collection",
+        "label": "Show Back To Collection",
+        "default": true
+    }, {
+        "type": "checkbox",
+        "id": "show_vendor",
+        "label": "Show Vendor",
+        "default": true
+    }, {
+        "type": "checkbox",
+        "id": "show_label_sale",
+        "label": "Show Sold Out/Sales",
+        "default": true
+    }, {
+        "type": "checkbox",
+        "id": "enable_zoom",
+        "label": "Enable image zoom",
+        "default": true
+    }, {
+        "type": "checkbox",
+        "id": "show_share_buttons",
+        "label": "Show social sharing buttons",
+        "default": true
+    }, {
+        "type": "checkbox",
+        "id": "enable_product_video",
+        "label": "Enable Product Popup Video",
+        "default": false
+    }, {
+        "type": "select",
+        "id": "image_size",
+        "label": "Image size",
+        "options": [{
+            "value": "small",
+            "label": "Small"
+        }, {
+            "value": "medium",
+            "label": "Medium"
+        }, {
+            "value": "large",
+            "label": "Large"
+        }, {
+            "value": "full",
+            "label": "Full-width"
+        }],
+        "default": "large"
+    }, {
+        "type": "select",
+        "id": "image_type",
+        "options": [
+            { "value": "zoom", "label": "Zoom" },
+            { "value": "carousel", "label": "Carousel" },
+            { "value": "scroller", "label": "Sticky" }
+        ],
+        "default": "zoom",
+        "label": "Products Type"
+    }, {
+        "type": "select",
+        "id": "image_zoom_position",
+        "options": [
+            { "value": "right", "label": "Right" },
+            { "value": "left", "label": "Left" },
+            { "value": "top", "label": "Top" },
+            { "value": "bottom", "label": "Bottom" },
+            { "value": "inner", "label": "Inner" }
+        ],
+        "default": "right",
+        "label": "Image Zoom Position"
+    }, {
+        "type": "select",
+        "id": "product_description_alignment",
+        "options": [
+            { "value": "above", "label": "Above" },
+            { "value": "below", "label": "Below" }
+        ],
+        "default": "below",
+        "label": "Alignment Description"
+    }, {
+        "type": "header",
+        "content": "Content"
+    }, {
+        "type": "text",
+        "id": "contact_link",
+        "default": "customercare@dixiboho.com",
+        "label": "Send message to email"
+    }, {
+        "type": "richtext",
+        "id": "size_chart_content",
+        "label": "Size chart content",
+        "default": "<p>For an easy to use printable ring sizing chart</p>"
+    }, {
+        "type": "image_picker",
+        "id": "size_chart_photo",
+        "label": "Size Chart Image"
+    }, {
+        "type": "richtext",
+        "id": "short_description",
+        "label": "Short Description",
+        "default": "<p>This is your classic product description blurb. Lucky for you, there is no character limit, so feel free to give your customers all the nitty gritty details. This is just a demo shop, but you can shop this product for real on the Jewelry Shop site.</p>"
+    }, {
+        "type": "video_url",
+        "id": "product_video_url",
+        "label": "Product Video URL",
+        "accept": ["youtube", "vimeo"],
+        "default": "https://www.youtube.com/watch?v=_9VUPq3SxOc",
+        "info": "Only Supported with 'Zoom' and 'Carousel'"
+    }]
+}
+{% endschema %}

@@ -1,0 +1,15 @@
+<div class="widget widget-newsletter">
+    {% if settings.show_newsletter_title %}
+        <h3 class="widget-title">{{ 'layout.footer.newsletter_title' | t }}</h3>
+    {% endif %}
+    {% if settings.newsletter_form_action != blank %}        
+        <form action="{{ settings.newsletter_form_action }}" method="post" name="mc-embedded-subscribe-form" target="_blank" class="subscribe-form validate" role="form">
+            <input type="email" value="{% if customer %}{{ customer.email }}{% endif %}" placeholder="{{ 'general.newsletter_form.newsletter_email' | t }}" name="EMAIL" required="required" class="input-group-field newsletter-form-field" aria-label="{{ 'general.newsletter_form.newsletter_email' | t }}" autocomplete="off">
+            <p class="newsletter__button"><input type="submit" class="btn btn--secondary" name="subscribe" value="{{ 'general.newsletter_form.submit' | t }}"></p>
+        </form>        
+    {% else %}
+        <h4 class="create-mailchimp">
+            <a href="https://login.mailchimp.com/signup/" title="signup mailchimp" target="_blank">Add newsletter redirect link in Newsletter / MailChimp form action URL</a>
+        </h4>
+    {% endif %}    
+</div>

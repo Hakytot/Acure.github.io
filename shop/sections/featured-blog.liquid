@@ -1,0 +1,151 @@
+<!-- sections/featured-blog.liquid -->
+
+{% if section.settings.enable_featured_blog %}    
+    <section class="{{ section.id }} widget {% if section.settings.blog == blank %}no_items{% endif %}"{% if section.settings.image %} style="background-image: url('{{ section.settings.image | img_url: '1920x' }}'); background-position: center {{ section.settings.alignment }};"{% endif %}>  
+        {% case section.settings.image_size %}            
+            {% when 'small' %}
+                {%- assign blog_image_width = 'small' -%}
+                {%- assign blog_image_size = '371x449' -%}
+            {% when 'medium' %}
+                {%- assign blog_image_width = 'medium' -%}
+                {%- assign blog_image_size = '508x615' -%}
+            {% when 'large' %}
+                {%- assign blog_image_width = 'large' -%}
+                {%- assign blog_image_size = '645x781' -%}
+        {% endcase %}
+
+        <div class="container">
+            <div class="{{ section.id }}__container">
+                <div class="{{ section.id }}__container_item">                  
+                    {%- assign blog = blogs[section.settings.blog] -%}       
+                    {% if blog != blank %}            
+                        <div class="row widget-content">
+                            {% for article in blog.articles limit: section.settings.post_limit %}
+                                <div class="col-lg-12 col-md-12 {{ section.id }}__blog_item">
+                                    <article class="entry-blog clearfix entry-blog_{{ blog_image_width }}">
+                                        <div class="entry-blog-container">
+                                            <div class="entry-blog-table entry-blog_{{ blog_image_width }}">
+                                                <div class="entry-blog-align entry-blog-align__{{ section.settings.vertical }}">
+                                                    {% if section.settings.show_blog_title %}
+                                                        <div class="entry-header">
+                                                            <h3 class="entry-title"><a href="{{ article.url }}">{{ article.title }}</a></h3>
+                                                        </div>
+                                                    {% endif %}
+                                                    {% if section.settings.show_blog_excerpt %}
+                                                        <div class="rte entry-excerpt">
+                                                            {% if article.excerpt.size > 0 %}
+                                                                {{ article.excerpt }}
+                                                            {% else %}
+                                                                {{ article.content | strip_html | truncate: 150 }}
+                                                            {% endif %}
+                                                        </div>
+                                                    {% endif %}
+                                                </div>                                               
+                                            </div>                                            
+                                        </div> 
+                                        {% if article.image %}
+                                            <div class="entry-featured-image blog_image_{{ blog_image_width }}">
+                                                <a class="article__featured-image" href="{{ article.url }}">
+                                                    {{ article | img_url: blog_image_size, scale: 1 | img_tag: article.title }}                                                    
+                                                </a>
+                                            </div>                                    
+                                        {% endif %}                                                                               
+                                    </article>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>    
+            </div>            
+        </div>
+    </section>
+{% endif %}
+
+
+{% schema %}
+{
+    "name": "Featured Blog",
+    "class": "shopify-section__featured_blog",
+    "settings": [{
+        "type": "checkbox",
+        "id": "enable_featured_blog",
+        "label": "Enable Featured Blog",
+        "default": true
+    }, {
+        "type": "checkbox",
+        "id": "show_blog_title",
+        "label": "Show Blog Title",
+        "default": true
+    }, {
+        "type": "checkbox",
+        "id": "show_blog_excerpt",
+        "label": "Show Blog Excerpt",
+        "default": true
+    }, {
+        "type": "image_picker",
+        "id": "image",
+        "label": "Background Image"
+    }, {
+        "type": "select",
+        "id": "alignment",
+        "label": "Background Image Alignment",
+        "default": "top",
+        "options": [{
+            "value": "top",
+            "label": "Top"
+        }, {
+            "value": "center",
+            "label": "Middle"
+        }, {
+            "value": "bottom",
+            "label": "Bottom"
+        }]
+    }, {
+        "id": "blog",
+        "type": "blog",
+        "label": "Blog"
+    }, {
+        "type": "select",
+        "id": "vertical",
+        "label": "Items Blog Alignment",
+        "default": "middle",
+        "options": [{
+            "value": "top",
+            "label": "Top"
+        }, {
+            "value": "middle",
+            "label": "Middle"
+        }, {
+            "value": "bottom",
+            "label": "Bottom"
+        }]
+    }, {
+        "type": "select",
+        "id": "post_limit",
+        "label": "Posts",
+        "default": "2",
+        "options": [{
+            "value": "1",
+            "label": "1"
+        }, {
+            "value": "2",
+            "label": "2"
+        }]
+    }, {
+        "type": "select",
+        "id": "image_size",
+        "label": "Image size",
+        "options": [{
+            "value": "small",
+            "label": "Small"
+        }, {
+            "value": "medium",
+            "label": "Medium"
+        }, {
+            "value": "large",
+            "label": "Large"
+        }],
+        "default": "medium"
+    }]
+}
+{% endschema %}

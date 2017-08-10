@@ -1,0 +1,13 @@
+{% if settings.ajax_cart_method == "drawer" %}
+    <div id="CartDrawer" class="drawer drawer--right">
+        <div class="drawer__header">
+            <div class="drawer__title h3">{{ 'cart.general.title' | t }}</div>
+            <div class="drawer__close js-drawer-close">
+                <button type="button" class="icon-fallback-text">            
+                    <span class="lnr lnr-cross" aria-hidden="true"></span>            
+                </button>
+            </div>
+        </div>
+        <div id="CartContainer"></div>
+    </div>
+{% endif %}

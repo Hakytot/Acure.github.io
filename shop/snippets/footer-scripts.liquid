@@ -1,0 +1,47 @@
+{{ 'jquery.fitvids.js' | asset_url | script_tag }}
+{{ 'magiczoomplus.js' | asset_url | script_tag }}
+{{ 'timber.js' | asset_url | script_tag }}
+{{ 'theme.js' | asset_url | script_tag }}
+
+{% if settings.enable_newsletter_popup %}
+  <script>
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-36251023-1']);
+    _gaq.push(['_setDomainName', 'jqueryscript.net']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>  
+{% endif %}
+
+<script>
+  {% if resetPassword %}
+    $(function() {
+      timber.resetPasswordSuccess();
+    });
+  {% endif %}
+</script>
+
+{% if settings.ajax_cart_method == "drawer" %}
+  {{ 'handlebars.min.js' | asset_url | script_tag }}
+  {% include 'ajax-cart-template' %}
+  {{ 'ajax-cart.js' | asset_url | script_tag }}
+  <script>
+    jQuery(function($) {
+      ajaxCart.init({
+        formSelector: '#AddToCartForm',
+        cartContainer: '#CartContainer',
+        addToCartSelector: '#AddToCart',
+        cartCountSelector: '#CartCount',
+        cartCostSelector: '#CartCost',
+        moneyFormat: {{ shop.money_format | json }}
+      });
+    });
+    jQuery(document.body).on('afterCartLoad.ajaxCart', function(evt, cart) {      
+      timber.RightDrawer.open();
+    });
+  </script>
+{% endif %}

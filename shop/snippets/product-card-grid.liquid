@@ -1,0 +1,49 @@
+{% unless grid_image_width %}
+{%- assign grid_image_width = '508x658' -%}
+{% endunless %}
+{%- assign grid_image_scale = '2' -%}
+
+<div class="grid-view-item{% unless product.available %} product-price--sold-out grid-view-item--sold-out{% endunless %}">    
+    <div class="grid-view-item__picture">
+        <a class="grid-view-item__picture_link" href="{{ product.url | within: collection }}">
+            <img class="grid-view-item__image lazy" data-src="{{ product.featured_image.src | img_url: grid_image_width }}" src="{{ product.featured_image.src | img_url: grid_image_width }}" alt="{{ product.featured_image.alt }}">
+        </a>      
+        <div class="grid-view-item__hover">
+            <a class="grid-view-item__picture_bg" href="{{ product.url | within: collection }}">
+                <span class="hover__bg"></span>
+            </a>             
+            <div class="grid-view-item__flexbox">
+                <div class="flexbox__item">
+                    <span class="hover__line hover__line--top"></span>
+                    {% if section.settings.show_shorthand %}
+                        {% if section.settings.shorthand_letter_lable != blank %}
+                            <b class="hover__letter">{{ section.settings.shorthand_letter_lable | escape }}</b>
+                        {% endif %}     
+                    {% endif %}
+                    {% if section.settings.show_vendor %}
+                        <span class="grid-view-item__vendor hover__more">{{ product.vendor }}</span>
+                    {% endif %}   
+                    <span class="hover__line hover__line--bottom"></span>
+                </div>                    
+            </div>                
+        </div>                        
+    </div>    	
+    <div class="grid-view-item__box">
+        <h4 class="grid-view-item__title">
+            <a class="grid-view-item__link" href="{{ product.url | within: collection }}">
+                <span>{{ product.title }}</span>
+            </a>            
+        </h4>          
+        <div class="grid-view-item__meta product-price">
+            {% include 'product-price' %}
+            {% if section.settings.show_label_sale %}
+                {% if product.compare_at_price > product.price %}
+                    <span class="product-label on-sale">{{ 'products.product.on_sale' | t }}</span>                            
+                {% endif %}  
+                {% unless available %}
+                    <span class="product-label sold-out">{{ 'products.product.sold_out' | t }}</span>
+                {% endunless %}
+            {% endif %}
+        </div>
+    </div>            
+</div>

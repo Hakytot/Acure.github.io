@@ -1,0 +1,24 @@
+{% if shop.customer_accounts_enabled %}
+    <ul class="customer_accounts list-unstyled text-center">
+        {% if customer %}        
+            <li class="customer_account__item">
+                {% if customer.first_name != blank %}
+                    {% capture first_name %}{{ customer.first_name }}{% endcapture %}
+                    <a class="btn btn--outline btn--small" href="/account">{{ 'layout.customer.logged_in_as_html' | t: first_name: first_name }}</a>
+                {% else %}
+                    <a class="btn btn--outline btn--small" href="/account">{{ 'layout.customer.account' | t }}</a>
+                {% endif %}
+            </li>
+            <li class="customer_account__item">
+                {{ 'layout.customer.log_out' | t | customer_logout_link }}
+            </li>
+        {% else %}
+            <li class="customer_account__item account-login">
+                {{ 'layout.customer.log_in' | t | customer_login_link }}
+            </li>
+            <li class="customer_account__item account-register">
+                {{ 'layout.customer.create_account' | t | customer_register_link }}
+            </li>        
+        {% endif %}
+    </ul>
+{% endif %}

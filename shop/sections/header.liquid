@@ -1,0 +1,169 @@
+<header id="header" class="volus-header header site-header{% if section.settings.logo_alignment == 'left' %} border-bottom logo--left{% else %} logo--center{% endif %} {% if section.settings.sticky_enable %}header__sticky{% endif %}" role="banner">
+                
+    {% if section.settings.logo_alignment == 'center' %}
+        <div class="header-nav">  
+            {% include 'navigation' %}                                                 
+        </div>
+    {% endif %}    
+
+    {% if section.settings.logo_alignment == 'center' %}
+        {%- assign logo_classes = 'logo-align--center' -%}
+    {% elsif section.settings.logo_alignment == 'left' %}
+        {%- assign logo_classes = 'logo-align--left' -%}
+    {% else %}
+        {%- assign logo_classes = 'logo-align--right' -%}
+    {% endif %}                                     
+                
+    {% if section.settings.logo_alignment == "center" %}        
+        <div class="logo {{ logo_classes }}">        
+            {% if template == 'index' %}
+                <h1 class="site-header__logo" itemscope itemtype="http://schema.org/Organization">
+            {% else %}
+                <div class="site-header__logo" itemscope itemtype="http://schema.org/Organization">
+            {% endif %}
+            {% if section.settings.logo %}
+                <a href="/" itemprop="url" class="site-header__logo-image{% if section.settings.logo_alignment == 'center' %} site-header__logo-image--centered{% endif %}">
+                    {% capture image_size %}{{ section.settings.logo_max_width }}x{% endcapture %}
+                    <img class="site-logo-image" src="{{ section.settings.logo | img_url: image_size }}"
+                    srcset="{{ section.settings.logo | img_url: image_size }} 1x, {{ section.settings.logo | img_url: image_size, scale: 2 }} 2x"
+                    alt="{{ section.settings.logo.alt | default: shop.name }}"
+                    itemprop="logo">
+                    {% if section.settings.logo_mobile %}
+                        <img class="site-logo-image-mobile" src="{{ section.settings.logo_mobile | img_url: image_size }}"
+                        srcset="{{ section.settings.logo_mobile | img_url: image_size }} 1x, {{ section.settings.logo_mobile | img_url: image_size, scale: 2 }} 2x"
+                        alt="{{ section.settings.logo_mobile.alt | default: shop.name }}"
+                        itemprop="logo">
+                    {% endif %} 
+                </a>
+            {% else %}
+                <a class="site-header__logo-link" href="/" itemprop="url">{{ shop.name }}</a>
+            {% endif %}                    
+            {% if template == 'index' %}
+                </h1>
+            {% else %}   
+            </div>             
+            {% endif %}
+        </div>
+    {% endif %}
+
+    {% if section.settings.logo_alignment == "center" %}
+        <div class="site-actions"> 
+            {% if section.settings.show_customer_accounts %}
+                <div class="site-actions-account">
+                    {% include 'customer-link' %}                        
+                </div>
+            {% endif %}
+            {% if section.settings.show_minicart %} {% include 'minicart' %} {% endif %}         
+            {% if section.settings.display_search %} 
+                <div class="site-actions-search"> 
+                    <i class="showhide icon ion-android-search"></i>     
+                    <div class="showhide-open search-field">                
+                        {% include 'search' %}
+                    </div>                   
+                </div>
+            {% endif %}            
+        </div>                                               
+    {% endif %}    
+
+    {% if section.settings.logo_alignment == "left" %}                 
+        <div class="logo {{ logo_classes }}">        
+            {% if template == 'index' %}
+                <h1 class="site-header__logo" itemscope itemtype="http://schema.org/Organization">
+            {% else %}
+                <div class="site-header__logo" itemscope itemtype="http://schema.org/Organization">
+            {% endif %}
+            {% if section.settings.logo %}
+                <a href="/" itemprop="url" class="site-header__logo-image{% if section.settings.logo_alignment == 'center' %} site-header__logo-image--centered{% endif %}">
+                    {% capture image_size %}{{ section.settings.logo_max_width }}x{% endcapture %}
+                    <img class="site-logo-image" src="{{ section.settings.logo | img_url: image_size }}"
+                    srcset="{{ section.settings.logo | img_url: image_size }} 1x, {{ section.settings.logo | img_url: image_size, scale: 2 }} 2x"
+                    alt="{{ section.settings.logo.alt | default: shop.name }}"
+                    itemprop="logo">
+                    {% if section.settings.logo_mobile %}
+                        <img class="site-logo-image-mobile" src="{{ section.settings.logo_mobile | img_url: image_size }}"
+                        srcset="{{ section.settings.logo_mobile | img_url: image_size }} 1x, {{ section.settings.logo_mobile | img_url: image_size, scale: 2 }} 2x"
+                        alt="{{ section.settings.logo_mobile.alt | default: shop.name }}"
+                        itemprop="logo">
+                    {% endif %}  
+                </a>
+            {% else %}
+                <a class="site-header__logo-link" href="/" itemprop="url">{{ shop.name }}</a>
+            {% endif %}                    
+            {% if template == 'index' %}
+                </h1>
+            {% else %}   
+            </div>             
+            {% endif %}
+        </div>
+    {% endif %}
+
+    {% if section.settings.logo_alignment == "left" %}
+        {% include 'navigation' %}
+        <div class="header-nav">                        
+            {% if section.settings.show_minicart %} {% include 'minicart' %} {% endif %}                    
+            {% if section.settings.display_search %} 
+                <div class="search-field hidden-sm hidden-xs">
+                    {% include 'search' %}
+                </div>                      
+            {% endif %}   
+            {% if section.settings.show_customer_accounts %}
+                <div class="header_customer_accounts hidden-sm hidden-xs">
+                    {% include 'customer-link' %}
+                </div>
+            {% endif %}
+        </div>                
+    {% endif %}    
+</header>
+
+{% schema %}
+{
+    "name": "Header",
+    "class": "shopify-section__header",
+    "settings": [{
+        "type": "checkbox",
+        "id": "show_minicart",
+        "label": "Enable shopping cart",
+        "default": true
+    }, {
+        "type": "checkbox",
+        "id": "show_customer_accounts",
+        "label": "Show Customer Accounts",
+        "default": true
+    }, {
+        "type": "checkbox",
+        "id": "display_search",
+        "label": "Enable search box",
+        "default": true
+    }, {
+        "type": "checkbox",
+        "id": "sticky_enable",
+        "label": "Enable Sticky Header",
+        "default": true
+    }, {
+        "type": "header",
+        "content": "Logo Settings"
+    }, {
+        "type": "radio",
+        "id": "logo_alignment",
+        "label": "Logo alignment",
+        "default": "center",
+        "options": [
+            { "value": "left", "label": "Left" },
+            { "value": "center", "label": "Center" }
+        ]
+    }, {
+        "type": "image_picker",
+        "id": "logo",
+        "label": "Logo image"
+    }, {
+        "type": "image_picker",
+        "id": "logo_mobile",
+        "label": "Logo mobile"
+    }, {
+        "type": "text",
+        "id": "logo_max_width",
+        "label": "Custom logo width (in pixels)",
+        "default": "100"
+    }]
+}
+{% endschema %}

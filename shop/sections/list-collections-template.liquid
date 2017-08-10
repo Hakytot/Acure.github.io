@@ -1,0 +1,65 @@
+{% case section.settings.grid %}
+    {% when '2' %}
+        {%- assign grid_item_width = 'col-lg-6 col-md-6' -%}      
+        {%- assign collection_image_size = '782x550' -%}                  
+    {% when '3' %}
+        {%- assign grid_item_width = 'col-lg-4 col-md-4' -%}   
+        {%- assign collection_image_size = '508x357' -%}                     
+    {% when '4' %}
+        {%- assign grid_item_width = 'col-lg-3 col-md-3' -%}    
+        {%- assign collection_image_size = '371x261' -%}                
+    {% when '6' %}
+        {%- assign grid_item_width = 'col-lg-2 col-md-2' -%}  
+        {%- assign collection_image_size = '234x165' -%}                      
+{% endcase %}
+
+<div id="{{ section.id }}" class="page">
+    <div class="container">
+        {% if section.settings.enable_breadcrumb %}
+            {% include 'breadcrumb' %}
+        {% endif %}
+        {% if section.settings.show_title %}
+            <header class="page-header text-center">
+                <h1 class="page-title">{{ page_title }}</h1>
+            </header>
+        {% endif %}
+        <div class="{{ section.id }}">            
+            <div class="row">
+                {% for collection in collections %}     
+                    <div class="{{ grid_item_width }} col_{{ section.settings.grid }}">
+                        {% include 'collection-grid-item' %}
+                    </div>
+                {% endfor %}
+            </div>                
+        </div>        
+    </div>
+</div>
+
+{% schema %}
+{
+    "name": "List Collections",
+    "class": "shopify-section__list_collections",
+    "settings": [{
+        "type": "checkbox",
+        "id": "enable_breadcrumb",
+        "label": "Enable Breadcrumb",
+        "default": true
+    }, {
+        "type": "checkbox",
+        "id": "show_title",
+        "label": "Show Collection Title",
+        "default": true
+    }, {
+        "type": "select",
+        "id": "grid",
+        "default": "3",
+        "options": [
+            { "value": "2", "label": "2 Collection" },
+            { "value": "3", "label": "3 Collection" },
+            { "value": "4", "label": "4 Collection" },
+            { "value": "6", "label": "6 Collection" }
+        ],
+        "label": "Collection per row (grid only)"
+    }]
+}
+{% endschema %}

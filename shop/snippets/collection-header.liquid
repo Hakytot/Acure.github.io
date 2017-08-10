@@ -1,0 +1,53 @@
+{% if section.settings.show_breadcrumb %}
+    <section class="clearfix collection-breadcrumb">
+        {% include 'breadcrumb' %}
+        <aside class="filters-toolbar__item filters-toolbar__item--count">
+            <span class="filters-toolbar__product-count">{{ 'collections.general.items_with_count' | t: count: collection.products_count }}</span>                
+        </aside>            
+    </section>    
+{% endif %}
+
+<header class="collection-header clearfix{% if section.settings.show_collection_image and collection.image %} has-collection-image{% else %} collection_no_image{% endif %}">
+{% if section.settings.show_collection_image and collection.image %}
+    <div class="collection-hero-image">
+        <div class="collection-hero__image lazy" style="background-image: url({{ collection.image | img_url: '2048x600', crop: 'top' }});"></div>                    
+    </div>
+    <div class="collection-hero-wrapper">
+        <div class="collection-hero-box">
+            <div class="collection-hero__title-wrapper">
+                <h2 class="page-title"><span>{{ collection.title }}</span></h2>
+            </div>
+            {% if collection.description != blank %}
+                <div class="rte collection-description">
+                    {{ collection.description }}
+                </div>
+            {% endif %}
+        </div>
+    </div>    
+    {% else %}
+        <div class="collection-hero-wrapper">
+            <div class="collection-hero-box">
+                <div class="collection-hero__title-wrapper">
+                    <h2 class="page-title"><span>{{ collection.title }}</span></h2>
+                </div>
+                {% if collection.description != blank %}
+                    <div class="rte collection-description text-center">
+                        {{ collection.description }}
+                    </div>
+                {% else %}
+                    <div class="rte collection-description text-center">
+                        <span>{{ 'collections.general.description' | t }}</span>                        
+                    </div>
+                {% endif %}                
+            </div>
+        </div>
+    {% endif %}
+</header>
+{% if section.settings.tags_enable or section.settings.sort_enable %}
+    <section class="filters-toolbar-wrapper">                        
+        <div class="filters-toolbar clearfix">
+            {% include 'collection-views' %}   
+            {% include 'collection-sorting' %}                        
+        </div>                        
+    </section>
+{% endif %}

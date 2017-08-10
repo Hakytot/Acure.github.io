@@ -1,0 +1,46 @@
+<!-- Begin navigation -->
+{% assign parallax_class = 'parallax' %}
+{% capture testimonial_parallax %}testimonial_parallax{% endcapture %}
+
+<div class="volus-testimonials lazy {% if settings.enable_parallax %}{{ parallax_class }}{% endif %}" data-original="{% if settings[testimonial_parallax] != blank and settings.enable_parallax %} {{ settings[testimonial_parallax] | img_url: 'master' }} {% endif %}" {% if settings[testimonial_parallax] != blank and settings.enable_parallax %} style="background-image: url('{{ settings[testimonial_parallax] | img_url: 'master' }}');"{% endif %}>
+    <div id="testimonial" class="list-unstyled widget-testimonial">
+        {% for i in (1..2) %}
+            {% capture testimonial_avata %}testimonial_avata_{{ i }}{% endcapture %}
+            {% capture name %}testimonial_name_{{ i }}{% endcapture %}
+            {% capture position %}testimonial_position_{{ i }}{% endcapture %}
+            {% capture description %}testimonial_description_{{ i }}{% endcapture %}
+            <div class="item">
+                <div class="media">
+                    {% if settings[testimonial_avata] != blank %}
+                        <figure class="testimonial-avata">
+                            <img data-original="{{ settings[testimonial_avata] | img_url: 'small' }}" alt="" class="media-object lazy"/>
+                        </figure>
+                    {% else %}
+                        <figure class="testimonial-avata background__overlay">
+                            {% capture current %}{% cycle 1, 2 %}{% endcapture %}
+                            {{ 'lifestyle-' | append: current | placeholder_svg_tag: 'placeholder-svg' }}
+                        </figure>						
+                    {% endif %}
+                    <div class="testimonial-body">
+                        {% if settings.person_feedback_enable %}
+                        <p class="testimonial-description">
+                            {{ settings[description] | escape }}
+                        </p>
+                        {% endif %}
+                        {% if settings.person_name_enable %}
+                            <h4 class="testimonial-name">
+                                {{ settings[name] | escape }}
+                            </h4>
+                        {% endif %}
+                        {% if settings.person_position_enable %}
+                            <h5 class="testimonial-position">
+                                {{ settings[position] | escape }}
+                            </h5>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        {% endfor %}        
+    </div>
+</div>
+<!-- End Begin navigation -->

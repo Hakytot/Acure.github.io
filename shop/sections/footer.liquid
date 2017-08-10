@@ -1,0 +1,185 @@
+<!-- Begin footer -->
+<footer id="{{ section.id }}" class="volus-{{ section.id }} {{ section.id }}">
+    {% if section.settings.footer_instagram_enable %}
+        <div class="footer-instagram">        
+            <aside class="instagram--inside">  
+                {% include "instagram-feed" %}            
+            </aside>        
+        </div>
+    {% endif %} 
+
+    {% if section.settings.footer_newsletter_enable %}
+        <div class="footer-newsletter">        
+            <aside class="newsletter--inside">  
+                {% include "newsletter" %}   
+            </aside>                 
+        </div>
+    {% endif %}                
+
+    {% if section.settings.footer_linklist_enable %}
+        <div class="footer-container">        
+            <div class="{% if section.settings.footer_linklist != blank %} footer__linklist{% endif %}">            
+                {%- assign footer_linklist = section.settings.footer_linklist -%}
+                {% if linklists[footer_linklist].links.size > 0 %}
+                    <ul class="list-unstyled list-inline linklists">                    
+                        {% for link in linklists[footer_linklist].links %}
+                            <li class="site-footer__linklist-item">
+                                <a href="{{ link.url }}">{{ link.title }}</a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            </div>
+            <div class="{% if section.settings.footer_linklist_two != blank %} footer__linklist{% endif %}">            
+                {%- assign footer_linklist_two = section.settings.footer_linklist_two -%}
+                {% if linklists[footer_linklist_two].links.size > 0 %}
+                    <ul class="list-unstyled list-inline linklists">  
+                        {% for link in linklists[footer_linklist_two].links %}
+                            <li class="site-footer__linklist-item">
+                                <a href="{{ link.url }}">{{ link.title }}</a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            </div>        
+        </div>
+    {% endif %}
+
+    {% if section.settings.footer_display_social %}
+        <div class="footer-social">
+            {% include "social-links" %}
+        </div>
+    {% endif %} 
+
+    {% if section.settings.footer_display_payment %}
+        <div class="footer-payment">        
+            <aside class="payment--inside">                
+                <ul class="payment-options list-inline">
+                    {% if section.settings.footer-payment-amex %}<li aria-hidden="true" class="payment-logo pf pf-american-express"></li>{% endif %}
+                    {% if section.settings.footer-payment-diners %}<li aria-hidden="true" class="payment-logo pf pf-diners"></li>{% endif %}
+                    {% if section.settings.footer-payment-discover %}<li aria-hidden="true" class="payment-logo pf pf-discover"></li>{% endif %}
+                    {% if section.settings.footer-payment-visa %}<li aria-hidden="true" class="payment-logo pf pf-visa"></li>{% endif %}
+                    {% if section.settings.footer-payment-mastercard %}<li aria-hidden="true" class="payment-logo pf pf-mastercard"></li>{% endif %}
+                    {% if section.settings.footer-payment-skrill %}<li aria-hidden="true" class="payment-logo pf pf-skrill"></li>{% endif %}
+                    {% if section.settings.footer-payment-stripe %}<li aria-hidden="true" class="payment-logo pf pf-stripe"></li>{% endif %}
+                    {% if section.settings.footer-payment-switch %}<li aria-hidden="true" class="payment-logo pf pf-quick"></li>{% endif %}
+                    {% if section.settings.footer-payment-paypal %}<li aria-hidden="true" class="payment-logo pf pf-paypal"></li>{% endif %}
+                    {% if section.settings.footer-payment-googlewallet %}<li aria-hidden="true" class="payment-logo pf pf-google-wallet-alt"></li>{% endif %}
+                </ul>                
+            </aside>        
+        </div> 
+    {% endif %}   
+
+    {% if section.settings.footer_display_copyright %} 
+        <div class="footer-copyright">       
+            <aside class="copyright--inside">
+                <address class="copyright-text">
+                    <span>&copy; {{ 'layout.footer.copyright' | t }} {{ 'now' | date: "%Y" }}</span><span class="copyright-text__hightlight"> {{ shop.name }}</span> / {{ powered_by_link }}
+                </address>
+            </aside>         
+        </div>         
+    {% endif %}    
+</footer>
+
+{% schema %}
+{
+    "name": "Footer",
+    "class": "shopify-section__footer",
+    "settings": [{
+        "type": "checkbox",
+        "id": "footer_instagram_enable",
+        "label": "Enable Instagram",
+        "default": true
+    }, {
+        "type": "checkbox",
+        "id": "footer_newsletter_enable",
+        "label": "Enable newsletter",
+        "default": true
+    }, 
+    {
+        "type": "checkbox",
+        "id": "footer_linklist_enable",
+        "label": "Enable footer linklist",
+        "default": false
+    }, 
+    {
+        "type": "checkbox",
+        "id": "footer_display_copyright",
+        "label": "Enable copyright",
+        "default": true
+    }, {
+        "type": "checkbox",
+        "id": "footer_display_payment",
+        "label": "Enable payment icons",
+        "default": false
+    }, {
+        "type": "checkbox",
+        "id": "footer_display_social",
+        "label": "Enable social media",
+        "default": true
+    }, {
+        "type": "link_list",
+        "id": "footer_linklist",
+        "label": "Primary menu",
+        "default": "footer"
+    }, {
+        "type": "link_list",
+        "id": "footer_linklist_two",
+        "label": "Additional menu",
+        "default": "main-menu"
+    }, {
+        "type": "header",
+        "content": "Payment methods"
+    }, {
+        "type": "checkbox",
+        "id": "footer-payment-amex",
+        "default": true,
+        "label": "American Express"
+    }, {
+        "type": "checkbox",
+        "id": "footer-payment-diners",
+        "default": false,
+        "label": "Diners"
+    }, {
+        "type": "checkbox",
+        "id": "footer-payment-discover",
+        "default": false,
+        "label": "Discover"
+    }, {
+        "type": "checkbox",
+        "id": "footer-payment-visa",
+        "default": true,
+        "label": "Visa"
+    }, {
+        "type": "checkbox",
+        "id": "footer-payment-mastercard",
+        "default": true,
+        "label": "Mastercard"
+    }, {
+        "type": "checkbox",
+        "id": "footer-payment-skrill",
+        "default": false,
+        "label": "Skrill"
+    }, {
+        "type": "checkbox",
+        "id": "footer-payment-stripe",
+        "default": false,
+        "label": "Stripe"
+    }, {
+        "type": "checkbox",
+        "id": "footer-payment-paypal",
+        "default": true,
+        "label": "Paypal"
+    }, {
+        "type": "checkbox",
+        "id": "footer-payment-googlewallet",
+        "default": false,
+        "label": "Google Wallet"
+    }, {
+        "type": "checkbox",
+        "id": "footer-payment-switch",
+        "default": false,
+        "label": "Switch"
+    }]
+}
+{% endschema %}

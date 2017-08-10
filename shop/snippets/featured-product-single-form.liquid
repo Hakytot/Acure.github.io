@@ -1,0 +1,61 @@
+<meta itemprop="priceCurrency" content="{{ shop.currency }}">
+<link itemprop="availability" href="http://schema.org/{% if product.available %}InStock{% else %}OutOfStock{% endif %}">
+<form action="/cart/add" method="post" enctype="multipart/form-data" id="AddToCartForm" class="form-vertical">
+    <div class="product-single__variant clearfix grid--full">        
+        <div class="product-single__quantity">
+            <label for="Quantity" class="quantity-selector">{{ 'products.product.quantity' | t }}</label>
+            <input type="number" id="Quantity" name="quantity" value="1" min="1" class="quantity-selector">
+        </div>
+        <select name="id" id="productSelect" class="product-single__variants">
+            {% for variant in product.variants %}
+                {% if variant.available %}
+                    <option {% if variant == product.selected_or_first_available_variant %} selected="selected" {% endif %} value="{{ variant.id }}">
+                      {{ variant.title }}
+                    </option>
+                {% else %}                    
+                    <option disabled="disabled">{{ variant.title }} - {{ 'products.product.sold_out' | t }}</option>
+                {% endif %}
+            {% endfor %}
+        </select>         
+    </div>
+
+    <div class="product-single__price">
+        <div class="display-table">
+            <div class="display-table-cell product-single__add-tocart">
+                <div class="product-button">
+                    <button type="submit" name="add" id="AddToCart" class="btn btn-add-to-cart">
+                        <span id="AddToCartText">{{ 'products.product.add_to_cart' | t }}</span>
+                    </button>
+                </div>        
+            </div> 
+            <div class="display-table-cell product-single__price_wrapper">                
+                {% include 'currency-picker' %} 
+                <div class="product-price {% unless current_variant.available %}product-price--sold-out{% endunless %}">
+                    {% if product.compare_at_price_max > product.price %}                
+                        <span class="old__price">
+                            <span class="visually-hidden">{{ 'products.general.sale_price' | t }}</span>
+                            <span id="ComparePrice">
+                                {{ 'products.product.compare_at' | t }} {{ current_variant.compare_at_price | money }}
+                            </span>
+                        </span>  
+                    {% else %}               
+                        <p class="new__price">
+                            <span class="visually-hidden">{{ 'products.general.regular_price' | t }}</span>
+                            <span id="ProductPrice" itemprop="price">
+                                {{ current_variant.price | money }}
+                            </span>
+                        </p>
+                    {% endif %}                                 
+                </div>
+            </div>                
+        </div>    
+    </div> 
+
+    {% if template contains 'product' %}
+        <div class="product-mobile-button hidden-lg hidden-md">
+            <button type="submit" name="add" id="AddToCart" class="btn btn-add-to-cart">
+                <span class="icon lnr lnr-cart" aria-hidden="true">&nbsp;</span>            
+            </button>
+        </div>
+    {% endif %}    
+</form>

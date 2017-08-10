@@ -1,0 +1,209 @@
+{% if section.settings.show_featured_collection %}
+    <section class="{{ section.id }}-grid">
+        <div class="container">
+            {% if section.settings.show_heading_title and section.settings.title != blank %}
+                <div class="section-header {{ section.settings.alignment }}">
+                    <h3 class="widget-title">
+                        <span>{{ section.settings.title | escape }}</span>
+                    </h3>
+                </div>
+            {% endif %}                                                            
+
+            {%- assign collection = collections[section.settings.collection] -%}
+
+            {% case section.settings.grid %}
+                {% when '2' %}
+                    {%- assign grid_item_width = 'col-lg-6 col-md-6 col-sm-6' -%}
+                    {%- assign image_size = '530x530' -%}
+                {% when '3' %}
+                    {%- assign grid_item_width = 'col-lg-4 col-md-4 col-sm-6' -%}
+                    {%- assign image_size = '533x690' -%}
+                {% when '4' %}
+                    {%- assign grid_item_width = 'col-lg-3 col-md-3 col-sm-6' -%}
+                    {%- assign image_size = '250x250' -%}
+                {% when '6' %}
+                    {%- assign grid_item_width = 'col-lg-2 col-md-2 col-sm-6' -%}
+                    {%- assign image_size = '195x195' -%}
+            {% endcase %}
+
+            {%- assign product_limit = section.settings.grid | times: section.settings.rows -%}
+
+            <div class="section-content widget-content">
+                <div class="row hidden-sm hidden-xs">
+                    {% for product in collection.products limit: product_limit %}
+                        <div class="{{ grid_item_width }}">
+                            {% include 'product-card-grid', grid_image_width: image_size %}                                                        
+                        </div>
+                    {% else %}
+                        {% for i in (1..product_limit) %}
+                            <div class="{{ grid_item_width }}">
+                                <div class="grid-view-item">
+                                    <a href="#" class="grid-view-item__link">
+                                        <div class="grid-view-item__picture">                                          
+                                            <div class="grid-view-item__image">
+                                                <div class="product-item__placeholder">
+                                                    {% capture current %}{% cycle 1, 2, 3, 4, 5, 6 %}{% endcapture %}
+                                                    {{ 'product-' | append: current | placeholder_svg_tag: 'placeholder-svg' }}
+                                                </div>
+                                            </div>
+                                        </div>                                   
+                                        <div class="grid-view-item__box">
+                                            <h4 class="grid-view-item__title">{{ 'home_page.onboarding.product_title' | t }}</h4>
+                                            <div class="grid-view-item__meta product-price">
+                                                {% include 'product-price' %}
+                                            </div>
+                                        </div>                                    
+                                    </a>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    {% endfor %}
+                </div>  
+                {% comment %}For Mobile{% endcomment %}          
+                <div class="row hidden-lg hidden-md product-slider">
+                    {% for product in collection.products limit: product_limit %}
+                        <div class="{{ grid_item_width }}">
+                            {% include 'product-card-grid', grid_image_width: image_size %}                                                        
+                        </div>
+                    {% else %}
+                        {% for i in (1..product_limit) %}
+                            <div class="{{ grid_item_width }}">
+                                <div class="grid-view-item">
+                                    <a href="#" class="grid-view-item__link">
+                                        <div class="grid-view-item__picture">                                          
+                                            <div class="grid-view-item__image">
+                                                <div class="product-item__placeholder">
+                                                    {% capture current %}{% cycle 1, 2, 3, 4, 5, 6 %}{% endcapture %}
+                                                    {{ 'product-' | append: current | placeholder_svg_tag: 'placeholder-svg' }}
+                                                </div>
+                                            </div>
+                                        </div>                                   
+                                        <div class="grid-view-item__box">
+                                            <h4 class="grid-view-item__title">{{ 'home_page.onboarding.product_title' | t }}</h4>
+                                            <div class="grid-view-item__meta product-price">
+                                                {% include 'product-price' %}
+                                            </div>
+                                        </div>                                    
+                                    </a>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    {% endfor %}
+                </div> 
+            </div>
+            {% if section.settings.show_view_all %}        
+                <div class="{{ section.settings.alignment }}">
+                    <div class="section-button">
+                        <a href="{{ collection.url }}" class="btn btn--primary">
+                            <span>{{ 'collections.general.view_all' | t }}</span>
+                        </a>
+                    </div>                    
+                </div>
+            {% endif %}
+        </div>
+    </section>
+{% endif %}
+
+{% schema %}
+{
+    "name": "Featured Collection",
+    "class": "shopify-section__collection",
+    "settings": [{
+        "type": "checkbox",
+        "id": "show_featured_collection",
+        "label": "Show Featured collection",
+        "default": true
+    }, {
+        "type": "checkbox",
+        "id": "show_view_all",
+        "label": "Show 'View all' button",
+        "default": true
+    }, {
+        "type": "checkbox",
+        "id": "show_heading_title",
+        "label": "Show Heading Title",
+        "default": true
+    }, {
+        "type": "checkbox",
+        "id": "show_vendor",
+        "label": "Show Vendor",
+        "default": true
+    }, {
+        "type": "checkbox",
+        "id": "show_shorthand",
+        "label": "Show Shorthand Label",
+        "default": true
+    }, {
+        "type": "checkbox",
+        "id": "show_label_sale",
+        "label": "Show label sale/sold-out",
+        "default": false
+    }, {
+        "type": "text",
+        "id": "title",
+        "label": "Heading",
+        "default": "Faves this week"
+    }, {
+        "type": "select",
+        "id": "alignment",
+        "default": "text-center",
+        "options": [
+            { "value": "text-left", "label": "Left" },
+            { "value": "text-center", "label": "Center" },
+            { "value": "text-right", "label": "Right" }
+        ],
+        "label": "Heading Alignment"
+    }, {
+        "type": "text",
+        "id": "shorthand_letter_lable",
+        "default": "j",
+        "label": "Shorthand letter lable"
+    }, {
+        "type": "paragraph",
+        "content": "Ex: 'Dixi' shorthand letter: 'J'"
+    }, {
+        "id": "collection",
+        "type": "collection",
+        "label": "Collection"
+    }, {
+        "type": "select",
+        "id": "grid",
+        "label": "Products per row",
+        "default": "3",
+        "options": [{
+            "value": "2",
+            "label": "2"
+        }, {
+            "value": "3",
+            "label": "3"
+        }, {
+            "value": "4",
+            "label": "4"
+        }, {
+            "value": "6",
+            "label": "6"
+        }]
+    }, {
+        "type": "select",
+        "id": "rows",
+        "label": "Rows",
+        "default": "2",
+        "options": [{
+            "value": "1",
+            "label": "1"
+        }, {
+            "value": "2",
+            "label": "2"
+        }, {
+            "value": "3",
+            "label": "3"
+        }, {
+            "value": "4",
+            "label": "4"
+        }, {
+            "value": "5",
+            "label": "5"
+        }]
+    }]
+}
+{% endschema %}

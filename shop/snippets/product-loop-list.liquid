@@ -1,0 +1,37 @@
+{% for product in collection.products %}    
+    <div class="list__item {% if forloop.first %}first{% endif %}{% if forloop.last %}last{% endif %}">
+        <div class="row">
+            {% include 'product-card-list', product: product %}
+        </div>        
+    </div>
+    {% else %}
+    {% for i in (1..limit) %}
+        <div class="list__item {% if forloop.first %}first{% endif %}{% if forloop.last %}last{% endif %}">
+            <div class="list-view-item">
+                <a href="#" class="list__item__link">
+                    <div class="row">
+                        <div class="col-lg-2 col-md-2 col-sm-12 list-view-item__picture">
+                            <div class="list__item__image">
+                                <div class="product-item__placeholder">
+                                    {% capture current %}{% cycle 1, 2, 3, 4, 5, 6 %}{% endcapture %}
+                                    {{ 'product-' | append: current | placeholder_svg_tag: 'placeholder-svg' }}
+                                </div>
+                            </div>
+                        </div>                                   
+                        <div class="col-lg-10 col-md-10 col-sm-12 list-view-item__box">
+                            <h4 class="list__item__title product__title">
+                                <span>{{ 'home_page.onboarding.product_title' | t }}</span>
+                            </h4>
+                            <div class="list__item_price product-price">
+                                {% include 'product-price' %}
+                            </div>                            
+                            <div class="list__item_description">
+                                <p>{{ 'home_page.onboarding.product_description' | t }}</p>
+                            </div>
+                        </div>                         
+                    </div>                                   
+                </a>
+            </div>
+        </div>
+    {% endfor %}
+{% endfor %}

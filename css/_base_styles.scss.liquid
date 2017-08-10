@@ -1,0 +1,47 @@
+html{
+  @include rem-baseline;
+}
+body {
+    color:$bodyColor;     
+    background-color:$bodyBgColor;    
+    font-weight:$bodyFontWeight;
+    font-family: $bodyFontStack;    
+    text-transform: $bodyTransform;
+    @include rem(line-height, $bodyLineHeight);
+    @include rem(letter-spacing, $bodyLetterSpacing);
+    @include rem(font-size, $bodyFontSize);
+}
+b, strong{
+    color: $primaryColor;
+    font-weight: 700;
+}
+
+textarea{
+    font-family: $bodyFontStack;    
+    text-transform: $bodyTransform;
+    font-weight:$bodyFontWeight;
+    @include rem(font-size, $bodyFontSize);
+}
+.fallback-text{
+    display: none;
+}
+
+
+.showhide {
+    display: block;
+    cursor: pointer;        
+    padding: 0;
+    position: relative;                
+    color: $accentColor;
+    background: transparent;    
+    @include rem(line-height, 24px);
+    @include rem(margin, 0 0 0 15px);
+    @include rem(font-size, 24px);          
+    @include rem(width,24px);
+    @include rem(height,24px);        
+    &.is-ready {        
+        & + div {
+            display: none;                        
+        }
+    }       
+}

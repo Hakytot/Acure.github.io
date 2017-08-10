@@ -1,0 +1,161 @@
+{%- assign limit = section.settings.products_per_page -%}
+{% case section.settings.col_width %}
+    {% when 'small' %}       
+        {%- assign product_image_width = 'col-lg-2 col-md-2 col-sm-12' -%}                                                 
+        {%- assign product_description_width = 'col-lg-10 col-md-10 col-sm-12' -%}   
+        {%- assign product_image_size = '234x303' -%}         
+    {% when 'medium' %}
+        {%- assign product_image_width = 'col-lg-3 col-md-3 col-sm-12' -%}                                                 
+        {%- assign product_description_width = 'col-lg-9 col-md-9 col-sm-12' -%}   
+        {%- assign product_image_size = '371x480' -%} 
+    {% when 'large' %}
+        {%- assign product_image_width = 'col-lg-4 col-md-4 col-sm-12' -%}                                                 
+        {%- assign product_description_width = 'col-lg-8 col-md-8 col-sm-12' -%}   
+        {%- assign product_image_size = '508x658' -%} 
+{% endcase %}
+
+{% paginate search.results by limit %}
+<div id="{{ section.id }}" class="page">
+    <section class="container">
+        {% if section.settings.show_breadcrumb %}
+            {% include 'breadcrumb' %}              
+        {% endif %}        
+        <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            {% if search.results_count == 0 or search.performed == false %}
+                <div class="empty-page-content">
+                    {% if section.settings.show_page_title %}
+                        <header class="page-header text-center">
+                            <h2 class="page-title"><span>{{ 'general.search.title' | t }}</span></h2>
+                        </header> 
+                    {% endif %}
+            {% else %}
+            <div class="section-header">
+                {% if section.settings.show_page_title %}
+                    <header class="page-small-title text-center">
+                        <h2><span>{{ 'general.search.results_with_count' | t: terms: search.terms, count: search.results_count }}</span></h2>
+                    </header>
+                {% endif %}                                
+            {% endif %}        
+                <div class="search-content page-content">
+                    <form action="/search" method="get" role="search" class="search">
+                        <div class="input-group">
+                            <input type="search"
+                                id="SearchInput"
+                                class="input-group__field search__input form-control"
+                                name="q"
+                                value="{{ search.terms | escape }}"
+                                placeholder="{{ 'general.search.placeholder' | t }}"
+                                aria-label="{{ 'general.search.placeholder' | t }}"
+                                autofocus>
+                            <span class="input-group-addon input-group-button">
+                                <button class="btn search__submit btn--primary" type="submit">{{ 'general.search.submit' | t }}</button>
+                            </span>
+                        </div>
+                    </form>
+                </div>       
+                {% if search.performed and search.results_count == 0 %}
+                    <div class="search-no-results">
+                        <p><span>{{ 'general.search.no_results_html' | t: terms: search.terms }}</span></p>
+                    </div>        
+                {% endif %}
+            </div>
+            </div>
+        </div>
+    </section>    
+    {% if search.performed %}
+        {% if search.results_count > 0 %}
+            <hr>
+        {% endif %}
+        <section class="container">
+            <div class="list-view-items">
+                {% for item in search.results %}                    
+                    <div class="list__item {% if forloop.first %}first{% endif %}{% if forloop.last %}last{% endif %}">
+                        <div class="row">
+                            {% if item.object_type == 'product' %}
+                                {% include 'product-card-list', product: item %}
+                            {% else %}
+                            {% if item.image %}
+                                <div class="list-view-item__image-column">
+                                    <div class="list-view-item__image-wrapper">
+                                        <img class="list-view-item__image" src="{{ item.image.src | img_url: '600x600' }}" alt="{{ item.image.alt | escape }}">
+                                    </div>
+                                </div>
+                            {% endif %}
+                            <div class="list-view-item__title-column">
+                                <h3 class="list-view-item__title"><span>{{ item.title }}</span></h3>
+                                <div class="list-view-item__meta">
+                                    {% if item.published_at %}{{ item.published_at | date: "%b %d, %Y" }} &#8212; {% endif %}
+                                    {{ item.content | strip_html | truncate: 200 }}
+                                </div>
+                            </div>
+                            {% endif %}    
+                        </div>
+                    </div>                
+                {% endfor %}
+            </div>        
+        </section>
+        {% if section.settings.show_collection_pagination and paginate.pages > 1 %}
+            {% include 'pagination' %}
+        {% endif %}
+    {% endif %}    
+</div>
+{% endpaginate %}
+
+{% schema %}
+{
+    "name": "Search Page",
+    "class": "shopify-section__search_template",
+    "settings": [{
+        "type": "checkbox",
+        "id": "show_breadcrumb",
+        "label": "Enable Breadcrumb",
+        "default": true
+    }, {
+        "type": "checkbox",
+        "id": "show_page_title",
+        "label": "Show Page Title",
+        "default": true
+    }, {
+        "type": "checkbox",
+        "id": "show_vendor",
+        "label": "Show Vendor",
+        "default": true
+    }, {
+        "type": "checkbox",
+        "id": "show_product_label",
+        "label": "Show Product Label",
+        "default": true
+    }, {
+        "type": "checkbox",
+        "id": "show_collection_pagination",
+        "label": "Show Pagination",
+        "default": true
+    }, {
+        "type": "select",
+        "id": "products_per_page",
+        "default": "8",
+        "options": [
+            { "value": "3", "label": "3 Products" },
+            { "value": "4", "label": "4 Products" },
+            { "value": "6", "label": "6 Products" },
+            { "value": "8", "label": "8 Products" },
+            { "value": "10", "label": "10 Products" },
+            { "value": "12", "label": "12 Products" },
+            { "value": "14", "label": "14 Products" },
+            { "value": "16", "label": "16 Products" }
+        ],
+        "label": "Products per page"
+    }, {
+        "type": "select",
+        "id": "col_width",
+        "default": "small",
+        "options": [
+            { "value": "small", "label": "Small" },
+            { "value": "medium", "label": "Medium" },
+            { "value": "large", "label": "Large" }
+        ],
+        "label": "Product Image Size"
+    }]
+}
+{% endschema %}

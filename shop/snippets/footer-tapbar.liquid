@@ -1,0 +1,22 @@
+<div id="footer-tapbar" class="footer-tapbar hidden-md hidden-lg">
+     <ul class="list-unstyled footer-tapbar-icons text-center">
+          <li class="footer-search action_1">
+               <a id="button--search_tapbar" class="button--search" href="#">
+                    <span aria-hidden="true" class="icon lnr lnr-magnifier"></span>
+               </a>
+          </li>  
+          <li class="footer-tapbar-content search-tapbar action_2">
+               {% include 'search' %}            
+          </li>   
+          {% if shop.customer_accounts_enabled %}
+               <li class="footer-account action_1">
+                    <a id="button--account_tapbar" class="button--account" href="#">
+                         <span aria-hidden="true" class="icon lnr lnr-user"></span>
+                    </a>               
+               </li> 
+               <li class="footer-tapbar-content account-tapbar action_2">
+                    {% include 'mobile-customer-accounts' %}            
+               </li>  
+          {% endif %}                       
+     </ul>     
+</div>

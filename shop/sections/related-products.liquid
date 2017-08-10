@@ -1,0 +1,194 @@
+{% if section.settings.show_related_products == true %}
+<div class="{{ section.id }}">    
+    <div class="container" itemscope itemtype="http://schema.org/Product" id="ProductSection-{{ section.id }}" data-section-id="{{ section.id }}" data-section-type="product" data-enable-history-state="true">
+        {% assign number_of_related_products_per_row = section.settings.related_grid_num %}
+        {% assign number_of_rows = section.settings.related_grid_row %}
+        {% assign heading = section.settings.related_title %}
+        {% assign same_vendor = false %}
+        {% assign same_type = false %}
+        {% assign exclusions = 'frontpage,all' | split: ',' %}
+
+        {% if product.metafields.c_f['Related Products'] %}
+            {% assign collection = collections[product.metafields.c_f['Related Products']] %}
+        {% endif %}
+
+        {% assign found_a_collection = false %}
+        {% if collection and collection.all_products_count > 1 %}
+            {% unless exclusions contains collection.handle %}
+                {% assign found_a_collection = true %}
+            {% endunless %}
+        {% endif %}
+        {% unless found_a_collection %}
+            {% for c in product.collections %}
+                {% unless exclusions contains c.handle or c.all_products_count < 2 %}
+                {% assign found_a_collection = true %}
+                {% assign collection = c %}
+                {% break %}
+                {% endunless %}
+            {% endfor %}
+        {% endunless %}
+
+        {% if found_a_collection %}
+            {% assign counter = 0 %}
+            {% assign break_at = number_of_rows | times: number_of_related_products_per_row %}
+            {% assign current_product = product %}      
+            {% case number_of_related_products_per_row %}
+            {% when '1' %}
+                {% assign grid_item_width = 'col-lg-12 col-md-12' %}
+            {% when '2' %}
+                {% assign grid_item_width = 'col-lg-6 col-md-6' %}
+                {% assign image_size = '782x550' %}
+            {% when '3' %}
+                {% assign grid_item_width = 'col-lg-4 col-md-4' %}
+                {% assign image_size = '508x357' %}        
+            {% when '4' %}
+                {% assign grid_item_width = 'col-lg-3 col-md-3' %}    
+                {% assign image_size = '371x261' %}
+            {% when '6' %}
+                {% assign grid_item_width = 'col-lg-2 col-md-2' %}
+                {% assign image_size = '234x165' %}
+            {% else %}
+                {% assign grid_item_width = 'col-lg-4 col-md-4' %}
+            {% endcase %}
+
+            {% capture related_items %}
+                <div class="row hidden-sm hidden-xs">
+                    {% for product in collection.products %}
+                        {% unless product.handle == current_product.handle %}
+                        {% unless same_vendor and current_product.vendor != product.vendor %}
+                        {% unless same_type and current_product.type != product.type %}
+                            <div class="{{ grid_item_width }} col_{{ number_of_related_products_per_row }}">
+                                {% include 'product-card-grid' %}
+                            </div>
+                            {% assign counter = counter | plus: 1 %}
+                            {% if counter == break_at %}
+                                {% break %}
+                            {% endif %}
+                        {% endunless %}
+                        {% endunless %}
+                        {% endunless %}
+                    {% endfor %}
+                </div>
+                {% comment %}For Mobile{% endcomment %}  
+                <div class="row hidden-lg hidden-md product-slider">
+                    {% for product in collection.products %}
+                        {% unless product.handle == current_product.handle %}
+                        {% unless same_vendor and current_product.vendor != product.vendor %}
+                        {% unless same_type and current_product.type != product.type %}
+                            <div class="{{ grid_item_width }} col_{{ number_of_related_products_per_row }}">
+                                {% include 'product-card-grid' %}
+                            </div>
+                            {% assign counter = counter | plus: 1 %}
+                            {% if counter == break_at %}
+                                {% break %}
+                            {% endif %}
+                        {% endunless %}
+                        {% endunless %}
+                        {% endunless %}
+                    {% endfor %}
+                </div>                
+            {% endcapture %}
+
+            {% assign related_items = related_items | trim %}
+            {% unless related_items == blank %}
+                <aside class="widget">    
+                    {% if section.settings.show_section_title %}
+                        {% unless heading == blank %}
+                            <header class="section-header {{ section.settings.alignment }}">
+                                <h3 class="widget-title section-header__title">
+                                    <span>{{ heading }}</span>
+                                </h3>
+                            </header>
+                        {% endunless %}
+                    {% endif %}                   
+                    <div class="widget-content">
+                        {{ related_items }}
+                    </div>        
+                </aside>
+            {% endunless %}   
+        {% endif %}
+    </div>
+</div>
+{% endif %}
+
+
+{% schema %}
+{
+    "name": "Related products",
+    "class": "shopify-section__related-products",
+    "settings": [{
+        "type": "checkbox",
+        "id": "show_related_products",
+        "label": "Show related products",
+        "default": true
+    }, {
+        "type": "checkbox",
+        "id": "show_section_title",
+        "label": "Show Section Title",
+        "default": true
+    }, {
+        "type": "checkbox",
+        "id": "show_vendor",
+        "label": "Show Vendor",
+        "default": true
+    }, {
+        "type": "checkbox",
+        "id": "show_shorthand",
+        "label": "Show Shorthand Label",
+        "default": true
+    }, {
+        "id": "shorthand_letter_lable",
+        "type": "text",
+        "label": "Shorthand Letter Lable",
+        "default": "j"
+    }, {
+        "id": "related_title",
+        "type": "text",
+        "label": "Section Title",
+        "default": "Other fine products"
+    }, {
+        "type": "select",
+        "id": "alignment",
+        "options": [
+            { "value": "text-center", "label": "Center" },
+            { "value": "text-left", "label": "Left" },
+            { "value": "text-right", "label": "Right" }
+        ],
+        "default": "text-center",
+        "label": "Section Title Alignment"
+    }, {
+        "type": "select",
+        "id": "related_grid_num",
+        "label": "Products per row (Desktop)",
+        "default": "4",
+        "options": [{
+            "value": "2",
+            "label": "2"
+        }, {
+            "value": "3",
+            "label": "3"
+        }, {
+            "value": "4",
+            "label": "4"
+        }, {
+            "value": "5",
+            "label": "5"
+        }]
+    }, {
+        "type": "select",
+        "id": "related_grid_row",
+        "label": "Number of rows (Desktop)",
+        "default": "1",
+        "options": [{
+            "value": "1",
+            "label": "1"
+        }, {
+            "value": "2",
+            "label": "2"
+        }, {
+            "value": "3",
+            "label": "3"
+        }]
+    }]
+}
+{% endschema %}

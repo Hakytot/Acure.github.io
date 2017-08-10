@@ -1,0 +1,104 @@
+<div class="widget widget-social">
+    {% if settings.enable_social_title %}                                    
+        <h4 class="widget-title"><span>{{ 'layout.footer.follow_us' | t }}</span></h4>
+    {% endif %}
+    {% if settings.footer_display_social %}    
+        <ul class="list-unstyled list-inline shopify-social">        
+            {% unless settings.twitter_link == blank %}
+                <li class="shopify-social-icon">
+                    <a href="{{ settings.twitter_link }}" title="{{ 'layout.footer.social.twitter' | t }}" target="_blank">                        
+                        <span class="shopify-social--text">{{ 'layout.footer.social.twitter' | t }}</span>     
+                    </a>
+                </li>
+            {% endunless %}
+
+            {% unless settings.facebook_link == blank %}
+                <li class="shopify-social-icon">
+                    <a href="{{ settings.facebook_link }}" title="{{ 'layout.footer.social.facebook' | t }}" target="_blank">                        
+                        <span class="shopify-social--text">{{ 'layout.footer.social.facebook' | t }}</span>     
+                    </a>
+                </li>
+            {% endunless %}			
+
+            {% unless settings.dribbble_link == blank %}
+                <li class="shopify-social-icon">                
+                    <a href="{{ settings.dribbble_link }}" title="{{ 'layout.footer.social.dribbble' | t }}" target="_blank">                        
+                        <span class="shopify-social--text">{{ 'layout.footer.social.dribbble' | t }}</span>     
+                    </a>
+                </li>
+            {% endunless %}
+
+            {% unless settings.instagram_link == blank %}
+                <li class="shopify-social-icon">       
+                    <a href="{{ settings.instagram_link }}" title="{{ 'layout.footer.social.instagram' | t }}" target="_blank">                        
+                        <span class="shopify-social--text">{{ 'layout.footer.social.instagram' | t }}</span>     
+                    </a>
+                </li>
+            {% endunless %}
+
+            {% unless settings.youtube_link == blank %}
+                <li class="shopify-social-icon">       
+                    <a href="{{ settings.youtube_link }}" title="{{ 'layout.footer.social.youtube' | t }}" target="_blank">                        
+                        <span class="shopify-social--text">{{ 'layout.footer.social.youtube' | t }}</span>     
+                    </a>
+                </li>
+            {% endunless %}
+
+            {% unless settings.pinterest_link == blank %}
+                <li class="shopify-social-icon">       
+                    <a href="{{ settings.pinterest_link }}" title="{{ 'layout.footer.social.pinterest' | t }}" target="_blank">                        
+                        <span class="shopify-social--text">{{ 'layout.footer.social.pinterest' | t }}</span>     
+                    </a>
+                </li>
+            {% endunless %}
+
+            {% unless settings.tumblr_link == blank %}
+                <li class="shopify-social-icon">       
+                    <a href="{{ settings.tumblr_link }}" title="{{ 'layout.footer.social.tumblr' | t }}" target="_blank">                        
+                        <span class="shopify-social--text">{{ 'layout.footer.social.tumblr' | t }}</span>     
+                    </a>
+                </li>
+            {% endunless %}
+
+            {% unless settings.google_link == blank %}
+                <li class="shopify-social-icon">       
+                    <a href="{{ settings.google_link }}" title="{{ 'layout.footer.social.google' | t }}" target="_blank">                        
+                        <span class="shopify-social--text">{{ 'layout.footer.social.google' | t }}</span>     
+                    </a>
+                </li>
+            {% endunless %}
+
+            {% unless settings.linkedin_link == blank %}
+                <li class="shopify-social-icon">       
+                    <a href="{{ settings.linkedin_link }}" title="{{ 'layout.footer.social.linkedin' | t }}" target="_blank">                        
+                        <span class="shopify-social--text">{{ 'layout.footer.social.linkedin' | t }}</span>     
+                    </a>
+                </li>
+            {% endunless %}
+
+            {% unless settings.flickr_link == blank %}
+                <li class="shopify-social-icon">       
+                    <a href="{{ settings.flickr_link }}" title="{{ 'layout.footer.social.flickr' | t }}" target="_blank">                        
+                        <span class="shopify-social--text">{{ 'layout.footer.social.flickr' | t }}</span>     
+                    </a>
+                </li>
+            {% endunless %}
+
+            {% unless settings.vimeo_link == blank %}
+                <li class="shopify-social-icon">       
+                    <a href="{{ settings.vimeo_link }}" title="{{ 'layout.footer.social.vimeo' | t }}" target="_blank">                        
+                        <span class="shopify-social--text">{{ 'layout.footer.social.vimeo' | t }}</span>     
+                    </a>
+                </li>
+            {% endunless %}
+
+            {% unless settings.wordpress_link == blank %}
+                <li class="shopify-social-icon">       
+                    <a href="{{ settings.wordpress_link }}" title="{{ 'layout.footer.social.wordpress' | t }}" target="_blank">                        
+                        <span class="shopify-social--text">{{ 'layout.footer.social.wordpress' | t }}</span>     
+                    </a>
+                </li>
+            {% endunless %}
+        </ul>
+    {% endif %} 
+</div>

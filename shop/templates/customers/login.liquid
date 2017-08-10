@@ -1,0 +1,86 @@
+<div id="login-page" class="page">
+    <div class="container">
+        {% include 'breadcrumb' %}
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                <header class="page-header text-center">
+                    <h1 class="page-title">
+                        <span>{{ 'customer.login.title' | t }}</span>
+                    </h1>    
+                </header>
+                <div class="note form-success" id="ResetSuccess" style="display:none;">
+                    {{ 'customer.recover_password.success' | t }}
+                </div>
+                <div id="CustomerLoginForm" class="form-vertical">
+                    {% form 'customer_login' %}                   
+                        {{ form.errors | default_errors }}
+                        <fieldset class="form-group">                         
+                            <label for="CustomerEmail" class="hidden-label">{{ 'customer.login.email' | t }}</label>
+                            <input type="email" name="customer[email]" id="CustomerEmail" class="form-control input-full{% if form.errors contains 'email' %} error{% endif %}" placeholder="{{ 'customer.login.email' | t }}" autocorrect="off" autocapitalize="off" autofocus>
+                        </fieldset>
+                        <fieldset class="form-group">  
+                            {% if form.password_needed %}
+                                <label for="CustomerPassword" class="hidden-label">{{ 'customer.login.password' | t }}</label>
+                                <input type="password" value="" name="customer[password]" id="CustomerPassword" class="form-control input-full{% if form.errors contains 'password' %} error{% endif %}" placeholder="{{ 'customer.login.password' | t }}">
+                            {% endif %}
+                        </fieldset>
+                        <fieldset class="form-group form-group__button clearfix">  
+                            <p class="pull-left">
+                                <button class="btn btn--primary" type="submit" value="{{ 'customer.login.sign_in' | t }}">
+                                    <span>{{ 'customer.login.sign_in' | t }}</span>
+                                </button>
+                                {{ 'layout.customer.create_account' | t | customer_register_link }}
+                            </p>
+                            {% if form.password_needed %}
+                                <p class="pull-right recover__password">
+                                    <a class="btn btn--link" href="#recover" id="RecoverPassword">{{ 'customer.login.forgot_password' | t }}</a>
+                                </p>                                
+                            {% endif %}
+                        </fieldset>                        
+                    {% endform %}
+                </div>
+                <div id="RecoverPasswordForm" style="display: none;">
+                    <header class="page-small-title">
+                        <h2><span>{{ 'customer.recover_password.title' | t }}</span></h2>                            
+                        <small><em>{{ 'customer.recover_password.subtext' | t }}</em></small>
+                    </header>
+                    <div class="form-vertical">
+                        {% form 'recover_customer_password' %}
+                            {{ form.errors | default_errors }}
+                            {% if form.posted_successfully? %}
+                                {% assign resetPassword = true %}
+                            {% endif %}
+
+                            <fieldset class="form-group">  
+                                <label for="RecoverEmail" class="hidden-label">{{ 'customer.recover_password.email' | t }}</label>
+                                <input type="email" value="" name="email" id="RecoverEmail" class="form-control input-full" placeholder="{{ 'customer.recover_password.email' | t }}" autocorrect="off" autocapitalize="off">    
+                            </fieldset>
+
+                            <fieldset class="form-group">                                  
+                                <button class="btn btn--primary" type="submit" value="{{ 'customer.recover_password.submit' | t }}">
+                                    <span>{{ 'customer.recover_password.submit' | t }}</span>
+                                </button>
+                                <button type="button" id="HideRecoverPasswordLink" class="btn btn--outline">                                
+                                    <span>{{ 'customer.recover_password.cancel' | t }}</span>
+                                </button>
+                            </fieldset>                                                        
+                        {% endform %}
+                    </div>
+                </div>
+                {% if shop.checkout.guest_login %}
+                    <hr>
+                    <header class="page-small-title">
+                        <h2><span>{{ 'customer.login.guest_title' | t }}</span></h2>                                                    
+                    </header>                   
+                    {% form 'guest_login' %}
+                        <fieldset class="form-group"> 
+                            <button type="submit" class="btn btn--primary" value="{{ 'customer.login.guest_continue' | t }}">
+                                <span>{{ 'customer.login.guest_continue' | t }}</span>
+                            </button>
+                        </fieldset>                              
+                    {% endform %}
+                {% endif %}
+            </div>
+        </div>  
+    </div>
+</div>

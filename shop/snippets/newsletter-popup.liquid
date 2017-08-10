@@ -1,0 +1,42 @@
+{% assign mailchimp == true %}
+{% if mailchimp != true and settings.newsletter_form_action != blank %}
+
+<div id="popup-container" class="newsletter__popup hidden-xs">
+    <a class="close"><span class="lnr lnr-cross"></span></a>   
+    <div id="popup-window" class="newsletter__popup-content">
+        {% if settings.newsletter_popup_title != blank %}
+            <h6 class="title">
+                <span>{{ settings.newsletter_popup_title }}</span>
+            </h6>
+        {% endif %}
+        {% if settings.newsletter_description != blank %}
+            <div class="newsletter--description">{{ settings.newsletter_description }}</div>
+        {% endif %}    
+        <form action="{{ settings.newsletter_form_action }}" method="post" name="mc-embedded-subscribe-form" target="_blank" class="subscribe-form validate" role="form">
+            <input type="email" value="{% if customer %}{{ customer.email }}{% endif %}" placeholder="{{ 'general.newsletter_form.newsletter_email' | t }}" name="EMAIL" required="required" class="input-group-field newsletter-form-field" aria-label="{{ 'general.newsletter_form.newsletter_email' | t }}" autocomplete="off">
+            <p class="newsletter__button">                
+                <button type="submit" class="btn btn--primary" name="subscribe"><span>{{ 'general.newsletter_form.submit' | t }}</span></button>
+            </p>
+        </form>
+    </div>
+</div>
+
+{% else %}
+
+<div id="popup-container" class="newsletter__popup hidden-xs">
+    <a class="close"><span class="lnr lnr-cross"></span></a>   
+    <div id="popup-window" class="newsletter__popup-content">  
+        {% if settings.newsletter_popup_title != blank %}
+            <h6 class="title">
+                <span>{{ settings.newsletter_popup_title }}</span>
+            </h6>
+        {% endif %}
+        {% if settings.newsletter_description != blank %}            
+            <div class="newsletter--description">{{ settings.newsletter_description }}</div>
+        {% endif %}  
+        <h4 class="create-mailchimp">
+            <a href="https://login.mailchimp.com/signup/" title="signup mailchimp" target="_blank">Add newsletter redirect link in Newsletter / MailChimp form action URL</a>
+        </h4>
+    </div>
+</div>
+{% endif %}

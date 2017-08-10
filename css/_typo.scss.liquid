@@ -1,0 +1,49 @@
+{% if settings.type_base_family contains 'Google' %}
+{% assign type_base_parts = settings.type_base_family | split: '_' %}
+{% assign type_base_name = type_base_parts[1] %}
+{% capture base_family %}"{{ type_base_name | split: ':' | first | replace: '+', ' ' }}"{% if type_base_parts.last == 'serif' %}, serif {% else %}, "HelveticaNeue", "Helvetica Neue", sans-serif{% endif %}{% endcapture %}
+{% else %}
+{% assign base_family = settings.type_base_family %}
+{% endif %}
+
+{% if settings.heading_font contains 'Google' %}
+{% assign type_heading_parts = settings.heading_font | split: '_' %}
+{% assign type_heading_name = type_heading_parts[1] %}
+{% capture heading_family %}"{{ type_heading_name | split: ':' | first | replace: '+', ' ' }}"{% if type_heading_parts.last == 'serif' %}, serif {% else %}, "HelveticaNeue", "Helvetica Neue", sans-serif{% endif %}{% endcapture %}
+{% assign heading_weight = type_heading_parts[2] %}
+{% else %}
+{% assign heading_family = settings.heading_font %}
+{% assign heading_weight = 700 %}
+{% endif %}
+
+{% if settings.menu_font contains 'Google' %}
+{% assign type_menu_parts = settings.menu_font | split: '_' %}
+{% assign type_menu_name = type_menu_parts[1] %}
+{% capture menu_family %}"{{ type_menu_name | split: ':' | first | replace: '+', ' ' }}"{% if type_menu_parts.last == 'serif' %}, serif {% else %}, "HelveticaNeue", "Helvetica Neue", sans-serif{% endif %}{% endcapture %}
+{% else %}
+{% assign menu_family = settings.menu_font %}
+{% endif %}
+
+{% if settings.button-font contains 'Google' %}
+{% assign type_button_parts = settings.button-font | split: '_' %}
+{% assign type_button_name = type_button_parts[1] %}
+{% capture button_family %}"{{ type_button_name | split: ':' | first | replace: '+', ' ' }}"{% if type_button_parts.last == 'serif' %}, serif {% else %}, "HelveticaNeue", "Helvetica Neue", sans-serif{% endif %}{% endcapture %}
+{% else %}
+{% assign button_family = settings.button-font %}
+{% endif %}
+
+{% if settings.blog_font_type contains 'Google' %}
+{% assign type_blog_parts = settings.blog_font_type | split: '_' %}
+{% assign type_blog_name = type_blog_parts[1] %}
+{% capture blog_family %}"{{ type_blog_name | split: ':' | first | replace: '+', ' ' }}"{% if type_blog_parts.last == 'serif' %}, serif {% else %}, "HelveticaNeue", "Helvetica Neue", sans-serif{% endif %}{% endcapture %}
+{% else %}
+{% assign blog_family = settings.blog_font_type %}
+{% endif %}
+
+{% if settings.breadcrumb_font_type contains 'Google' %}
+{% assign type_breadcrumb_parts = settings.breadcrumb_font_type | split: '_' %}
+{% assign type_breadcrumb_name = type_breadcrumb_parts[1] %}
+{% capture breadcrumb_family %}"{{ type_breadcrumb_name | split: ':' | first | replace: '+', ' ' }}"{% if type_breadcrumb_parts.last == 'serif' %}, serif {% else %}, "HelveticaNeue", "Helvetica Neue", sans-serif{% endif %}{% endcapture %}
+{% else %}
+{% assign breadcrumb_family = settings.breadcrumb_font_type %}
+{% endif %}

@@ -1,0 +1,78 @@
+<div class="collection__filter">
+    {% if section.settings.sort_enable %}
+        <div class="sort-by-filter">  
+            <label class="label-text" for="SortBy">{{ 'collections.sorting.title' | t }}</label>
+            <select class="custom-select sort-by-select" name="SortBy" id="SortBy">
+                <option value="manual">{{ 'collections.sorting.featured' | t }}</option>
+                <option value="best-selling">{{ 'collections.sorting.best_selling' | t }}</option>
+                <option value="title-ascending">{{ 'collections.sorting.az' | t }}</option>
+                <option value="title-descending">{{ 'collections.sorting.za' | t }}</option>
+                <option value="price-ascending">{{ 'collections.sorting.price_ascending' | t }}</option>
+                <option value="price-descending">{{ 'collections.sorting.price_descending' | t }}</option>
+                <option value="created-descending">{{ 'collections.sorting.date_descending' | t }}</option>
+                <option value="created-ascending">{{ 'collections.sorting.date_ascending' | t }}</option>
+            </select>
+        </div>                           
+        <script>  
+            Shopify.queryParams = {};
+                if (location.search.length) {
+                    for (var aKeyValue, i = 0, aCouples = location.search.substr(1).split('&'); i < aCouples.length; i++) {
+                        aKeyValue = aCouples[i].split('=');
+                        if (aKeyValue.length > 1) {
+                            Shopify.queryParams[decodeURIComponent(aKeyValue[0])] = decodeURIComponent(aKeyValue[1]);
+                        }
+                    }
+                }
+
+            $(function() {
+                $('#SortBy')
+                    .val('{{ collection.sort_by | default: collection.default_sort_by }}')
+                    .bind('change', function() {
+                        Shopify.queryParams.sort_by = jQuery(this).val();
+                        location.search = jQuery.param(Shopify.queryParams);
+                    }
+                );
+            });
+        </script>
+    {% endif %}         
+
+    {% if collection.all_tags.size > 0 and section.settings.tags_enable %}    
+        <div class="tag-filter sort-by-filter">     
+            <label class="label-text" for="SortByTag">{{ 'collections.filters.title_tags' | t }}</label>
+            <select class="custom-select sort-by-select" size="1" name="SortByTag" id="SortByTag">
+                <option value="">{{ 'collections.filters.all_tags' | t }}</option>
+                {% for tag in collection.all_tags %}
+                    {% if current_tags contains tag %}
+                        <option value="{{ tag | handleize }}" selected>{{ tag }}</option>
+                    {% else %}
+                        <option value="{{ tag | handleize }}">{{ tag }}</option>
+                    {% endif %}
+                {% endfor %}
+            </select>
+        </div>
+        <script>  
+            var collFilters = jQuery('#SortByTag');
+            collFilters.change(function() {
+                var newTags = [];
+                collFilters.each(function() {
+                    if (jQuery(this).val()) {
+                        newTags.push(jQuery(this).val());
+                    }
+                });
+                if (newTags.length) {
+                    var query = newTags.join('+');
+                    window.location.href = jQuery('{{ 'tag' | link_to_tag: 'tag' }}').attr('href').replace('tag', query);
+                }
+                else {
+                    {% if collection.handle %}
+                        window.location.href = '/collections/{{ collection.handle }}';
+                        {% elsif collection.products.first.type == collection.title %}
+                        window.location.href = '{{ collection.title | url_for_type }}';
+                        {% elsif collection.products.first.vendor == collection.title %}
+                        window.location.href = '{{ collection.title | url_for_vendor }}';
+                    {% endif %}
+                }
+            });
+        </script>    
+    {% endif %}                   
+</div>

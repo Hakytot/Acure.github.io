@@ -1,0 +1,42 @@
+#nav .header__main-nav .menu__link .link,
+.linklists>li>a,
+.widget.widget-social ul.shopify-social li a,
+.mobile-nav__item a{
+  font-family: $menuFontStack;    
+  font-weight: $menuFontWeight;
+  letter-spacing: $menuLetterSpacing;
+  text-transform: $menuTransform;
+  @include rem(font-size,$menuFontSize);
+}
+.volus-mainmenu .navbar .navbar-nav>li>a:hover{
+    color: {{ settings.mainmenu_link_hover_color }};
+}
+#nav .header__main-nav .menu__link .link { 
+    color: {{ settings.nav_link_color }};     
+}
+#nav .header__main-nav .menu__link .link:hover{ 
+    color: {{ settings.mainmenu_link_hover_color }};     
+}
+.mega-nav-list{
+    .mega-label{
+        font-family: $menuFontStack;    
+        font-weight: $menuFontWeight;
+        letter-spacing: $menuLetterSpacing;
+        text-transform: $menuTransform;
+    }
+    .list-item{
+        a{
+            font-family: $menuFontStack;
+            @include rem(font-size,$menuFontSize);
+            @include rem(letter-spacing, 1.5px);
+            font-weight: $menuFontWeight;            
+            text-transform: $menuTransform;
+        }
+    }
+}
+
+#nav{    
+    .nav-main-menu{
+        margin: 0;
+    }
+}

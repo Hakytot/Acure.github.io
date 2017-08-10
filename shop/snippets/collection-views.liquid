@@ -1,0 +1,12 @@
+{% if section.settings.collection_view_layout_enable %}
+    <div class="collection-view">
+        <button type="button" title="{{ 'collections.general.grid_view' | t }}" class="btn btn-link__icon btn-view-grid change-view{% unless template contains 'list' %} change-view--active{% endunless %}" data-view="grid">
+            <span class="icon grid-view" aria-hidden="true"></span>
+            <span class="fallback-text">{{ 'collections.general.grid_view' | t }}</span>
+        </button>
+        <button type="button" title="{{ 'collections.general.list_view' | t }}" class="btn btn-link__icon btn-view-list change-view{% if template contains 'list' %} change-view--active{% endif %}" data-view="list">
+            <span class="icon list-view" aria-hidden="true"></span>
+            <span class="fallback-text">{{ 'collections.general.list_view' | t }}</span>
+        </button>
+    </div>
+{% endif %}      

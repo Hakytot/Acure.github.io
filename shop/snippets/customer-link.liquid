@@ -1,0 +1,31 @@
+{% if shop.customer_accounts_enabled %}  
+    <a class="button_account_toggle account_toggle" id="account_toggle" href="#">
+        <span class="top"></span>
+        <span class="middle"></span>
+        <span class="bottom"></span>
+    </a>
+    <div class="account_toggle_overlay" id="account_toggle_overlay">
+        <nav class="overlay-menu">
+            <ul class="customer_accounts">        
+                <li class="first">                    
+                    <a href="/account">
+                        {{ 'layout.customer.your_account' | t }}
+                    </a>
+                </li>              
+                <li><a href="/checkout">{{ 'layout.customer.checkout' | t }}</a></li>        
+                {% if customer  %}    
+                    <li class="toolbar-customer">
+                        <a href="/account">{{ 'layout.customer.your_account' | t }}</a>
+                    </li>
+                {% else %}
+                    <li class="toolbar-customer">
+                        {{ 'layout.customer.login' | t | customer_login_link }}                    
+                    </li>    
+                    {% if shop.customer_accounts_optional %}                    
+                        <li>{{ 'layout.customer.create_account' | t | customer_register_link }}</li>
+                    {% endif %}
+                {% endif %}
+            </ul>
+        </nav> 
+    </div>
+{% endif %}

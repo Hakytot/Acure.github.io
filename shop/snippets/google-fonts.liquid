@@ -1,0 +1,37 @@
+{% if settings.type_base_family contains 'Google' %}
+  {% assign type_base_parts = settings.type_base_family | split: '_' %}
+  {% capture baseGoogleUrl %}{{ type_base_parts[1] }}:{{ type_base_parts[2] }}{% endcapture %}
+  {{ '//fonts.googleapis.com/css?family=' | append: baseGoogleUrl | stylesheet_tag }}
+{% endif %}
+{% if settings.heading_font contains 'Google' %}
+  {% unless settings.heading_font contains type_base_parts[1] %}
+    {% assign type_heading_parts = settings.heading_font | split: '_' %}
+    {% capture headingGoogleUrl %}{{ type_heading_parts[1] }}:{{ type_heading_parts[2] }}{% endcapture %}
+    {{ '//fonts.googleapis.com/css?family=' | append: headingGoogleUrl | stylesheet_tag }}
+  {% endunless %}
+{% endif %}
+{% if settings.hero_font_type contains 'Google' %}
+  {% assign hero_font_type_parts = settings.hero_font_type | split: '_' %}
+  {% capture heroGoogleUrl %}{{ hero_font_type_parts[1] }}:{{ hero_font_type_parts[2] }}{% endcapture %}
+  {{ '//fonts.googleapis.com/css?family=' | append: heroGoogleUrl | stylesheet_tag }}
+{% endif %}
+{% if settings.menu_font contains 'Google' %}
+  {% assign type_menu_parts = settings.menu_font | split: '_' %}
+  {% capture menuGoogleUrl %}{{ type_menu_parts[1] }}:{{ type_menu_parts[2] }}{% endcapture %}
+  {{ '//fonts.googleapis.com/css?family=' | append: menuGoogleUrl | stylesheet_tag }}
+{% endif %}
+{% if settings.button-font contains 'Google' %}
+  {% assign type_button_parts = settings.button-font | split: '_' %}
+  {% capture buttonGoogleUrl %}{{ type_button_parts[1] }}:{{ type_button_parts[2] }}{% endcapture %}
+  {{ '//fonts.googleapis.com/css?family=' | append: buttonGoogleUrl | stylesheet_tag }}
+{% endif %}
+{% if settings.blog_font_type contains 'Google' %}
+  {% assign type_blog_parts = settings.blog_font_type | split: '_' %}
+  {% capture blogGoogleUrl %}{{ type_blog_parts[1] }}:{{ type_blog_parts[2] }}{% endcapture %}
+  {{ '//fonts.googleapis.com/css?family=' | append: blogGoogleUrl | stylesheet_tag }}
+{% endif %}
+{% if settings.breadcrumb_font_type contains 'Google' %}
+  {% assign type_breadcrumb_parts = settings.breadcrumb_font_type | split: '_' %}
+  {% capture breadcrumbGoogleUrl %}{{ type_breadcrumb_parts[1] }}:{{ type_breadcrumb_parts[2] }}{% endcapture %}
+  {{ '//fonts.googleapis.com/css?family=' | append: breadcrumbGoogleUrl | stylesheet_tag }}
+{% endif %}

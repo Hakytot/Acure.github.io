@@ -1,0 +1,33 @@
+.footer{
+    color: {{ settings.footer_color }};
+    background:{{ settings.footer_bg_color }};
+    a{
+        color: {{ settings.footer_link_color }};
+        &:hover,&:focus,&:active{
+            color: {{ settings.footer_link_hover }};
+        }
+    }
+    .widget-title{
+        color: {{ settings.footer_color }};
+        margin-bottom: 60px;
+    }
+}
+
+.footer-tapbar{
+    .customer_accounts{
+        .account-login{
+            a{
+                font-family: $buttonFontStack;
+                text-transform: $buttonTransform;    
+                font-weight: $buttonFontWeight;
+                letter-spacing: $buttonLetterSpacing;
+                background-color: $primaryColor;
+                color: #FFFFFF;
+                line-height: normal;
+                display: inline-block;
+                position: relative;
+                @include rem(font-size, $buttonFontSize);
+            }
+        }
+    }
+}

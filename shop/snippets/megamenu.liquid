@@ -1,0 +1,107 @@
+{% if settings.enable_mega_nav %}
+    {% assign limit = settings.meganav-limit | times: 1 %}
+    {% assign columnCount = 0 %}
+
+{% if linklists[settings.meganav-list-1].title.size > 0 %}
+    {% assign columnCount = columnCount | plus: 1 %}
+{% endif %}
+
+{% if linklists[settings.meganav-list-2].title.size > 0 %}
+    {% assign columnCount = columnCount | plus: 1 %}
+{% endif %}
+
+{% if linklists[settings.meganav-list-3].title.size > 0 %}
+    {% assign columnCount = columnCount | plus: 1 %}
+{% endif %}
+
+
+<div class="mega-nav dropdown-menu" {% if settings.megamenu-width.size > 0 %} style="width:{{ settings.megamenu-width }}px;"{% endif %}>
+
+        <!-- Main mega list
+        ++++++++++++++++++++++++++++ -->
+        <div class="main-list mega-nav-list row">
+            {% if linklists[settings.meganav-list-1].title.size > 0 %}
+                <div class="{{ settings.top-level-columns }}">                   
+                    <h3 class="mega-label">
+                        <span>{{ linklists[settings.meganav-list-1].title }}</span>
+                    </h3>
+                    <ul data-list="{{ linklists[settings.meganav-list-1].handle }}" class="list-wrap list-unstyled">
+                        {% for link in linklists[settings.meganav-list-1].links %}
+                            {% if forloop.index < limit or columnCount == 1 %}
+                                {% capture link_handle %}{{ link.title | handle }}{% endcapture %}
+                                {% assign hasCategory = false %}
+                                {% if linklists[link_handle] and linklists[link_handle].links.size > 0 %} {% assign hasCategory = true %} {% endif %}
+                                <li class="list-item">
+                                    <a data-category="{{ link.title | handleize }}" class="item {% if hasCategory %}has-category{% endif %}" href="{{ link.url }}">
+                                        {{ link.title }}
+                                        {% comment %}
+                                            {% if hasCategory %}
+                                                <span class="menu-icon">+</span>
+                                            {% endif %}
+                                        {% endcomment %}
+                                    </a>
+                                </li>
+                            {% endif %}
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endif %}
+
+
+            {% if linklists[settings.meganav-list-2].title.size > 0 %}            
+                <div class="{{ settings.top-level-columns }}">
+                    <h3 class="mega-label">
+                        <span>{{ linklists[settings.meganav-list-2].title }}</span>
+                    </h3>
+                    <ul data-list="{{ linklists[settings.meganav-list-2].handle }}" class="list-wrap list-unstyled">
+                        {% for link in linklists[settings.meganav-list-2].links %}
+                            {% if forloop.index < limit %}
+                                {% capture link_handle %}{{ link.title | handle }}{% endcapture %}
+                                {% assign hasCategory = false %}
+                                {% if linklists[link_handle] and linklists[link_handle].links.size > 0 %} {% assign hasCategory = true %} {% endif %}
+                                <li class="list-item">
+                                    <a data-category="{{ link.title | handleize }}" class="item {% if hasCategory %}has-category{% endif %}" href="{{ link.url }}">
+                                        {{ link.title }}
+                                        {% comment %}
+                                            {% if hasCategory %}
+                                                <span class="menu-icon">+</span>
+                                            {% endif %}
+                                        {% endcomment %}                                        
+                                    </a>
+                                </li>
+                            {% endif %}
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endif %}
+
+
+            {% if linklists[settings.meganav-list-3].title.size > 0 %}
+                <div class="{{ settings.top-level-columns }}">
+                    <h3 class="mega-label">
+                        <span>{{ linklists[settings.meganav-list-3].title }}</span>
+                    </h3>
+                    <ul data-list="{{ linklists[settings.meganav-list-3].handle }}" class="list-wrap list-unstyled">
+                        {% for link in linklists[settings.meganav-list-3].links %}
+                            {% if forloop.index < limit %}
+                                {% capture link_handle %}{{ link.title | handle }}{% endcapture %}
+                                {% assign hasCategory = false %}
+                                {% if linklists[link_handle] and linklists[link_handle].links.size > 0 %} {% assign hasCategory = true %} {% endif %}
+                                <li class="list-item">
+                                    <a data-category="{{ link.title | handleize }}" class="item {% if hasCategory %}has-category{% endif %}" href="{{ link.url }}">
+                                        {{ link.title }}
+                                        {% comment %}
+                                            {% if hasCategory %}
+                                                <span class="menu-icon">+</span>
+                                            {% endif %}
+                                        {% endcomment %}                                        
+                                    </a>
+                                </li>
+                            {% endif %}
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endif %}
+        </div>    
+    </div>
+{% endif %}

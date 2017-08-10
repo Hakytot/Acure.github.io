@@ -1,0 +1,133 @@
+<section class="contact page" id="contact">
+    <div class="container">
+        {% if section.settings.enable_breadcrumb %}
+            {% include 'breadcrumb' %}      
+        {% endif %} 
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                {% if section.settings.show_page_title %}
+                    <header class="page-header text-center">                    
+                        <h1 class="page-title">
+                            <span>{{ page.title }}</span>      
+                        </h1>                    
+                    </header>
+                {% endif %}     
+                {% if section.settings.show_page_content %}
+                    <div class="contact-content rte">
+                        {{ page.content }}
+                    </div>
+                {% endif %}
+                <div class="form-vertical">   
+                    {% if section.settings.show_map %}
+                        <div class="map-section">
+                            {% if section.settings.title != blank or section.settings.address != blank %}                                                        
+                                <div class="map-section__overlay">
+                                    {% if section.settings.map_title != blank %}
+                                        <h4 class="form-header-title">    
+                                            {{ section.settings.map_title | escape }}
+                                        </h4>
+                                    {% endif %}                                    
+                                    {% if section.settings.address != blank %}
+                                        <div class="rte-setting">{{ section.settings.address }}</div>
+                                    {% endif %}
+                                </div>                                                     
+                            {% endif %}                        
+                            {% if section.settings.api_key != blank %}
+                                <div class="map-section__container" id="map-canvas"></div>
+                            {% endif %}                                              
+                        </div>                        
+                    {% endif %}
+
+                    <div class="contact__form_social">
+                        <h4 class="form-header-title">                        
+                            {{ 'contact.form.social_title' | t }}
+                        </h4>             
+                        {% include "social-links" %}            
+                    </div>                    
+                    <h4 class="form-header-title">                        
+                        {{ 'contact.form.title' | t }}
+                    </h4>
+                    {% form 'contact' %}
+                        {% if form.posted_successfully? %}
+                            <p class="note form-success">
+                                {{ 'contact.form.post_success' | t }}
+                            </p>
+                        {% endif %}
+                        {{ form.errors | default_errors }}
+                        <div class="form-group">
+                            {% assign name_attr = 'contact.form.name' | t | handle %}
+                            <label for="ContactFormName" class="hidden-label">{{ 'contact.form.name' | t }}</label>
+                            <input type="text" id="ContactFormName" class="form-control" name="contact[{{ name_attr }}]" placeholder="{{ 'contact.form.name' | t }}" autocapitalize="words" value="{% if form[name_attr] %}{{ form[name_attr] }}{% elsif customer %}{{ customer.name }}{% endif %}">
+                        </div>
+                        <div class="form-group">
+                            <label for="ContactFormEmail" class="hidden-label">{{ 'contact.form.email' | t }}</label>
+                            <input type="email" id="ContactFormEmail" class="form-control" name="contact[email]" placeholder="{{ 'contact.form.email' | t }}" autocorrect="off" autocapitalize="off" value="{% if form.email %}{{ form.email }}{% elsif customer %}{{ customer.email }}{% endif %}">    
+                        </div>
+                        <div class="form-group">
+                            {% assign name_attr = 'contact.form.phone' | t | handle %}
+                            <label for="ContactFormPhone" class="hidden-label">{{ 'contact.form.phone' | t }}</label>
+                            <input type="tel" id="ContactFormPhone" class="form-control" name="contact[{{ name_attr }}]" placeholder="{{ 'contact.form.phone' | t }}" pattern="[0-9\-]*" value="{% if form[name_attr] %}{{ form[name_attr] }}{% elsif customer %}{{ customer.phone }}{% endif %}">
+                        </div>
+                        <div class="form-group">
+                            <label for="ContactFormMessage" class="hidden-label">{{ 'contact.form.message' | t }}</label>
+                            <textarea rows="10" id="ContactFormMessage" class="form-control" name="contact[body]" placeholder="{{ 'contact.form.message' | t }}">{% if form.body %}{{ form.body }}{% endif %}</textarea>
+                        </div>
+                        <div class="form-group">
+                            <button class="btn btn--outline btn--full" type="submit" value="{{ 'contact.form.send' | t }}">
+                                <span>{{ 'contact.form.send' | t }}</span>
+                            </button>
+                        </div>
+                    {% endform %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--Google Maps API-->
+{% if section.settings.show_map and section.settings.api_key != blank %}    
+    <script src="https://maps.googleapis.com/maps/api/js?key={{ section.settings.api_key }}&callback=initMap"async defer></script>
+{% endif %}
+
+{% schema %}
+{
+    "name": "Contact Page",
+    "class": "shopify-section__contact_template",
+    "settings": [{
+        "type": "checkbox",
+        "id": "enable_breadcrumb",
+        "label": "Enable Breadcrumb",
+        "default": true
+    }, {
+        "type": "checkbox",
+        "id": "show_page_title",
+        "label": "Show Page Title",
+        "default": true
+    }, {
+        "type": "checkbox",
+        "id": "show_page_content",
+        "label": "Show Page Content",
+        "default": true
+    }, {
+        "type": "checkbox",
+        "id": "show_map",
+        "label": "Show Contact Maps",
+        "default": false
+    }, {
+        "id": "map_title",
+        "type": "text",
+        "label": "Overlay heading",
+        "default": "My Our Store"
+    }, {
+        "id": "address",
+        "type": "richtext",
+        "label": "Text address and hours",
+        "default": "<p>123 Fake St.<br>Toronto, Canada</p><p>Mon - Fri, 10am - 9pm<br>Saturday, 11am - 9pm<br>Sunday, 11am - 5pm</p>"
+    }, {
+        "id": "api_key",
+        "type": "text",
+        "label": "Google Maps API key",
+        "default": "AIzaSyCeVG19nvMuUmClkNvFJHjQm165LcpJ_Hw",
+        "info": "If your store experiences more than 2,500 visitors a day, you’ll need to generate both [JavaScript](https://developers.google.com/maps/documentation/javascript/get-api-key) and [Geocoding](https://developers.google.com/maps/documentation/geocoding/get-api-key) API keys"
+    }]
+}
+{% endschema %}

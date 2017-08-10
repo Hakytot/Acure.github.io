@@ -1,0 +1,16 @@
+<div class="page">
+     <div class="container">
+          {% include 'breadcrumb' %}
+          <div class="{{ page_title | handle }}">          
+               <header class="page-header text-center">
+                    <h2 class="page-title">
+                         <span>{{ 'general.404.title' | t }}</span>
+                    </h2>
+               </header> 
+               <div class="text-center page-content">
+                    <p class="page-sub-title">{{ 'general.404.subtext' | t }}</p>
+                    <a href="/" class="btn btn--primary">{{ 'general.404.btn' | t }}</a>
+               </div>          
+          </div>     
+     </div>
+</div>
