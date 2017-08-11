@@ -76,7 +76,6 @@ $rem-baseline: 14px !default;
 $rem-fallback: true !default;
 $rem-px-only: false !default;
 
-
 /******************************************************************************/
 
 /* General colors */
@@ -163,6 +162,8 @@ $rtl-center: center !default;
 $drawerNavWidth: 462px !default;
 $drawerCartWidth: 462px !default;
 $drawerTransition: all .6s cubic-bezier(.77,0,.175,1) !default;
+
+
 
 /*================ Mixins ================*/
 
@@ -1163,7 +1164,6 @@ $large: 1000px;
 @mixin backface($visibility: hidden) {
     @include prefixer(backface-visibility, $visibility, webkit spec);
 }
-
 
 /*================ Global Style Sheet ================*/
 
@@ -3963,6 +3963,9 @@ $ionicon-var-xbox: "\f30c";
 .#{$ionicons-prefix}woman:before { content: $ionicon-var-woman; }
 .#{$ionicons-prefix}wrench:before { content: $ionicon-var-wrench; }
 .#{$ionicons-prefix}xbox:before { content: $ionicon-var-xbox; }
+
+
+
 
 #faq-template{
   .tabs{

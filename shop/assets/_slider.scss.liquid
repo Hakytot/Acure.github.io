@@ -1,0 +1,20 @@
+/* Breadcrumb */
+.breadcrumbs{
+  @include mobile{
+    text-align: center;    
+    @include rem(padding-bottom, 60px);
+  }
+  @include tablet{
+    text-align: center;    
+    @include rem(padding-bottom, 60px);
+  }
+   @include desktop-small{
+    text-align: center;
+  }
+  font-family: $breadcrumbFontStack;  
+  font-weight: $breadcrumbFontWeight;
+  text-transform: $breadcrumbTransform;
+  @include rem(letter-spacing, $breadcrumbLetterSpacing);
+  @include rem(line-height, $breadcrumbLineHeight);
+  @include rem(font-size, $breadcrumbFontSize);
+}
