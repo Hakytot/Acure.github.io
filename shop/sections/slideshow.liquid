@@ -1,24 +1,44 @@
-<div data-section-id="{{ section.id }}" data-section-type="slideshow-section">
-  {% if section.blocks.size > 0 %}
-    <div class="slideshow-wrapper">
-      
+<div class="slideshow auto-play fill-viewport section-id-{{ section.id }}">
+    {% for block in section.blocks %}
+        <div id="slide--{{ block.id }}" class="slide slide-{{ forloop.index }} load-bg" {{ block.shopify_attributes }}>
+            {% if block.settings.heading != blank or block.settings.subheading != blank or block.settings.button_text != blank %}
+                <div class="overlay-type overlay">
+                    {% if block.settings.image != blank %}
+                        {% if block.settings.link != "" %}
+                            <a href="{{ block.settings.link }}" class="slide-link">
+                        {% endif %}
+                        <img src="{{ block.settings.image | img_url: '1024x' }}"
+                             srcset="{{ block.settings.image | img_url: '1024x' }} 1x, {{ block.settings.image | img_url: '1024x', scale: 2 }} 2x" alt="{{ block.settings.image.alt }}">
+                        {% if block.settings.link != "" %}
+                            </a>
+                        {% endif %}
 
-      <div class="slideshow slideshow--{{ section.settings.slideshow_height }}" id="Slideshow-{{ section.id }}" data-autoplay="{{ section.settings.autoplay }}" data-speed="{{ section.settings.autoplay_speed }}">
-      </div>
-    </div>
-  {% endif %}
+                    {% else %}
+                        {% capture current %}{% cycle 1, 2 %}{% endcapture %}
+                        {% capture svg_tag_class %}placeholder-noblocks slide-link slide-link--{{ block.id }}{% endcapture %}
+                        {%- assign placeholder = 'placeholder-lifestyle-' | append: current -%}
+                        {{ 'lifestyle-' | append: current | placeholder_svg_tag: svg_tag_class }}
+                    {% endif %}
 
-  {% if section.blocks.size == 0 %}
-    <div class="placeholder-noblocks">
-      {{ 'homepage.onboarding.no_content' | t }}
-    </div>
-  {% endif %}
+                    <div class="inner">        
+                        <h1 class="line-1 large-heading">{{ block.settings.heading }}</h1>
+                        <div class="line-2 emphasised">{{ block.settings.subheading }}</div>
+                        {% if block.settings.button_text != blank %}
+                            <div class="line-3">
+                                <span class="button">{{ block.settings.button_text }} <span class="button__arrow"><span class="arr">{% include 'svg-rarrow' %}</span></span></span>
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+    {% endfor %}
 </div>
 
 {% schema %}
   {
-    "name": "Slideshow",
-    "class": "index-section index-section--flush",
+    "name": "slideshow",
+    "class": "index-section index-section--slideshow",
     "max_blocks": 4,
     "settings": [
       {
