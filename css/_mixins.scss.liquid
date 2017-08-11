@@ -8,18 +8,15 @@
     #{$property}: #{$value};
 }
 
-@mixin overlay($z-index: null) {
-    &::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        left: 0;
-        background-color: rgba($color-image-overlay, $opacity-image-overlay);    
-        @if ($z-index) {
-            z-index: $z-index;
-        }
+@mixin box-shadow($top, $left, $blur, $color, $inset: false) {
+    @if $inset {
+        -webkit-box-shadow:inset $top $left $blur $color;
+        -moz-box-shadow:inset $top $left $blur $color;
+        box-shadow:inset $top $left $blur $color;
+    } @else {
+        -webkit-box-shadow: $top $left $blur $color;
+        -moz-box-shadow: $top $left $blur $color;
+        box-shadow: $top $left $blur $color;
     }
 }
 
@@ -135,9 +132,6 @@
         }
     }
 }
-
-
-// BASIC CONVERTER (ignore these)
 
 @mixin rtl-base-simple ($property, $direction) {
   #{$property}:$direction;
@@ -984,14 +978,70 @@ $large: 1000px;
     }
 }
 
-@mixin transform($transform) {
-    @include prefixer(transform, $transform, ms webkit spec);
-}
-
 @mixin user-select($value: none) {
     @include prefixer(user-select, $value, webkit moz ms spec);
 }
 
 @mixin backface($visibility: hidden) {
     @include prefixer(backface-visibility, $visibility, webkit spec);
+}
+
+
+@mixin placeholder-text($color: $color-text-field-text, $opacity: 0.6) {
+    color: $color;
+    opacity: $opacity;
+}
+
+@mixin error-placeholder-text($color: $color-error-input-text, $opacity: 0.5) {
+    color: $color;
+    opacity: $opacity;
+}
+
+@mixin spinner($size: 20px, $color: $color-btn-primary-text) {
+    content: '';
+    display: block;
+    width: $size;
+    height: $size;
+    position: absolute;
+    margin-left: - $size / 2;
+    margin-top: - $size / 2;
+    border-radius: 50%;
+    border: 3px solid $color;
+    border-top-color: transparent;
+}
+
+@mixin visually-hidden() {  
+    position: absolute !important;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    width: 1px;
+    margin: -1px;
+    padding: 0;
+    border: 0;
+}
+
+@mixin visually-shown() {  
+    position: inherit !important;
+    overflow: auto;
+    clip: auto;
+    width: auto;
+    height: auto;
+    margin: 0;
+}
+
+@mixin overlay($z-index: null) {
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background-color: $color-image-overlay;
+        opacity: $opacity-image-overlay;
+        @if ($z-index) {
+            z-index: $z-index;
+        }
+    }
 }

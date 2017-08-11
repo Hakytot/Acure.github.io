@@ -108,3 +108,62 @@ $drawerNavWidth: 462px !default;
 $drawerCartWidth: 462px !default;
 $drawerTransition: all .6s cubic-bezier(.77,0,.175,1) !default;
 
+/*================ Sizing Variables ================*/
+$width-site: 1170px !default;
+$gutter-site: 30px !default;
+$gutter-site-mobile: 15px !default;
+$section-spacing: 50px !default;
+$section-spacing-small: 30px !default;
+$border-radius: 2px !default;
+
+/*================ Z-Index ================*/
+$z-index-dropdown : 7 !default;
+$z-index-sub-nav: 8 !default;
+$z-index-drawer: 9 !default;
+$z-index-notification-bar: 10 !default;
+$z-index-skip-to-content: 10000 !default; 
+
+/*================ SVG ================*/
+$svg-select-icon: #{'{{ "ico-select.svg" | asset_url }}'} !default;
+
+/*================ Drawers ================*/
+$transition-drawer: all 0.45s cubic-bezier(0.29, 0.63, 0.44, 1) !default;
+
+/*================ Hero ================*/
+$color-background-hero-button: #fff !default;
+$color-text-hero-button: #000 !default;
+
+/*================ Hero Slider ================*/
+$color-slideshow-arrows: #000 !default;
+$color-slideshow-dots: #fff !default;
+
+$transition-text-slideshow: all 0.6s cubic-bezier(0.44, 0.13, 0.48, 0.87) !default;
+$transition-image-slideshow: opacity 0.8s cubic-bezier(0.44, 0.13, 0.48, 0.87) !default;
+
+$slick-font-family: "slick-icons, sans-serif" !default;
+$slick-arrow-color: $color-slideshow-arrows !default;
+$slick-dot-color: $color-slideshow-dots !default;
+$slick-dot-color-active: $slick-dot-color !default;
+$slick-prev-character: '\2190' !default;
+$slick-next-character: '\2192' !default;
+$slick-dot-character: '\2022' !default;
+$slick-dot-size: 6px !default;
+$slick-opacity-default: 0.75 !default;
+$slick-opacity-on-hover: 1 !default;
+$slick-opacity-not-active: 0.25 !default;
+
+$slideshow-height-small: 475px !default;
+$slideshow-height-medium: 650px !default;
+$slideshow-height-large: 775px !default;
+$slideshow-loader: #fff !default;
+$z-index-slideshow-image: 1 !default;
+$z-index-slideshow-video: 2 !default;
+$z-index-slideshow-text: 3 !default;
+$z-index-slideshow-controls: 4 !default;
+$color-slideshow-close-bg: #fff !default;
+$color-slideshow-close-text: #000 !default;
+
+// Overlays
+$color-overlay-title-text: {{ settings.color_image_overlay_text }} !default;
+$color-image-overlay: {{ settings.color_image_overlay }} !default;
+$opacity-image-overlay: {{ settings.image_overlay_opacity }} !default;

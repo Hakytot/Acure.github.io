@@ -1,5 +1,9 @@
 {
     "general": {
+        "accessibility": {
+            "skip_to_content": "Skip to content",
+            "close_modal": "Close (esc)"
+        },
         "404": {
             "title": "We’re sorry, this page could not be found.",
             "subtext": "You might want to check that URL again or head over to our",
@@ -60,6 +64,17 @@
         "meta": {
             "tagged": "tagged",
             "page": "Page"
+        }
+    },
+    "homepage": {
+        "onboarding": {
+            "product_title": "Your product's name",
+            "product_description": "This area is used to describe your product’s details. Tell customers about the look, feel, and style of your product. Add details on color, materials used, sizing, and where it was made.",
+            "collection_title": "Your collection's name",
+            "blog_title": "Your post's title",
+            "blog_excerpt": "Your store hasn’t published any blog posts yet. A blog can be used to talk about new product launches, tips, or other news you want to share with your customers. You can check out Shopify’s ecommerce blog for inspiration and advice for your own store and blog.",
+            "blog_author": "Author name",
+            "no_content": "This section doesn’t currently include any content. Add content to this section using the sidebar."
         }
     },
     "layout": {
