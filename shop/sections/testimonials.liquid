@@ -1,0 +1,107 @@
+{% if section.settings.testimonials_enable %}
+    <div class="{{ section.id }}" data-section-id="{{ section.id }}" data-section-type="testimonials" {% if section.settings.testimonials_background != blank %} style="background-image: url({{section.settings.testimonials_background | img_url: '2040'}})"{% endif %}
+         >
+
+    {% if section.settings.testimonials_title != blank %}
+        <h3 class="testimonials_title">{{ section.settings.testimonials_title }}</h3>
+    {% endif %}
+
+    
+    {% if section.blocks.size > 0 %}    
+    <div class="testimonials_slick"> 
+        {% for block in section.blocks %} 
+
+                {% if block.settings.description != blank %}
+                    <div class="testimonials_title">{{ block.settings.description }}</div>
+                {% endif %}
+
+                {% if block.settings.author != blank %}
+                    <div class="testimonials_sub_title">{{ block.settings.author }}</div>
+                {% endif %}
+                
+                
+                {% if block.settings.image != blank %}
+                    <img src="{{ block.settings.image | img_url: '80x80' }}" alt="{{ block.settings.author }}">
+                {% endif %}
+
+          
+
+        {% endfor %}
+        </div>
+  {% endif %}
+
+  {% if section.blocks.size == 0 %}
+    {% include 'no-blocks' %}
+  {% endif %}
+</div>
+{% endif %}
+
+
+
+
+{% schema %}
+{
+    "name": "Testimonials",
+    "class": "index-section",
+    "max_blocks": 9,
+    "settings": [
+    {
+        "type": "checkbox",
+        "id": "testimonials_enable",
+        "label": "Enable Testimonials"
+    },
+    {
+        "type": "text",
+        "id": "testimonials_title",
+        "default": "What people say",
+        "label": "Title"
+    },
+    {
+        "type": "image_picker",
+        "id": "testimonials_background",
+        "label": "Upload background"
+    }],
+
+    "blocks": [
+    {
+        "type": "testimonials",
+        "name": "Testimonials",
+        "settings": [
+            {
+                "type": "richtext",
+                "id": "description",
+                "label": "Description",
+                "default": "<p>Get it fresh</p>"
+            },
+            {
+                "type": "text",
+                "id": "author",
+                "label": "Author Name",
+                "default": "New pick up services"
+            },
+            {
+                "type": "image_picker",
+                "id": "image",
+                "info": "(Size: 85x85)",
+                "label": "Testimonials Image"
+            }
+
+        ]
+    }],
+    "presets": [
+    {
+        "name": "Testimonials",
+        "category": "Text",
+        "blocks": [
+        {
+            "type": "testimonials"
+        },
+        {
+            "type": "testimonials"
+        },
+        {
+            "type": "testimonials"
+        }]
+    }]
+}
+{% endschema %}

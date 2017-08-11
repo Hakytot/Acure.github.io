@@ -186,6 +186,7 @@
         "content_for_index": [
             "slideshow",
             "custom_block",
+            "testimonials",
             "collection-list",
             "collection",
             "promotion",
@@ -286,6 +287,54 @@
                     }
                 }
             },
+
+            "testimonials":
+            {
+
+                "type": "testimonials",
+                "settings":
+                {
+                    "testimonials_title" : "What people say",
+                    "testimonials_enable": true
+                },
+                "block_order": [
+                    "testimonials_0",
+                    "testimonials_1",
+                    "testimonials_2"
+                ],
+                "blocks":
+                {
+                    "testimonials_0":
+                    {
+                        "settings":
+                        {
+                            "description": "<p>Get it fresh</p>",        
+                            "author": "New pick up services"          
+                        },
+                        "type": "testimonials"
+                    },
+                    "testimonials_1":
+                    {
+                        "settings":
+                        {
+                            "description": "<p>Get it fresh</p>",        
+                            "author": "New pick up services"          
+                        },
+                        "type": "testimonials"
+                    },
+                    "testimonials_2":
+                    {
+                        "settings":
+                        {
+                            "description": "<p>Get it fresh</p>",        
+                            "author": "New pick up services"          
+                        },
+                        "type": "testimonials"
+                    }
+                }
+            },
+
+
             "collection":
             {
                 "type": "collection",
