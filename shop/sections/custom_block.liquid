@@ -1,0 +1,82 @@
+{% if section.settings.custom_block_enable %}
+    <div class="{{ section.id }}" data-section-id="{{ section.id }}" data-section-type="custom_block">
+    {% if section.blocks.size > 0 %}    
+      <div class="container">
+        {% for block in section.blocks %}
+            <div class="col-lg-4 col-md-4 col-xs-12">
+                {% if block.settings.image != blank %}
+                    <img src="{{ block.settings.image | img_url: '80x80' }}" alt="{{ block.settings.title }}">
+                {% endif %}
+
+                {% if block.settings.title != blank %}
+                    <div class="custom_block_title">{{ block.settings.title }}</div>
+                {% endif %}
+
+                {% if block.settings.sub_title != blank %}
+                    <div class="custom_block_sub_title">{{ block.settings.sub_title }}</div>
+                {% endif %}
+            </div>         
+        {% endfor %}
+      </div>    
+  {% endif %}
+
+  {% if section.blocks.size == 0 %}
+    {% include 'no-blocks' %}
+  {% endif %}
+</div>
+{% endif %}
+
+
+
+
+{% schema %}
+    {
+    "name": "Custom Block",
+    "class": "index-section",
+    "max_blocks": 9,
+    "settings": [
+    {
+        "type": "checkbox",
+        "id": "custom_block_enable",
+        "label": "Enable Custom Block"
+    }],
+    "blocks": [
+    {
+        "type": "custom_block",
+        "name": "Custom Block",
+        "settings": [
+        {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Custom Block Image"
+        },
+        {
+            "type": "text",
+            "id": "title",
+            "label": "Custom Name",
+            "default": "New pick up services"
+        },
+        {
+            "type": "richtext",
+            "id": "sub_title",
+            "label": "Text",
+            "default": "<p>Get it fresh</p>"
+        }]
+    }],
+    "presets": [
+    {
+        "name": "Custom Block",
+        "category": "Text",
+        "blocks": [
+        {
+            "type": "custom_block"
+        },
+        {
+            "type": "custom_block"
+        },
+        {
+            "type": "custom_block"
+        }]
+    }]
+}
+{% endschema %}
