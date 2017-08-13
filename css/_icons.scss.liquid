@@ -2241,3 +2241,21 @@ $ionicon-var-xbox: "\f30c";
 .#{$ionicons-prefix}woman:before { content: $ionicon-var-woman; }
 .#{$ionicons-prefix}wrench:before { content: $ionicon-var-wrench; }
 .#{$ionicons-prefix}xbox:before { content: $ionicon-var-xbox; }
+
+
+/*================ #Icons ================*/
+svg, symbol {
+	&.icon:not(.icon--full-color) {
+		circle,
+		ellipse,
+		g,
+		line,
+		path,
+		polygon,
+		polyline,
+		rect {
+			fill: inherit;
+			stroke: inherit;
+		}
+	}
+}

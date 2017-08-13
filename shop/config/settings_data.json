@@ -4,11 +4,21 @@
         "color_primary": "#ff7055",
         "color_secondary": "#88bd6e",
         "color_accent": "#131516",
-        "color_borders": "#e0e0e0",
-        "body_bg_color": "#FFFFFF",
-        "link_hover_color": "#ff7055",
-        "body_font_color": "#555f61",
+        "color_borders": "#e0e0e0",        
+        "link_hover_color": "#ff7055",        
         "link_color": "#232323",
+        "body_font_color": "#555f61",
+        "body_bg_color": "#FFFFFF",
+        "body_font_size": "14",
+        "body_font_weight": "400",
+        "body_line_height": "26",
+        "body-text-transform": "none",
+        "type_base_family": "Google_Poppins_300,400,500,600,700_sans",
+        "type_base_letter_spacing": "0", 
+
+        "accent_font_family": "Google_Sintony_400,700_sans",
+        "accent_font_weight": "700",         
+
         "button-text-color": "#FFFFFF",
         "button-text-hover-color": "#FFFFFF",
         "button-background-color": "#ff7055",
@@ -83,19 +93,13 @@
         "input_form_field_label": "#232323",
         "input_form_field_bg": "#F6F6F6",
         "collection_list_overlay_opacity": "0.2",
-        "image_overlay_opacity": "0.2",
-        "type_base_family": "Google_Poppins_300,400,500,600,700_sans",
+        "image_overlay_opacity": "0.2",        
         "blog_font_type": "Google_Sintony_400,700_sans",
         "blog_font_size": "48px",
         "blog_font_weight": "300",
         "blog_text_transform": "uppercase",
         "blog_letter_spacing": "0.5px",
-        "blog_line_height": "54px",
-        "type_base_letter_spacing": "0px",
-        "body_font_size": "14",
-        "body_font_weight": "400",
-        "body_line_height": "26px",
-        "body-text-transform": "none",
+        "blog_line_height": "54px",        
         "use_favicon": true,
         "ajax_cart_method": "drawer",
         "cart_notes_enable": true,
@@ -186,10 +190,8 @@
         "content_for_index": [
             "slideshow",
             "custom_block",
-            "testimonials",
-            "collection-list",
-            "collection",
-            "promotion",
+            "testimonials",            
+            "collection",            
             "featured-blog"
         ],
         "sections":
@@ -232,18 +234,6 @@
                 {},
                 "type": "slideshow"
             },
-            "collection-list":
-            {
-                "type": "collection-list",
-                "settings":
-                {
-                    "enable_title": false,
-                    "title": "Collections",
-                    "alignment": "text-center",
-                    "grid": "2",
-                    "size": "large"
-                }
-            },
             "custom_block":
             {
                 "type": "custom_block",
@@ -262,8 +252,8 @@
                     {
                         "settings":
                         {
-                            "sub_title": "New Pick up service",         
-                            "sub_title": "<p>Get it fresh</p>"            
+                            "sub_title": "New Pick up service",
+                            "sub_title": "<p>Get it fresh</p>"
                         },
                         "type": "custom_block"
                     },
@@ -271,8 +261,8 @@
                     {
                         "settings":
                         {
-                            "sub_title": "Free Delivery",            
-                            "sub_title": "<p>Delivered to your door step</p>"            
+                            "sub_title": "Free Delivery",
+                            "sub_title": "<p>Delivered to your door step</p>"
                         },
                         "type": "custom_block"
                     },
@@ -280,8 +270,8 @@
                     {
                         "settings":
                         {
-                            "sub_title": "Free Delivery",            
-                            "sub_title": "<p>Delivered to your door step</p>"            
+                            "sub_title": "Free Delivery",
+                            "sub_title": "<p>Delivered to your door step</p>"
                         },
                         "type": "custom_block"
                     }
@@ -294,8 +284,9 @@
                 "type": "testimonials",
                 "settings":
                 {
-                    "testimonials_title" : "What people say",
-                    "testimonials_enable": true
+                    "testimonials_title": "What People Say",
+                    "testimonials_enable": true,
+                    "testimonials_height": "small"
                 },
                 "block_order": [
                     "testimonials_0",
@@ -308,8 +299,8 @@
                     {
                         "settings":
                         {
-                            "description": "<p>Get it fresh</p>",        
-                            "author": "New pick up services"          
+                            "description": "<p>This wax is awesome. I always get compliments on the shine and the way it holds. I love Acure Wave and Groom and I’ve been using it as long as I can remember. I’ve spent a lot of money looking for the perfect bottle and I’ve finally found it.</p>",
+                            "author": "Hana Pestle"
                         },
                         "type": "testimonials"
                     },
@@ -317,8 +308,8 @@
                     {
                         "settings":
                         {
-                            "description": "<p>Get it fresh</p>",        
-                            "author": "New pick up services"          
+                            "description": "<p>This wax is awesome. I always get compliments on the shine and the way it holds. I love Acure Wave and Groom and I’ve been using it as long as I can remember. I’ve spent a lot of money looking for the perfect bottle and I’ve finally found it.</p>",
+                            "author": "Hana Pestle"
                         },
                         "type": "testimonials"
                     },
@@ -326,8 +317,8 @@
                     {
                         "settings":
                         {
-                            "description": "<p>Get it fresh</p>",        
-                            "author": "New pick up services"          
+                            "description": "<p>This wax is awesome. I always get compliments on the shine and the way it holds. I love Acure Wave and Groom and I’ve been using it as long as I can remember. I’ve spent a lot of money looking for the perfect bottle and I’ve finally found it.</p>",
+                            "author": "Hana Pestle"
                         },
                         "type": "testimonials"
                     }
@@ -362,22 +353,7 @@
                     "show_title": true,
                     "grid": "3"
                 }
-            },
-            "promotion":
-            {
-                "type": "promotion",
-                "settings":
-                {
-                    "size": "large",
-                    "promotion_enable": true,
-                    "button_enable": false,
-                    "alignment": "text-center",
-                    "vertical": "middle",
-                    "body": "<p>Use a short, catchy sentence to showcase <br/>your store.</p>",
-                    "button_url": "shopify://collections/all",
-                    "button_label": "Shop The Collections"
-                }
-            },
+            },            
             "featured-blog":
             {
                 "type": "featured-blog",

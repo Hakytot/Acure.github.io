@@ -6,6 +6,15 @@
 {% assign base_family = settings.type_base_family %}
 {% endif %}
 
+{% if settings.accent_font_family contains 'Google' %}
+{% assign type_accent_parts = settings.accent_font_family | split: '_' %}
+{% assign type_accent_name = type_accent_parts[1] %}
+{% capture accent_family %}"{{ type_accent_name | split: ':' | first | replace: '+', ' ' }}"{% if type_accent_parts.last == 'serif' %}, serif {% else %}, "HelveticaNeue", "Helvetica Neue", sans-serif{% endif %}{% endcapture %}
+{% else %}
+{% assign accent_family = settings.accent_font_family %}
+{% endif %}
+
+
 {% if settings.heading_font contains 'Google' %}
 {% assign type_heading_parts = settings.heading_font | split: '_' %}
 {% assign type_heading_name = type_heading_parts[1] %}

@@ -8,6 +8,15 @@
 {% assign base_family = settings.type_base_family %}
 {% endif %}
 
+{% if settings.accent_font_family contains 'Google' %}
+{% assign type_accent_parts = settings.accent_font_family | split: '_' %}
+{% assign type_accent_name = type_accent_parts[1] %}
+{% capture accent_family %}"{{ type_accent_name | split: ':' | first | replace: '+', ' ' }}"{% if type_accent_parts.last == 'serif' %}, serif {% else %}, "HelveticaNeue", "Helvetica Neue", sans-serif{% endif %}{% endcapture %}
+{% else %}
+{% assign accent_family = settings.accent_font_family %}
+{% endif %}
+
+
 {% if settings.heading_font contains 'Google' %}
 {% assign type_heading_parts = settings.heading_font | split: '_' %}
 {% assign type_heading_name = type_heading_parts[1] %}
@@ -83,17 +92,20 @@ $borderColor: {{ settings.color_borders }} !default;
 $primaryColor: {{ settings.color_primary }} !default;
 $secondColor: {{ settings.color_secondary }} !default;
 $accentColor: {{ settings.color_accent }} !default;
-
 $linkColor: {{ settings.link_color }} !default;
 $linkHoverColor: {{ settings.link_hover_color }} !default;
+
+/* Accent Font */
+$accentFontStack: {{ accent_family }} !default;
+$accentFontWeight: {{ settings.accent_font_weight }} !default;
 
 /* Body Font */
 $bodyFontStack: {{ base_family }} !default;
 $bodyFontSize: {{ settings.body_font_size }}px !default;
 $bodyFontWeight: {{ settings.body_font_weight }} !default;
 $bodyTransform: {{ settings.body-text-transform }} !default;
-$bodyLineHeight: {{ settings.body_line_height }} !default;
-$bodyLetterSpacing: {{ settings.type_base_letter_spacing }} !default;
+$bodyLineHeight: {{ settings.body_line_height }}px !default;
+$bodyLetterSpacing: {{ settings.type_base_letter_spacing }}px !default;
 $bodyColor: {{ settings.body_font_color }} !default;
 $bodyBgColor: {{ settings.body_bg_color }} !default;
 
@@ -222,6 +234,11 @@ $color-slideshow-close-text: #000 !default;
 $color-overlay-title-text: {{ settings.color_image_overlay_text }} !default;
 $color-image-overlay: {{ settings.color_image_overlay }} !default;
 $opacity-image-overlay: {{ settings.image_overlay_opacity }} !default;
+
+// testimonials
+$testimonialTextColor: #FFFFFF !default;
+$testimonialLinkColor: #FFFFFF !default;
+
 
 /*================ Mixins ================*/
 
@@ -1304,8 +1321,15 @@ $large: 1000px;
     }
 }
 
-/*================ Global Style Sheet ================*/
+.parallax {    
+    height: 100%;    
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
 
+/*================ Global Style Sheet ================*/
 
 html{
   @include rem-baseline;
@@ -1320,9 +1344,20 @@ body {
     @include rem(letter-spacing, $bodyLetterSpacing);
     @include rem(font-size, $bodyFontSize);
 }
+
 b, strong{
     color: $primaryColor;
     font-weight: 700;
+}
+
+a {
+    color: $linkColor;
+    &:hover,
+    &:focus,
+    &:active
+    {
+        color: $linkHoverColor;
+    }
 }
 
 textarea{
@@ -1333,25 +1368,6 @@ textarea{
 }
 .fallback-text{
     display: none;
-}
-
-.showhide {
-    display: block;
-    cursor: pointer;        
-    padding: 0;
-    position: relative;                
-    color: $accentColor;
-    background: transparent;    
-    @include rem(line-height, 24px);
-    @include rem(margin, 0 0 0 15px);
-    @include rem(font-size, 24px);          
-    @include rem(width,24px);
-    @include rem(height,24px);        
-    &.is-ready {        
-        & + div {
-            display: none;                        
-        }
-    }       
 }
 
 /*================ Button ================*/
@@ -1395,6 +1411,48 @@ button:active, button:hover, button:focus,.subscribe-button:hover,
             background-color: {{ settings.button_second_bg_hover_color}};
         }
     }    
+}
+
+/*================ Form Input ================*/
+
+input[type="button"], input[type="reset"], input[type="submit"]{
+    &:hover,&:focus,&:active{
+        color: $buttonHover;  
+        background-color: $buttonBackgroundHover;
+        border-color: $buttonBorderHover; 
+    }          
+}
+
+input[type="search"],
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="datetime-local"],
+input[type="date"],
+input[type="month"],
+input[type="number"],
+input[type="range"],
+input[type="tel"],
+input[type="time"]{    
+    background-color: $inputFormBg;  
+}
+
+.subscribe-button{
+    color: {{ settings.button-text-color}};    
+    background-color: {{ settings.button-background-color}};  
+}
+.subscribe-button:hover,.subscribe-button:focus,.subscribe-button:active{
+    color: {{ settings.button-text-hover-color}};      
+    background-color: {{ settings.button-background-hover}}; 
+}
+
+button, optgroup{
+    font-family: $buttonFontStack;
+    color: $primaryColor;  
+}
+
+select{    
+    background-size: 10px auto;  
 }
 
 /*================ Offcanvas ================*/
@@ -4105,6 +4163,23 @@ $ionicon-var-xbox: "\f30c";
 .#{$ionicons-prefix}xbox:before { content: $ionicon-var-xbox; }
 
 
+/*================ #Icons ================*/
+svg, symbol {
+	&.icon:not(.icon--full-color) {
+		circle,
+		ellipse,
+		g,
+		line,
+		path,
+		polygon,
+		polyline,
+		rect {
+			fill: inherit;
+			stroke: inherit;
+		}
+	}
+}
+
 #faq-template{
   .tabs{
     > li{
@@ -4115,16 +4190,6 @@ $ionicon-var-xbox: "\f30c";
       }
     }
   }
-}
-
-.label-text,
-.fallback-text{
-  color:$primaryColor;
-  font-family: $buttonFontStack;
-  text-transform: uppercase;    
-  letter-spacing: 1px;  
-  font-weight: 700;
-  @include rem(font-size, 14px);  
 }
 
 .comment-details,
@@ -4204,9 +4269,6 @@ $ionicon-var-xbox: "\f30c";
   color: $linkColor;
 }
 
-.search-bar #input-search{
-  font-family: $bodyFontStack;    
-}
 
 /* Apply Type Style */
 .widget-title{  
@@ -4927,28 +4989,62 @@ h1 .note a, h2 .note a, h3 .note a, h4 .note a, h5 .note a, h6 .note a {
 	position: relative;
 }
 
+/*================ Testimonials ================*/
 
-input[type="button"], input[type="reset"], input[type="submit"]{
-     &:hover,&:focus,&:active{
-          color: $buttonHover;  
-          background-color: $buttonBackgroundHover;
-          border-color: $buttonBorderHover; 
-     }          
+.testimonials{
+    background-position: 0 0;
+    background-repeat: no-repeat;    
+    padding: 93px;    
+    &.testimonials--small{        
+        min-height: 600px;
+        width: 100%;
+    }
+    .testimonials_description{
+        color: $testimonialTextColor;        
+        @include rem(font-size, 18px);        
+        @include rem(line-height, 30px);
+    }
+    .testimonials_author{
+        color: $testimonialLinkColor;        
+        font-weight: $accentFontWeight;        
+        font-family: $accentFontStack;
+        font-style: normal;    
+        @include rem(font-size, 16px);        
+        @include rem(line-height, 30px);
+    }
+    .icon {
+        display: inline-block;        
+        @include rem(height, 20px);
+        @include rem(width, 20px);
+        vertical-align: middle;
+        fill: currentColor;
+        .no-svg & {
+            display: none;
+        }
+    }
+    .slick-dots{
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        text-align: center;
+        > li{
+            display: inline-block;
+            float: none;
+            button{
+                padding: 0;                
+                font-size: 0;
+                text-indent: -99999px;
+                background: #FFFFFF;
+                width: 14px;
+                height: 14px;                
+                @include border-radius(50px); 
+            }
+        }
+    }
 }
 
-input[type="search"],
-input[type="text"],
-input[type="password"],
-input[type="email"],
-input[type="datetime-local"],
-input[type="date"],
-input[type="month"],
-input[type="number"],
-input[type="range"],
-input[type="tel"],
-input[type="time"]{    
-  background-color: $inputFormBg;  
-}
+
+
 
 .page{
   #customer_register_link{
@@ -4963,25 +5059,6 @@ input[type="time"]{
   }
 }
 
-/* Form */
-.subscribe-button{
-    color: {{ settings.button-text-color}};    
-    background-color: {{ settings.button-background-color}};  
-}
-.subscribe-button:hover,.subscribe-button:focus,.subscribe-button:active{
-    color: {{ settings.button-text-hover-color}};      
-    background-color: {{ settings.button-background-hover}}; 
-}
-
-button, optgroup{
-  font-family: $buttonFontStack;
-  color: $primaryColor;  
-}
-
-select{
-  background-image: url({{ 'select.svg' | asset_url }});   
-  background-size: 10px auto;  
-}
 
 /* Products */
 .product-sale-label{
@@ -5046,16 +5123,6 @@ select{
 .product-single__placeholder,.tell-story-placeholder{
   @include overlay(1);
 }
-
-
-/* Links and Buttons */
-a {
-  color: $linkColor;
-}
-a:hover,a:focus,a:active{
-  color: $linkHoverColor;
-}
-
 
 /* Featured Blog */
 .featured-blog{

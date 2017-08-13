@@ -11,7 +11,7 @@
     },
     /*General Options*/
     {
-        "name": "General",        
+        "name": "General",
         "settings": [
         {
             "type": "header",
@@ -74,12 +74,12 @@
                 "id": "color_secondary",
                 "label": "Color Secondary",
                 "default": "#88bd6e"
-            },            
+            },
             {
                 "type": "color",
                 "id": "color_accent",
                 "label": "Color Accent",
-                "default": "#131516"                
+                "default": "#131516"
             },
             {
                 "type": "color",
@@ -431,7 +431,7 @@
             /*Image overlays*/
             {
                 "type": "header",
-                "content": "Image overlays (Promotion)"
+                "content": "Image overlays"
             },
             {
                 "type": "color",
@@ -785,14 +785,14 @@
             },
             // Body Font Size            
             {
-                "type":      "range",
-                "id":        "body_font_size",
-                "min":       12,
-                "max":        36,
-                "step":       1,
-                "unit":       "px",
-                "label":     "Font size",
-                "default":   24
+                "type": "range",
+                "id": "body_font_size",
+                "min": 12,
+                "max": 36,
+                "step": 1,
+                "unit": "px",
+                "label": "Font size",
+                "default": 24
             },
             // Body Font Weight
             {
@@ -801,8 +801,20 @@
                 "label": "Weight",
                 "options": [
                 {
+                    "value": "300",
+                    "label": "300"
+                },
+                {
                     "value": "400",
                     "label": "400"
+                },
+                {
+                    "value": "500",
+                    "label": "500"
+                },
+                {
+                    "value": "600",
+                    "label": "600"
                 },
                 {
                     "value": "700",
@@ -810,7 +822,7 @@
                 }],
                 "default": "400"
             },
-            /*Text transform*/
+            /*Body Text transform*/
             {
                 "type": "select",
                 "id": "body-text-transform",
@@ -834,89 +846,266 @@
                 }],
                 "label": "Capitalization"
             },
-            /*letter spacing*/
+            /*Body letter spacing*/
             {
-                "type": "select",
+                "type": "range",
                 "id": "type_base_letter_spacing",
-                "default": "0px",
-                "options": [
-                {
-                    "value": "0px",
-                    "label": "0"
-                },
-                {
-                    "value": "0.5px",
-                    "label": "0.5"
-                },
-                {
-                    "value": "1px",
-                    "label": "1"
-                },
-                {
-                    "value": "1.5px",
-                    "label": "1.5"
-                },
-                {
-                    "value": "2px",
-                    "label": "2"
-                },
-                {
-                    "value": "2.5px",
-                    "label": "2.5"
-                },
-                {
-                    "value": "3px",
-                    "label": "3"
-                },
-                {
-                    "value": "3.5px",
-                    "label": "3.5"
-                },
-                {
-                    "value": "4px",
-                    "label": "4"
-                },
-                {
-                    "value": "4.5px",
-                    "label": "4.5"
-                },
-                {
-                    "value": "5px",
-                    "label": "5"
-                }],
-                "label": "Letter spacing"
+                "min": 0,
+                "max": 5,
+                "step": 0.5,
+                "unit": "px",
+                "label": "Letter spacing",
+                "default": 0
             },
             /* Body line height */
             {
-                "type": "select",
+                "type": "range",
                 "id": "body_line_height",
-                "default": "26px",
+                "min": 20,
+                "max": 30,
+                "step": 1,
+                "unit": "px",
+                "label": "Line height",
+                "default": 26
+            },
+            /*Accent Font Options*/
+            {
+                "type": "header",
+                "content": "Accent Font Options"
+            },
+            /*Accent Font Family*/
+            {
+                "type": "select",
+                "id": "accent_font_family",
+                "label": "Font",
+                "default": "Google_Sintony_400,700_sans",
                 "options": [
                 {
-                    "value": "20px",
-                    "label": "20"
+                    "value": "'Avant Garde', Avantgarde, 'Century Gothic', CenturyGothic, 'AppleGothic', sans-serif",
+                    "label": "Avant Garde",
+                    "group": "Sans-serif"
                 },
                 {
-                    "value": "22px",
-                    "label": "22"
+                    "value": "'Gill Sans', 'Gill Sans MT', Calibri, sans-serif",
+                    "label": "Gill Sans",
+                    "group": "Sans-serif"
                 },
                 {
-                    "value": "24px",
-                    "label": "24"
+                    "value": "'HelveticaNeue', 'Helvetica Neue', Helvetica, Arial, sans-serif",
+                    "label": "Helvetica Neue",
+                    "group": "Sans-serif"
                 },
                 {
-                    "value": "26px",
-                    "label": "26"
+                    "value": "Arial, 'Helvetica Neue', Helvetica, sans-serif",
+                    "label": "Arial",
+                    "group": "Sans-serif"
                 },
                 {
-                    "value": "28px",
-                    "label": "28"
+                    "value": "Candara, Calibri, Segoe, 'Segoe UI', Optima, Arial, sans-serif",
+                    "label": "Candara",
+                    "group": "Sans-serif"
                 },
                 {
-                    "value": "30px",
-                    "label": "30"
+                    "value": "Geneva, Tahoma, Verdana, sans-serif",
+                    "label": "Geneva",
+                    "group": "Sans-serif"
+                },
+                {
+                    "value": "Google_Sintony_400,700_sans",
+                    "label": "Sintony",
+                    "group": "Sans-serif | Google Web Fonts"
+                },
+                {
+                    "value": "Google_Droid+Sans_400,700_sans",
+                    "label": "Droid Sans",
+                    "group": "Sans-serif | Google Web Fonts"
+                },
+                {
+                    "value": "Google_Poppins_300,400,500,600,700_sans",
+                    "label": "Poppins",
+                    "group": "Sans-serif | Google Web Fonts"
+                },
+                {
+                    "value": "Google_Lato_100,300,400,700,900_sans",
+                    "label": "Lato",
+                    "group": "Sans-serif | Google Web Fonts"
+                },
+                {
+                    "value": "Google_Montserrat_100,200,300,400,500,600,700,800,900_sans",
+                    "label": "Montserrat",
+                    "group": "Sans-serif | Google Web Fonts"
+                },
+                {
+                    "value": "Google_Raleway_100,200,300,400,500,600,700,800,900_sans",
+                    "label": "Raleway",
+                    "group": "Sans-serif | Google Web Fonts"
+                },
+                {
+                    "value": "Google_Open+Sans_300,400,600,700,800_sans",
+                    "label": "Open Sans",
+                    "group": "Sans-serif | Google Web Fonts"
+                },
+                {
+                    "value": "Google_Open+Sans+Condensed_300,700_sans",
+                    "label": "Open Sans Condensed",
+                    "group": "Sans-serif | Google Web Fonts"
+                },
+                {
+                    "value": "Google_PT+Sans_400,700_sans",
+                    "label": "PT Sans",
+                    "group": "Sans-serif | Google Web Fonts"
+                },
+                {
+                    "value": "Google_Roboto_100,300,400,500,700,900_sans",
+                    "label": "Roboto",
+                    "group": "Sans-serif | Google Web Fonts"
+                },
+                {
+                    "value": "Google_Roboto+Condensed_300,400,700_sans",
+                    "label": "Roboto Condensed",
+                    "group": "Sans-serif | Google Web Fonts"
+                },
+                {
+                    "value": "Google_Source+Sans+Pro_200,300,400,600,700,900_sans",
+                    "label": "Source Sans Pro",
+                    "group": "Sans-serif | Google Web Fonts"
+                },
+                {
+                    "value": "Google_Ubuntu_300,400,500,700_sans",
+                    "label": "Ubuntu",
+                    "group": "Sans-serif | Google Web Fonts"
+                },
+                {
+                    "value": "Google_Work+Sans_100,200,300,400,500,600,700,800,900_sans",
+                    "label": "Work Sans",
+                    "group": "Sans-serif | Google Web Fonts"
+                },
+                {
+                    "value": "'Big Caslon', 'Book Antiqua', 'Palatino Linotype', Georgia, serif",
+                    "label": "Big Caslon",
+                    "group": "Serif"
+                },
+                {
+                    "value": "'Calisto MT', 'Bookman Old Style', Bookman, 'Goudy Old Style', Garamond, 'Hoefler Text', 'Bitstream Charter', Georgia, serif",
+                    "label": "Calisto MT",
+                    "group": "Serif"
+                },
+                {
+                    "value": "Baskerville, 'Baskerville Old Face', 'Hoefler Text', Garamond, 'Times New Roman', serif",
+                    "label": "Baskerville",
+                    "group": "Serif"
+                },
+                {
+                    "value": "Garamond, Baskerville, 'Baskerville Old Face', 'Hoefler Text', 'Times New Roman', serif",
+                    "label": "Garamond",
+                    "group": "Serif"
+                },
+                {
+                    "value": "Georgia, 'Hoefler Text', 'Times New Roman', serif",
+                    "label": "Georgia",
+                    "group": "Serif"
+                },
+                {
+                    "value": "TimesNewRoman, 'Times New Roman', Times, Baskerville, Georgia, serif",
+                    "label": "Times New Roman",
+                    "group": "Serif"
+                },
+                {
+                    "value": "Google_Arapey_400_serif",
+                    "label": "Arapey",
+                    "group": "Serif | Google Web Fonts"
+                },
+                {
+                    "value": "Google_Arvo_400,700_serif",
+                    "label": "Arvo",
+                    "group": "Serif | Google Web Fonts"
+                },
+                {
+                    "value": "Google_Crimson+Text_400,600,700_serif",
+                    "label": "Crimson Text",
+                    "group": "Serif | Google Web Fonts"
+                },
+                {
+                    "value": "Google_Droid+Serif_400,700_serif",
+                    "label": "Droid Serif",
+                    "group": "Serif | Google Web Fonts"
+                },
+                {
+                    "value": "Google_Lora_400,700_serif",
+                    "label": "Lora",
+                    "group": "Serif | Google Web Fonts"
+                },
+                {
+                    "value": "Google_PT+Serif_400,700_serif",
+                    "label": "PT Serif",
+                    "group": "Serif | Google Web Fonts"
+                },
+                {
+                    "value": "Google_Vollkorn_400,700_serif",
+                    "label": "Vollkorn",
+                    "group": "Serif | Google Web Fonts"
+                },
+                {
+                    "value": "Google_Vidaloka_400_serif",
+                    "label": "Vidaloka",
+                    "group": "Serif | Google Web Fonts"
+                },
+                {
+                    "value": "Google_Playfair+Display_400,700,900_serif",
+                    "label": "Playfair Display",
+                    "group": "Serif | Google Web Fonts"
+                },
+                {
+                    "value": "Google_Merriweather_300,400,700,900_serif",
+                    "label": "Merriweather",
+                    "group": "Serif | Google Web Fonts"
+                },
+                {
+                    "value": "Google_Roboto+Slab_100,300,400,700_serif",
+                    "label": "Roboto Slab",
+                    "group": "Serif | Google Web Fonts"
+                },
+                {
+                    "value": "Google_Bitter_400,700_serif",
+                    "label": "Bitter",
+                    "group": "Serif | Google Web Fonts"
+                },
+                {
+                    "value": "Google_Noto+Serif_400,700_serif",
+                    "label": "Noto Serif",
+                    "group": "Serif | Google Web Fonts"
+                },
+                {
+                    "value": "Google_Rufina_400,700_serif",
+                    "label": "Rufina",
+                    "group": "Serif | Google Web Fonts"
+                },
+                {
+                    "value": "Google_Marko+One_400_serif",
+                    "label": "Marko One",
+                    "group": "Serif | Google Web Fonts"
+                },
+                {
+                    "value": "Google_Herr+Von+Muellerhoff_400_cursive",
+                    "label": "Herr Von Muellerhoff Regular",
+                    "group": "Cursive | Google Web Fonts"
+                }]
+            },
+            // Accent Font Weight
+            {
+                "type": "select",
+                "id": "accent_font_weight",
+                "label": "Weight",
+                "options": [
+                {
+                    "value": "400",
+                    "label": "400"
+                },
+                {
+                    "value": "700",
+                    "label": "700"
                 }],
-                "label": "Line height"
+                "default": "700"
             },
             /*Heading Options*/
             {

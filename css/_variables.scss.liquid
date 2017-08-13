@@ -28,17 +28,20 @@ $borderColor: {{ settings.color_borders }} !default;
 $primaryColor: {{ settings.color_primary }} !default;
 $secondColor: {{ settings.color_secondary }} !default;
 $accentColor: {{ settings.color_accent }} !default;
-
 $linkColor: {{ settings.link_color }} !default;
 $linkHoverColor: {{ settings.link_hover_color }} !default;
+
+/* Accent Font */
+$accentFontStack: {{ accent_family }} !default;
+$accentFontWeight: {{ settings.accent_font_weight }} !default;
 
 /* Body Font */
 $bodyFontStack: {{ base_family }} !default;
 $bodyFontSize: {{ settings.body_font_size }}px !default;
 $bodyFontWeight: {{ settings.body_font_weight }} !default;
 $bodyTransform: {{ settings.body-text-transform }} !default;
-$bodyLineHeight: {{ settings.body_line_height }} !default;
-$bodyLetterSpacing: {{ settings.type_base_letter_spacing }} !default;
+$bodyLineHeight: {{ settings.body_line_height }}px !default;
+$bodyLetterSpacing: {{ settings.type_base_letter_spacing }}px !default;
 $bodyColor: {{ settings.body_font_color }} !default;
 $bodyBgColor: {{ settings.body_bg_color }} !default;
 
@@ -167,3 +170,7 @@ $color-slideshow-close-text: #000 !default;
 $color-overlay-title-text: {{ settings.color_image_overlay_text }} !default;
 $color-image-overlay: {{ settings.color_image_overlay }} !default;
 $opacity-image-overlay: {{ settings.image_overlay_opacity }} !default;
+
+// testimonials
+$testimonialTextColor: #FFFFFF !default;
+$testimonialLinkColor: #FFFFFF !default;

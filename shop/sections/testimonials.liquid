@@ -1,107 +1,123 @@
 {% if section.settings.testimonials_enable %}
-    <div class="{{ section.id }}" data-section-id="{{ section.id }}" data-section-type="testimonials" {% if section.settings.testimonials_background != blank %} style="background-image: url({{section.settings.testimonials_background | img_url: '2040'}})"{% endif %}
-         >
+    <div class="{{ section.id }} parallax lazyload testimonials--{{ section.settings.testimonials_height }}" data-section-id="{{ section.id }}" data-section-type="testimonials" {% if section.settings.testimonials_background %} style="background-image: url('{{ section.settings.testimonials_background | img_url: '1920x' }}');"{% endif %}>
+        {% if section.settings.testimonials_title != blank %}
+            <div class="section-header text-center">
+                <h3 class="testimonials_title">
+                    <span>{{ section.settings.testimonials_title | escape }}</span>
+                    <span class="testimonials-icon">{% include 'icon-quote' %}</span>
+                </h3>
+            </div>
+        {% endif %}
+        {% if section.blocks.size > 0 %}                
+            <div class="testimonials_slick" id="{{ section.id }}" data-count="{{ section.blocks.size }}">
+                {% for block in section.blocks %}                    
+                    <div class="testimonials-{{ block.id }}" {{ block.shopify_attributes }}>
+                        <div class="testimonials_block text-center">                            
+                            {% if block.settings.description != blank %}
+                                <div class="rte-setting testimonials_description">{{ block.settings.description }}</div>
+                            {% endif %}
 
-    {% if section.settings.testimonials_title != blank %}
-        <h3 class="testimonials_title">{{ section.settings.testimonials_title }}</h3>
-    {% endif %}
+                            {% if block.settings.author != blank %}                        
+                                <cite class="testimonials_author">{{ block.settings.author | escape }}</cite>
+                            {% endif %}               
 
-    
-    {% if section.blocks.size > 0 %}    
-    <div class="testimonials_slick"> 
-        {% for block in section.blocks %} 
-
-                {% if block.settings.description != blank %}
-                    <div class="testimonials_title">{{ block.settings.description }}</div>
-                {% endif %}
-
-                {% if block.settings.author != blank %}
-                    <div class="testimonials_sub_title">{{ block.settings.author }}</div>
-                {% endif %}
-                
-                
-                {% if block.settings.image != blank %}
-                    <img src="{{ block.settings.image | img_url: '80x80' }}" alt="{{ block.settings.author }}">
-                {% endif %}
-
-          
-
-        {% endfor %}
-        </div>
-  {% endif %}
-
-  {% if section.blocks.size == 0 %}
-    {% include 'no-blocks' %}
-  {% endif %}
-</div>
+                            {% if block.settings.image != blank %}
+                                <figure class="testimonials_image">
+                                    <img src="{{ block.settings.image | img_url: '85x' }}" alt="{{ block.settings.author }}">
+                                </figure>    
+                            {% endif %}  
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+        {% if section.blocks.size == 0 %}
+            {% include 'no-blocks' %}
+        {% endif %}
+    </div>
 {% endif %}
 
 
-
-
 {% schema %}
-{
-    "name": "Testimonials",
-    "class": "index-section",
-    "max_blocks": 9,
-    "settings": [
     {
-        "type": "checkbox",
-        "id": "testimonials_enable",
-        "label": "Enable Testimonials"
-    },
-    {
-        "type": "text",
-        "id": "testimonials_title",
-        "default": "What people say",
-        "label": "Title"
-    },
-    {
-        "type": "image_picker",
-        "id": "testimonials_background",
-        "label": "Upload background"
-    }],
-
-    "blocks": [
-    {
-        "type": "testimonials",
         "name": "Testimonials",
+        "class": "index-section",
+        "max_blocks": 9,
         "settings": [
+        {
+            "type": "checkbox",
+            "id": "testimonials_enable",
+            "label": "Enable Testimonials"
+        },
+        {
+            "type": "text",
+            "id": "testimonials_title",
+            "default": "What people say",
+            "label": "Title"
+        },
+        {
+            "type": "image_picker",
+            "id": "testimonials_background",
+            "label": "Upload background"
+        },
+        {
+            "type": "select",
+            "id": "testimonials_height",
+            "label": "Section height",
+            "default": "small",
+            "options": [
             {
-                "type": "richtext",
-                "id": "description",
-                "label": "Description",
-                "default": "<p>Get it fresh</p>"
+                "label": "Small",
+                "value": "small"
             },
             {
-                "type": "text",
-                "id": "author",
-                "label": "Author Name",
-                "default": "New pick up services"
+                "label": "Medium",
+                "value": "medium"
             },
             {
-                "type": "image_picker",
-                "id": "image",
-                "info": "(Size: 85x85)",
-                "label": "Testimonials Image"
-            }
-
-        ]
-    }],
-    "presets": [
-    {
-        "name": "Testimonials",
-        "category": "Text",
+                "label": "Large",
+                "value": "large"
+            }]
+        }],
         "blocks": [
         {
-            "type": "testimonials"
-        },
+            "type": "testimonials",
+            "name": "Testimonials",
+            "settings": [
+                {
+                    "type": "richtext",
+                    "id": "description",
+                    "label": "Description",
+                    "default": "<p>This wax is awesome. I always get compliments on the shine and the way it holds. I love Acure Wave and Groom and I’ve been using it as long as I can remember. I’ve spent a lot of money looking for the perfect bottle and I’ve finally found it.</p>"
+                },
+                {
+                    "type": "text",
+                    "id": "author",
+                    "label": "Author Name",
+                    "default": "Hana Pestle"
+                },
+                {
+                    "type": "image_picker",
+                    "id": "image",
+                    "info": "(Size: 85x85)",
+                    "label": "Image"
+                }
+            ]
+        }],
+        "presets": [
         {
-            "type": "testimonials"
-        },
-        {
-            "type": "testimonials"
+            "name": "Testimonials",
+            "category": "Text",
+            "blocks": [
+            {
+                "type": "testimonials"
+            },
+            {
+                "type": "testimonials"
+            },
+            {
+                "type": "testimonials"
+            }]
         }]
-    }]
-}
+    }
 {% endschema %}

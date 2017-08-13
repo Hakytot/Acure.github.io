@@ -3,6 +3,13 @@
   {% capture baseGoogleUrl %}{{ type_base_parts[1] }}:{{ type_base_parts[2] }}{% endcapture %}
   {{ '//fonts.googleapis.com/css?family=' | append: baseGoogleUrl | stylesheet_tag }}
 {% endif %}
+
+{% if settings.accent_font_family contains 'Google' %}
+  {% assign type_accent_parts = settings.accent_font_family | split: '_' %}
+  {% capture accentGoogleUrl %}{{ type_accent_parts[1] }}:{{ type_accent_parts[2] }}{% endcapture %}
+  {{ '//fonts.googleapis.com/css?family=' | append: accentGoogleUrl | stylesheet_tag }}
+{% endif %}
+
 {% if settings.heading_font contains 'Google' %}
   {% unless settings.heading_font contains type_base_parts[1] %}
     {% assign type_heading_parts = settings.heading_font | split: '_' %}

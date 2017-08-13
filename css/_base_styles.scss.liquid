@@ -1,4 +1,3 @@
-
 html{
   @include rem-baseline;
 }
@@ -12,9 +11,20 @@ body {
     @include rem(letter-spacing, $bodyLetterSpacing);
     @include rem(font-size, $bodyFontSize);
 }
+
 b, strong{
     color: $primaryColor;
     font-weight: 700;
+}
+
+a {
+    color: $linkColor;
+    &:hover,
+    &:focus,
+    &:active
+    {
+        color: $linkHoverColor;
+    }
 }
 
 textarea{
@@ -25,23 +35,4 @@ textarea{
 }
 .fallback-text{
     display: none;
-}
-
-.showhide {
-    display: block;
-    cursor: pointer;        
-    padding: 0;
-    position: relative;                
-    color: $accentColor;
-    background: transparent;    
-    @include rem(line-height, 24px);
-    @include rem(margin, 0 0 0 15px);
-    @include rem(font-size, 24px);          
-    @include rem(width,24px);
-    @include rem(height,24px);        
-    &.is-ready {        
-        & + div {
-            display: none;                        
-        }
-    }       
 }

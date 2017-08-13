@@ -22,6 +22,10 @@
 
 @import url('_button.scss.liquid');
 
+/*================ Form Input ================*/
+
+@import url('_form_input.scss.liquid');
+
 /*================ Offcanvas ================*/
 
 @import url('_offcanvas.scss.liquid');
@@ -29,7 +33,6 @@
 /*================ Icons ================*/
 
 @import url('_icons.scss.liquid');
-
 
 #faq-template{
   .tabs{
@@ -41,16 +44,6 @@
       }
     }
   }
-}
-
-.label-text,
-.fallback-text{
-  color:$primaryColor;
-  font-family: $buttonFontStack;
-  text-transform: uppercase;    
-  letter-spacing: 1px;  
-  font-weight: 700;
-  @include rem(font-size, 14px);  
 }
 
 .comment-details,
@@ -110,9 +103,6 @@
   color: $linkColor;
 }
 
-.search-bar #input-search{
-  font-family: $bodyFontStack;    
-}
 
 /* Apply Type Style */
 .widget-title{  
@@ -178,28 +168,10 @@ h1 .note a, h2 .note a, h3 .note a, h4 .note a, h5 .note a, h6 .note a {
 
 @import url('_promotion.scss.liquid');
 
+/*================ Testimonials ================*/
 
-input[type="button"], input[type="reset"], input[type="submit"]{
-     &:hover,&:focus,&:active{
-          color: $buttonHover;  
-          background-color: $buttonBackgroundHover;
-          border-color: $buttonBorderHover; 
-     }          
-}
+@import url('_testimonials.scss.liquid');
 
-input[type="search"],
-input[type="text"],
-input[type="password"],
-input[type="email"],
-input[type="datetime-local"],
-input[type="date"],
-input[type="month"],
-input[type="number"],
-input[type="range"],
-input[type="tel"],
-input[type="time"]{    
-  background-color: $inputFormBg;  
-}
 
 .page{
   #customer_register_link{
@@ -214,25 +186,6 @@ input[type="time"]{
   }
 }
 
-/* Form */
-.subscribe-button{
-    color: {{ settings.button-text-color}};    
-    background-color: {{ settings.button-background-color}};  
-}
-.subscribe-button:hover,.subscribe-button:focus,.subscribe-button:active{
-    color: {{ settings.button-text-hover-color}};      
-    background-color: {{ settings.button-background-hover}}; 
-}
-
-button, optgroup{
-  font-family: $buttonFontStack;
-  color: $primaryColor;  
-}
-
-select{
-  background-image: url({{ 'select.svg' | asset_url }});   
-  background-size: 10px auto;  
-}
 
 /* Products */
 .product-sale-label{
@@ -297,16 +250,6 @@ select{
 .product-single__placeholder,.tell-story-placeholder{
   @include overlay(1);
 }
-
-
-/* Links and Buttons */
-a {
-  color: $linkColor;
-}
-a:hover,a:focus,a:active{
-  color: $linkHoverColor;
-}
-
 
 /* Featured Blog */
 .featured-blog{
