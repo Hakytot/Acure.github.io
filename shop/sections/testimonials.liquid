@@ -16,23 +16,16 @@
                 </div>
             {% endif %}    
             {% if section.blocks.size > 0 %}                
-                <div class="testimonials_slick" id="{{ section.id }}" data-count="{{ section.blocks.size }}">
-                    {% for block in section.blocks %}                    
-                        <div class="testimonials-{{ block.id }}" {{ block.shopify_attributes }}>
+                <div class="testimonials_slick slider" id="{{ section.id }}" data-count="{{ section.blocks.size }}">
+                    {% for block in section.blocks %}                           
+                        <div class="testimonials-{{ block.id }}" {{ block.shopify_attributes }} data-thumb="{% if block.settings.image != blank %}{{ block.settings.image | img_url: '85x' }}{% endif %}">
                             <div class="testimonials_block text-center">                            
                                 {% if block.settings.description != blank %}
                                     <div class="rte-setting testimonials_description">{{ block.settings.description }}</div>
                                 {% endif %}
-
                                 {% if block.settings.author != blank %}                        
                                     <cite class="testimonials_author">{{ block.settings.author | escape }}</cite>
                                 {% endif %}               
-
-                                {% if block.settings.image != blank %}
-                                    <figure class="testimonials_image text-center">
-                                        <img src="{{ block.settings.image | img_url: '85x' }}" alt="{{ block.settings.author }}">
-                                    </figure>    
-                                {% endif %}  
                             </div>
                         </div>
                     {% endfor %}

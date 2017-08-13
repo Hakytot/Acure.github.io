@@ -1,0 +1,37 @@
+.custom_block{
+	padding: $margin-theme-base 0;
+	[class*="col-"] {
+    	&:last-child{
+    		.section-block{
+    			&:after{
+    				top: -10000px;
+    				left:-10000px;
+    				width: 0;
+    				background: transparent;
+    			}
+    		}
+    	}
+	}
+	.custom_block_image{		
+		@include rem(margin-bottom, 25px);
+	}	
+	.section-block{
+		position: relative;
+		padding: $padding-theme-base;
+		&:after{
+			content: '';			
+			position: absolute;		
+			top: 0;	
+			display: block;
+			height: 100%;
+			@include rem(width,1px);			
+			@include rtl-right(-15px);
+			background: $borderColor;
+		}
+	}
+	.section-content{
+		p{
+			margin-bottom: 0;
+		}
+	}
+}
