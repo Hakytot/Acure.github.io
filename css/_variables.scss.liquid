@@ -45,6 +45,10 @@ $bodyLetterSpacing: {{ settings.type_base_letter_spacing }}px !default;
 $bodyColor: {{ settings.body_font_color }} !default;
 $bodyBgColor: {{ settings.body_bg_color }} !default;
 
+$color-blankstate: rgba($bodyColor, 0.35);
+$color-blankstate-border: rgba($bodyColor, 0.2);
+$color-blankstate-background: rgba($bodyColor, 0.1);
+
 /* Menu Font */
 $menuFontStack: {{ menu_family }} !default;
 $menuFontSize: {{ settings.menu_font_size}} !default;
@@ -77,9 +81,10 @@ $inputFormBg: {{ settings.input_form_field_bg}} !default;
 /* Header Font */
 $headerFontStack: {{ heading_family }} !default;
 $headerFontWeight: {{ settings.heading_font_weight}} !default;
-$headerFontSize: {{ settings.heading_font_size}} !default;
+$headerFontSize: {{ settings.heading_font_size}}px !default;
 $headerTransform: {{ settings.heading_text_transform}} !default;
-$headerLetterSpacing: {{ settings.heading_letter_spacing}} !default;
+$headerLetterSpacing: {{ settings.heading_letter_spacing}}px !default;
+$headerLineHeight: {{ settings.heading_line_height}}px !default;
 
 /* Heading Color */
 $headingColor: {{ settings.heading_color}} !default;
@@ -174,3 +179,4 @@ $opacity-image-overlay: {{ settings.image_overlay_opacity }} !default;
 // testimonials
 $testimonialTextColor: #FFFFFF !default;
 $testimonialLinkColor: #FFFFFF !default;
+

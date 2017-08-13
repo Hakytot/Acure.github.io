@@ -4,9 +4,9 @@
         "color_primary": "#ff7055",
         "color_secondary": "#88bd6e",
         "color_accent": "#131516",
-        "color_borders": "#e0e0e0",        
-        "link_hover_color": "#ff7055",        
-        "link_color": "#232323",
+        "color_borders": "#e0e0e0",
+        "link_hover_color": "#ff7055",
+        "link_color": "#131516",
         "body_font_color": "#555f61",
         "body_bg_color": "#FFFFFF",
         "body_font_size": "14",
@@ -14,11 +14,9 @@
         "body_line_height": "26",
         "body-text-transform": "none",
         "type_base_family": "Google_Poppins_300,400,500,600,700_sans",
-        "type_base_letter_spacing": "0", 
-
+        "type_base_letter_spacing": "0",
         "accent_font_family": "Google_Sintony_400,700_sans",
-        "accent_font_weight": "700",         
-
+        "accent_font_weight": "700",
         "button-text-color": "#FFFFFF",
         "button-text-hover-color": "#FFFFFF",
         "button-background-color": "#ff7055",
@@ -43,11 +41,12 @@
         "breadcrumb_line_height": "30px",
         "heading_font": "Google_Sintony_400,700_sans",
         "heading_font_weight": "700",
-        "heading_font_size": "60px",
-        "heading_text_transform": "none",
-        "heading_letter_spacing": "0px",
-        "heading_color": "#232323",
-        "menu_font": "Google_Sintony_400,700_sans",
+        "heading_font_size": "24",
+        "heading_text_transform": "uppercase",
+        "heading_letter_spacing": "0",
+        "heading_line_height": "40",
+        "heading_color": "#131516",
+        "menu_font": "Google_Sintony_400,700_sans",        
         "menu_font_size": "12px",
         "menu_font_weight": "700",
         "menu_text_transform": "uppercase",
@@ -69,15 +68,15 @@
         "header_link_color": "#131516",
         "header_link_hover_color": "#131516",
         "footer_color": "#FFFFFF",
-        "footer_bg_color": "#232323",
+        "footer_bg_color": "#131516",
         "footer_link_color": "#FFFFFF",
         "footer_link_hover": "#FFFFFF",
         "product-sale-color": "#FFFFFF",
         "product-sale-background-color": "#ff7055",
-        "product-name-label": "#232323",
-        "product-name-hover": "#232323",
+        "product-name-label": "#131516",
+        "product-name-hover": "#131516",
         "product-reviews-star": "#ff7055",
-        "product-price-color": "#232323",
+        "product-price-color": "#131516",
         "product-button-icon": "#2a363b",
         "checkout_banner_background_color": "#FFFFFF",
         "checkout_accent_color": "#2a9dcc",
@@ -90,16 +89,16 @@
         "collection_list_overlay": "#FFFFFF",
         "featured_blog_bg": "#171717",
         "featured_blog_label": "#FFFFFF",
-        "input_form_field_label": "#232323",
+        "input_form_field_label": "#131516",
         "input_form_field_bg": "#F6F6F6",
         "collection_list_overlay_opacity": "0.2",
-        "image_overlay_opacity": "0.2",        
+        "image_overlay_opacity": "0.2",
         "blog_font_type": "Google_Sintony_400,700_sans",
         "blog_font_size": "48px",
         "blog_font_weight": "300",
         "blog_text_transform": "uppercase",
         "blog_letter_spacing": "0.5px",
-        "blog_line_height": "54px",        
+        "blog_line_height": "54px",
         "use_favicon": true,
         "ajax_cart_method": "drawer",
         "cart_notes_enable": true,
@@ -190,8 +189,8 @@
         "content_for_index": [
             "slideshow",
             "custom_block",
-            "testimonials",            
-            "collection",            
+            "testimonials",
+            "collection",
             "featured-blog"
         ],
         "sections":
@@ -286,7 +285,8 @@
                 {
                     "testimonials_title": "What People Say",
                     "testimonials_enable": true,
-                    "testimonials_height": "small"
+                    "testimonials_height": "small",
+                    "enable_title_section": true
                 },
                 "block_order": [
                     "testimonials_0",
@@ -308,8 +308,8 @@
                     {
                         "settings":
                         {
-                            "description": "<p>This wax is awesome. I always get compliments on the shine and the way it holds. I love Acure Wave and Groom and I’ve been using it as long as I can remember. I’ve spent a lot of money looking for the perfect bottle and I’ve finally found it.</p>",
-                            "author": "Hana Pestle"
+                            "description": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>",
+                            "author": "hakytot"
                         },
                         "type": "testimonials"
                     },
@@ -317,15 +317,13 @@
                     {
                         "settings":
                         {
-                            "description": "<p>This wax is awesome. I always get compliments on the shine and the way it holds. I love Acure Wave and Groom and I’ve been using it as long as I can remember. I’ve spent a lot of money looking for the perfect bottle and I’ve finally found it.</p>",
-                            "author": "Hana Pestle"
+                            "description": "<p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>",
+                            "author": "themeola"
                         },
                         "type": "testimonials"
                     }
                 }
             },
-
-
             "collection":
             {
                 "type": "collection",
@@ -353,7 +351,7 @@
                     "show_title": true,
                     "grid": "3"
                 }
-            },            
+            },
             "featured-blog":
             {
                 "type": "featured-blog",

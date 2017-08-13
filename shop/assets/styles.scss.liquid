@@ -109,6 +109,10 @@ $bodyLetterSpacing: {{ settings.type_base_letter_spacing }}px !default;
 $bodyColor: {{ settings.body_font_color }} !default;
 $bodyBgColor: {{ settings.body_bg_color }} !default;
 
+$color-blankstate: rgba($bodyColor, 0.35);
+$color-blankstate-border: rgba($bodyColor, 0.2);
+$color-blankstate-background: rgba($bodyColor, 0.1);
+
 /* Menu Font */
 $menuFontStack: {{ menu_family }} !default;
 $menuFontSize: {{ settings.menu_font_size}} !default;
@@ -141,9 +145,10 @@ $inputFormBg: {{ settings.input_form_field_bg}} !default;
 /* Header Font */
 $headerFontStack: {{ heading_family }} !default;
 $headerFontWeight: {{ settings.heading_font_weight}} !default;
-$headerFontSize: {{ settings.heading_font_size}} !default;
+$headerFontSize: {{ settings.heading_font_size}}px !default;
 $headerTransform: {{ settings.heading_text_transform}} !default;
-$headerLetterSpacing: {{ settings.heading_letter_spacing}} !default;
+$headerLetterSpacing: {{ settings.heading_letter_spacing}}px !default;
+$headerLineHeight: {{ settings.heading_line_height}}px !default;
 
 /* Heading Color */
 $headingColor: {{ settings.heading_color}} !default;
@@ -238,6 +243,7 @@ $opacity-image-overlay: {{ settings.image_overlay_opacity }} !default;
 // testimonials
 $testimonialTextColor: #FFFFFF !default;
 $testimonialLinkColor: #FFFFFF !default;
+
 
 
 /*================ Mixins ================*/
@@ -942,16 +948,6 @@ $testimonialLinkColor: #FFFFFF !default;
 //----------------------------------------------------------------------
 
 // Flexbox Align Content
-//
-// The 'align-content' property aligns a flex container's lines within the
-// flex container when there is extra space in the cross-axis, similar to
-// how 'justify-content' aligns individual items within the main-axis. Note,
-// this property has no effect when the flexbox has only a single line.
-//
-// Values: flex-start | flex-end | center | space-between | space-around | stretch
-// Default: stretch
-//
-// http://w3.org/tr/css3-flexbox/#align-content-property
 
 @mixin align-content($value: stretch) {
     // No Webkit Box Fallback.
@@ -966,8 +962,6 @@ $testimonialLinkColor: #FFFFFF !default;
     }
     align-content: $value;
 }
-
-
 
 @mixin vertical-align($position: relative) {
     position: $position;
@@ -1370,6 +1364,65 @@ textarea{
     display: none;
 }
 
+.placeholder-svg {
+    display: block;
+    fill: $color-blankstate;
+    background-color: $color-blankstate-background;
+    width: 100%;
+    height: 100%;
+    max-width: 100%;
+    max-height: 100%;
+    border: 1px solid $color-blankstate-border;
+}
+
+.placeholder-noblocks {
+    padding: 40px;
+    text-align: center;
+}
+
+// Mimic a background image by wrapping the placeholder svg with this class
+.placeholder-background {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    .icon {
+        border: 0;
+    }
+}
+
+// Custom styles for some blank state images
+.image-bar__content .placeholder-svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.aligner {
+    min-height: 24em;    
+    @include flexbox();
+    @include align-items(center);    
+    @include justify-content(center);    
+}
+
+.aligner-item {    
+    @include flex(1);
+}
+
+.aligner-item--top {
+    @include align-self(flex-start);    
+}
+
+.aligner-item--bottom {    
+    @include align-self(flex-end);
+}
+
+.aligner-item--fixed {    
+    @include flex(none);
+    max-width: 50%;
+}
+
 /*================ Button ================*/
 
 .button, button, .btn,  
@@ -1411,6 +1464,26 @@ button:active, button:hover, button:focus,.subscribe-button:hover,
             background-color: {{ settings.button_second_bg_hover_color}};
         }
     }    
+}
+
+/*================ Heading ================*/
+
+.section-title{
+    margin: 0;
+    padding: 0;
+    text-transform: $headerTransform;
+    font-family: $headerFontStack;
+    font-weight: $headerFontWeight;
+    font-size: $headerFontSize;
+    letter-spacing: $headerLetterSpacing;
+    line-height: $headerLineHeight;
+    color: $headingColor;
+    span{
+        outline: none;
+    }
+    &.section-title__light{
+        color: #FFFFFF;
+    }
 }
 
 /*================ Form Input ================*/
@@ -4992,58 +5065,119 @@ h1 .note a, h2 .note a, h3 .note a, h4 .note a, h5 .note a, h6 .note a {
 /*================ Testimonials ================*/
 
 .testimonials{
+    position: relative;    
     background-position: 0 0;
-    background-repeat: no-repeat;    
-    padding: 93px;    
-    &.testimonials--small{        
-        min-height: 600px;
+    background-repeat: no-repeat;            
+    @include rem(padding, 93px 0);
+    &:before{
+        position: absolute;
+        top: 0;
+        left: 0;
+        content: "";        
         width: 100%;
+        height: 100%;
+        background: rgba($primaryColor, .6);            
+    }
+    .testimonials_container{
+        z-index: 1;
+        position: relative;    
+    }
+    &.testimonials--small{        
+        min-height: 600px;        
+    }
+    &.testimonials--medium{        
+        min-height: 700px;        
+    }
+    &.testimonials--large{        
+        min-height: 800px;        
+    }   
+    .testimonials-icon{
+        display: block;        
+        @include rem(margin, 10px 0 0 0);
     }
     .testimonials_description{
-        color: $testimonialTextColor;        
+        font-weight: 300;
+        color: $testimonialTextColor;                
         @include rem(font-size, 18px);        
-        @include rem(line-height, 30px);
+        @include rem(line-height, 30px);        
+        @include rem(margin, 0 550px);        
+        @include rem(padding, 50px 0 20px 0);
     }
     .testimonials_author{
+        font-style: normal;    
+        display: block;                
         color: $testimonialLinkColor;        
         font-weight: $accentFontWeight;        
-        font-family: $accentFontStack;
-        font-style: normal;    
+        font-family: $accentFontStack;        
         @include rem(font-size, 16px);        
         @include rem(line-height, 30px);
+        @include rem(margin-bottom, 20px);
+    }
+    .testimonials_image{                
+        margin: 0 auto;        
+        overflow: hidden;
+        @include rem(height, 95px);
+        @include rem(width, 95px);        
+        img{
+            border: 4px solid rgba(#FFFFFF, .65);
+            @include border-radius(100%);            
+        }
     }
     .icon {
-        display: inline-block;        
-        @include rem(height, 20px);
-        @include rem(width, 20px);
+        display: inline-block;    
         vertical-align: middle;
-        fill: currentColor;
+        fill: currentColor;    
+        @include rem(height, 30px);
+        @include rem(width, 30px);        
         .no-svg & {
             display: none;
         }
+    }
+    .testimonials_slick{
+        margin-bottom: 0;
     }
     .slick-dots{
         margin: 0;
         padding: 0;
         list-style: none;
         text-align: center;
+        position: absolute;
+        left: -9999px;
+        margin-left: -9999px;
         > li{
             display: inline-block;
             float: none;
+            &.slick-active{
+                button{
+                    &:before{
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        content: "";
+                        background: #FFFFFF;
+                        display: block;
+                        width: 6px;
+                        height: 6px;                        
+                        @include border-radius(100%); 
+                        @include rem(margin, 3px);                            
+                    }
+                }                
+            }
             button{
+                position: relative;
                 padding: 0;                
-                font-size: 0;
+                font-size: 0;                                
                 text-indent: -99999px;
-                background: #FFFFFF;
-                width: 14px;
-                height: 14px;                
+                background: transparent;                
+                @include rem(border, 2px solid #FFFFFF); 
+                @include rem(margin, 0 4px);                            
+                @include rem(width, 16px);
+                @include rem(height, 16px);
                 @include border-radius(50px); 
             }
         }
     }
 }
-
-
 
 
 .page{
