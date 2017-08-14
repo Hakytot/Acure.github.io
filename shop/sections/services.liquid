@@ -1,0 +1,126 @@
+<div class="container">
+    <div class="container-wrapper">
+        <div class="row">
+            <div class="col-lg-5 col-md-5 col-xs-12 text-center">     
+                <div class="tell-story-photo">
+                    {% if section.settings.photo == blank %}
+                        <div class="tell-story-placeholder">
+                            {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+                        </div>
+                    {% else %}
+                        <img data-src="{{ section.settings.photo | img_url: 'master' }}" src="{{ section.settings.photo | img_url: 'master' }}" alt="photo" class="lazy">
+                    {% endif %}  
+                </div>
+            </div>
+            <div class="col-lg-7 col-md-7 col-xs-12">
+                <div class="widget">
+                    {% if section.settings.show_title and section.settings.title != blank %}
+                        <h3 class="widget-small-title text-center">
+                            <span>{{ section.settings.title | escape  }}</span>
+                        </h3>
+                    {% endif %}
+                    {% if section.settings.show_description and section.settings.description != blank %}
+                        <div class="widget-content mp-40">
+                            {{ section.settings.description }}
+                        </div>
+                    {% endif %}     
+                    {% if section.settings.show_button and section.settings.button_link != blank and section.settings.button_label != blank %}
+                        <div class="widget-button text-center">                          
+                            <a href="{{ section.settings.button_link }}" target="_blank" class="btn btn--primary"><span>{{ section.settings.button_label | escape }}</span></a>
+                        </div>
+                    {% endif %}                        
+                </div>  
+            </div>
+        </div>
+    </div>
+</div>
+
+{% schema %}
+    {
+    "name": "Services",
+    "class": "index-section",
+    "max_blocks": 6,
+    "settings": [
+    {
+        "type": "checkbox",
+        "id": "show_title",
+        "label": "Show Title",
+        "default": true
+    },
+    {
+        "type": "checkbox",
+        "id": "show_description",
+        "label": "Show Description",
+        "default": true
+    },
+    {
+        "type": "checkbox",
+        "id": "show_button",
+        "label": "Show Button",
+        "default": true
+    },
+    {
+        "type": "text",
+        "id": "title",
+        "default": "Services & Price List",
+        "label": "Title"
+    },
+    {
+        "type": "richtext",
+        "id": "description",
+        "label": "Description",
+        "default": "<p>Hair Care Treatment Services</p>"
+    },
+    {
+        "type": "text",
+        "id": "button_label",
+        "label": "Button label",
+        "default": "All services"
+    },
+    {
+        "type": "url",
+        "id": "button_link",
+        "label": "Button link"
+    }],
+
+    "blocks": [
+      {
+        "type": "services",
+        "name": "Services",
+        "limit": 6,
+        "settings": [
+            {
+                "type": "text",
+                "id": "title",
+                "label": "Title",
+                "default": "Woman’s Shampoo, Cut & Style"
+            },
+            {
+                "type": "text",
+                "id": "price",
+                "label": "Price",
+                "default": "€34+"
+            },
+            {
+                "type": "richtext",
+                "id": "description",
+                "label": "Description",
+                "default": "<p>All haircuts include a consultation, shampoo, haircut, and blow dry & style.</p>"
+            }
+        ]
+      }
+    ],
+
+    "presets": [
+      {
+        "name": "Services",
+        "category": "Text",
+        "blocks": [
+          {
+            "type": "services"
+          }          
+        ]
+      }
+    ]
+}
+{% endschema %}

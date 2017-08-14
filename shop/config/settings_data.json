@@ -191,6 +191,7 @@
             "custom_block",
             "testimonials",
             "collection",
+            "services",
             "featured-blog"
         ],
         "sections":
@@ -279,7 +280,6 @@
                     }
                 }
             },
-
             "testimonials":
             {
 
@@ -325,6 +325,36 @@
                         },
                         "type": "testimonials"
                     }
+                }
+            },
+            "services":
+            {
+                "type": "services",
+                "settings":
+                {
+                    "show_title": true,
+                    "show_description": true,
+                    "show_button": true,
+                    "title": "Services & Price List",
+                    "description": "<p>Hair Care Treatment Services</p>",
+                    "button_label": "All services",                    
+                    "button_link": "shopify://pages/our-services"
+                },
+                "block_order": [
+                    "services_0"
+                ],
+                "blocks":
+                {
+                    "services_0":
+                    {
+                        "settings":
+                        {
+                            "description": "<p>All haircuts include a consultation, shampoo, haircut, and blow dry & style.</p>",
+                            "title": "Woman’s Shampoo, Cut & Style",
+                            "price": "€34+"
+                        },
+                        "type": "services"
+                    }                
                 }
             },
             "collection":
