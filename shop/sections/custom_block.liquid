@@ -5,7 +5,7 @@
                 {% for block in section.blocks %}
                     <div class="col-lg-4 col-md-4 col-xs-12">                        
                         <div class="section-block text-center">
-                            {% if block.settings.image != blank %}
+                            {% if block.settings.image != blank and block.settings.enable_custom_image %}
                                 <figure class="custom_block_image">
                                     <img src="{{ block.settings.image | img_url: '60x' }}" alt="{{ block.settings.title }}">        
                                 </figure>
@@ -33,53 +33,58 @@
 
 
 {% schema %}
+   {
+    "name": "Custom Block",
+    "class": "index-section",
+    "max_blocks": 9,
+    "settings": [
     {
+        "type": "checkbox",
+        "id": "custom_block_enable",
+        "label": "Enable Custom Block"
+    }],
+    "blocks": [
+    {
+        "type": "custom_block",
         "name": "Custom Block",
-        "class": "index-section",
-        "max_blocks": 9,
         "settings": [
         {
             "type": "checkbox",
-            "id": "custom_block_enable",
-            "label": "Enable Custom Block"
-        }],
+            "id": "enable_custom_image",
+            "label": "Show Image"
+        },
+        {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Custom Block Image"
+        },
+        {
+            "type": "text",
+            "id": "title",
+            "label": "Custom Name",
+            "default": "New pick up services"
+        },
+        {
+            "type": "richtext",
+            "id": "sub_title",
+            "label": "Text",
+            "default": "<p>Get it fresh</p>"
+        }]
+    }],
+    "presets": [
+    {
+        "name": "Custom Block",
+        "category": "Text",
         "blocks": [
         {
-            "type": "custom_block",
-            "name": "Custom Block",
-            "settings": [
-            {
-                "type": "image_picker",
-                "id": "image",
-                "label": "Custom Block Image"
-            },
-            {
-                "type": "text",
-                "id": "title",
-                "label": "Custom Name",
-                "default": "New pick up services"
-            },
-            {
-                "type": "richtext",
-                "id": "sub_title",
-                "label": "Text",
-                "default": "<p>Get it fresh</p>"
-            }]
-        }],
-        "presets": [
+            "type": "custom_block"
+        },
         {
-            "name": "Custom Block",
-            "category": "Text",
-            "blocks": [
-            {
-                "type": "custom_block"
-            },
-            {
-                "type": "custom_block"
-            },
-            {
-                "type": "custom_block"
-            }]
+            "type": "custom_block"
+        },
+        {
+            "type": "custom_block"
         }]
-    }
+    }]
+}
 {% endschema %}

@@ -205,7 +205,7 @@
                     "show_customer_accounts": false,
                     "display_search": true,
                     "logo_alignment": "center",
-                    "logo_max_width": "100"
+                    "logo_max_width": "130"
                 }
             },
             "slideshow":
@@ -251,6 +251,7 @@
                     {
                         "settings":
                         {
+                            "enable_custom_image": true,
                             "sub_title": "New Pick up service",
                             "sub_title": "<p>Get it fresh</p>"
                         },
@@ -260,6 +261,7 @@
                     {
                         "settings":
                         {
+                            "enable_custom_image": true,
                             "sub_title": "Free Delivery",
                             "sub_title": "<p>Delivered to your door step</p>"
                         },
@@ -269,6 +271,7 @@
                     {
                         "settings":
                         {
+                            "enable_custom_image": true,
                             "sub_title": "Special Gift wraps",
                             "sub_title": "<p>Send a sweet surprise</p>"
                         },
@@ -569,7 +572,7 @@
                 "type": "password-header",
                 "settings":
                 {
-                    "logo_max_width": "100",
+                    "logo_max_width": "130",
                     "header": "Coming Soon"
                 }
             },

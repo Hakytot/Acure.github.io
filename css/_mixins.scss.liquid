@@ -1033,3 +1033,16 @@ $large: 1000px;
         }
     }
 }
+
+.animation-pulse{
+  -webkit-animation-duration: 0.8s;
+  -moz-animation-duration: 0.8s;
+  -o-animation-duration: 0.8s;
+  animation-duration: 0.8s;
+  -webkit-animation-fill-mode: both;
+  -moz-animation-fill-mode: both;
+  -o-animation-fill-mode: both;
+  animation-fill-mode: forwards;    
+  animation-iteration-count: 2;  
+  @include css3-prefix(box-shadow, 0 0 0 #000);
+}

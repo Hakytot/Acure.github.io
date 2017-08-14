@@ -20,6 +20,8 @@
     }
     @include flexbox();    
     @include align-items(center);
+    @include justify-content(flex-start);    
+    @include flex-flow(row wrap);
     color: {{ settings.header_color }}; 
     background: {{ settings.header_bg_color }};       
     @include rem(padding, 23px 125px);  
@@ -29,19 +31,18 @@
             color: $accentColor;    
             padding: 0;
             @include rem(font-size, 24px);            
-        }
+        }        
     }
 }
 .header-nav{    
-    @include flex-grow(0);    
+    @include flexbox();        
+    @include flex(1 0 25%);    
+    @include justify-content(flex-start);
 }
-.logo{
-    @include flex-basis(1%);
-    @include flex-grow(1);    
-    &.logo-align--center{
-        text-align: center;
-        @include align-content(center);
-    }
+.logo{      
+    @include flexbox();        
+    @include flex(1 0 25%);    
+    @include justify-content(center);        
     h1{
         margin: 0;
     }
@@ -51,9 +52,9 @@
     }
 }  
 .site-actions{    
-    @include flexbox();    
-    @include flex-grow(0);
-    @include align-items(center);
+    @include flexbox();        
+    @include justify-content(flex-end);
+    @include flex(1 0 25%);     
     .site-actions-cart{
         position: relative;
         color: $accentColor;                
@@ -75,4 +76,22 @@
             @include rem(font-size, 12px);            
         }
     }
+}
+
+.site-actions-search{
+    .icon{        
+        @include rem(font-size, 24px);
+        @include rem(width,30px);        
+        @include rem(height,30px);        
+        @include rtl-float-left();
+        @include rem(margin, 0 0px 0 18px);        
+        @include rem(padding, 0px 5px);
+    }    
+}
+#search-modal{
+    background: transparent;    
+    border: 0;    
+    margin: auto;
+    @include rem(max-width, 800px);    
+    @include css3-prefix(box-shadow,none); 
 }
