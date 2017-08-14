@@ -1,0 +1,79 @@
+{% if section.settings.enable_video %}
+    <div class="container">
+        <div class="row">
+         {% if section.settings.enable_video_title != blank and section.settings.enable_video_title %}
+                <div class="col-lg-6 col-md-6 col-xs-12">
+                    <h3 class="section-title">
+                        <span>{{ section.settings.video_title | escape }}</span>
+                        
+                    </h3>                    
+                    {% if section.settings.enable_video_popup and section.settings.video_url != blank %}
+                    <div class="product-single__thumbnail_video selectors">
+                        <a class="product_popup_video" href="{{ section.settings.product_video_url }}">
+                            <span class="lnr lnr-film-play"></span>                                    
+                        </a>
+                    </div>                
+                {% endif %}
+                </div>
+         {% endif %} 
+                <div class="col-lg-6 col-md-6 col-xs-12">
+                    {% if section.settings.video_image_background %}
+                        <img src="{{ section.settings.video_image_background | img_url: '570x670' }}">
+                    {% endif %}
+                    {% if section.settings.video_image_background == blank %}
+                    <div class="placeholder-background">
+                        {% capture current %}{% cycle 1, 2 %}{% endcapture %}
+                        {{ 'lifestyle-' | append: current | placeholder_svg_tag: 'placeholder-svg' }}
+                    </div>
+                    {% endif %}
+                        
+                </div>
+        </div>
+    </div>
+{% endif %}
+
+{% schema %}
+   {
+    "name": "Video",
+    "class": "index-section",
+    "settings": [
+        {
+            "type": "checkbox",
+            "id": "enable_video",
+            "label": "Enable Video",
+            "default": true
+        },
+        {
+            "type": "checkbox",
+            "id": "enable_video_title",
+            "label": "Enable Video Title",
+            "default": true
+        },
+        {
+            "type": "checkbox",
+            "id": "enable_video_popup",
+            "label": "Enable Video Popup",
+            "default": true
+        },
+        {
+            "type": "text",
+            "id": "video_title",
+            "default": "Classic Cuts and Straight Shaves in Yorkshire since 2004",
+            "label": "Title"
+        },       
+        {
+            "id": "video_url",
+            "type": "video_url",
+            "label": "Video URL",
+            "accept": ["youtube", "vimeo"],
+            "default": "https://www.youtube.com/watch?v=_9VUPq3SxOc"
+        },
+        {
+            "type": "image_picker",
+            "id": "video_image_background",
+            "label": "Upload Image"
+        }
+    ]    
+}
+  
+{% endschema %}

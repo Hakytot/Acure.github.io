@@ -190,6 +190,7 @@
             "slideshow",
             "custom_block",
             "testimonials",
+            "video",
             "collection",
             "services",
             "featured-blog"
@@ -327,6 +328,7 @@
                     }
                 }
             },
+<<<<<<< HEAD
             "services":
             {
                 "type": "services",
@@ -355,6 +357,18 @@
                         },
                         "type": "services"
                     }                
+=======
+            "video":
+            {
+                "type": "video",
+                "settings":
+                {
+                    "enable_video": true,
+                    "enable_video_title": true,
+                    "enable_video_popup": true,
+                    "video_title": "Classic Cuts and Straight Shaves in Yorkshire since 2004",
+                    "video_url": "https://www.youtube.com/watch?v=_9VUPq3SxOc"
+>>>>>>> fc866c032fd606f11c0c0479de9f053ef889196f
                 }
             },
             "collection":
