@@ -91,13 +91,16 @@
             </div>
         </div>
     </div>
-
     {% section 'header' %}
     <div class="page-container" id="PageContainer">
         <main class="main-content" id="MainContent" role="main">
             {{ content_for_layout }}
         </main>
         {% section 'footer' %}
+    </div>
+    <div id="search-modal" class="mfp-hide white-popup-block">
+        {% include 'search-form' %}
+        <p><a class="popup-modal-dismiss" href="#">Close</a></p>
     </div>
 </body>
 </html>

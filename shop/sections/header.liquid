@@ -53,18 +53,14 @@
                     {% include 'customer-link' %}                        
                 </div>
             {% endif %}
-            {% if section.settings.show_minicart %} {% include 'minicart' %} {% endif %}         
+            {% if section.settings.show_minicart %} 
+                {% include 'minicart' %} 
+            {% endif %}         
             {% if section.settings.display_search %} 
                 <div class="site-actions-search"> 
                     <a class="popup-modal" href="#search-modal">
-                        <i class="icon ion-android-search"></i>     
-                    </a>                    
-                    <section id="search-modal" class="mfp-hide white-popup-block">
-                        <div class="search-field">                
-                            {% include 'search' %}
-                        </div>                   
-                        <p><a class="popup-modal-dismiss" href="#">Close</a></p>
-                    </section>                                            
+                        <i class="icon ion-android-search animation-pulse"></i>     
+                    </a>                                                                                    
                 </div>
             {% endif %}            
         </div>                                               
@@ -81,14 +77,14 @@
                 <a href="/" itemprop="url" class="site-header__logo-image{% if section.settings.logo_alignment == 'center' %} site-header__logo-image--centered{% endif %}">
                     {% capture image_size %}{{ section.settings.logo_max_width }}x{% endcapture %}
                     <img class="site-logo-image" src="{{ section.settings.logo | img_url: image_size }}"
-                    srcset="{{ section.settings.logo | img_url: image_size }} 1x, {{ section.settings.logo | img_url: image_size, scale: 2 }} 2x"
-                    alt="{{ section.settings.logo.alt | default: shop.name }}"
-                    itemprop="logo">
+                        srcset="{{ section.settings.logo | img_url: image_size }} 1x, {{ section.settings.logo | img_url: image_size, scale: 2 }} 2x"
+                        alt="{{ section.settings.logo.alt | default: shop.name }}"
+                        itemprop="logo">
                     {% if section.settings.logo_mobile %}
                         <img class="site-logo-image-mobile" src="{{ section.settings.logo_mobile | img_url: image_size }}"
-                        srcset="{{ section.settings.logo_mobile | img_url: image_size }} 1x, {{ section.settings.logo_mobile | img_url: image_size, scale: 2 }} 2x"
-                        alt="{{ section.settings.logo_mobile.alt | default: shop.name }}"
-                        itemprop="logo">
+                            srcset="{{ section.settings.logo_mobile | img_url: image_size }} 1x, {{ section.settings.logo_mobile | img_url: image_size, scale: 2 }} 2x"
+                            alt="{{ section.settings.logo_mobile.alt | default: shop.name }}"
+                            itemprop="logo">
                     {% endif %}  
                 </a>
             {% else %}
@@ -105,12 +101,16 @@
     {% if section.settings.logo_alignment == "left" %}
         {% include 'navigation' %}
         <div class="header-nav">                        
-            {% if section.settings.show_minicart %} {% include 'minicart' %} {% endif %}                    
+            {% if section.settings.show_minicart %} 
+                {% include 'minicart' %} 
+            {% endif %}  
             {% if section.settings.display_search %} 
-                <div class="search-field hidden-sm hidden-xs">
-                    {% include 'search' %}
-                </div>                      
-            {% endif %}   
+                <div class="site-actions-search"> 
+                    <a class="popup-modal" href="#search-modal">
+                        <i class="icon ion-android-search animation-pulse"></i>     
+                    </a>                                                                                    
+                </div>
+            {% endif %}  
             {% if section.settings.show_customer_accounts %}
                 <div class="header_customer_accounts hidden-sm hidden-xs">
                     {% include 'customer-link' %}
@@ -168,7 +168,7 @@
         "type": "text",
         "id": "logo_max_width",
         "label": "Custom logo width (in pixels)",
-        "default": "100"
+        "default": "130"
     }]
 }
 {% endschema %}

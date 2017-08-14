@@ -1,0 +1,93 @@
+<article class="tell-story">  
+    <div class="container">
+        <div class="container-wrapper">
+            <div class="row">
+                <div class="col-lg-5 col-md-5 col-xs-12 text-center">     
+                    <div class="tell-story-photo">
+                        {% if section.settings.photo == blank %}
+                            <div class="tell-story-placeholder">
+                                {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+                            </div>
+                        {% else %}
+                            <img data-src="{{ section.settings.photo | img_url: 'master' }}" src="{{ section.settings.photo | img_url: 'master' }}" alt="photo" class="lazy">
+                        {% endif %}  
+                    </div>
+                </div>
+                <div class="col-lg-7 col-md-7 col-xs-12">
+                    <div class="widget">
+                        {% if section.settings.show_title and section.settings.title != blank %}
+                            <h3 class="widget-small-title text-center">
+                                <span>{{ section.settings.title | escape  }}</span>
+                            </h3>
+                        {% endif %}
+                        {% if section.settings.show_description and section.settings.description != blank %}
+                            <div class="widget-content mp-40">
+                                {{ section.settings.description }}
+                            </div>
+                        {% endif %}     
+                        {% if section.settings.show_button and section.settings.button_link != blank and section.settings.button_label != blank %}
+                            <div class="widget-button text-center">                          
+                                <a href="{{ section.settings.button_link }}" target="_blank" class="btn btn--primary"><span>{{ section.settings.button_label | escape }}</span></a>
+                            </div>
+                        {% endif %}                        
+                    </div>  
+                </div>
+            </div>
+        </div>
+    </div>
+</article>
+
+{% schema %}
+{
+    "name": "Tell Story",
+    "class": "shopify-section__tell-story",
+    "settings": [{
+        "type": "checkbox",
+        "id": "show_title",
+        "label": "Show Title",
+        "default": true
+    }, {
+        "type": "checkbox",
+        "id": "show_description",
+        "label": "Show Description",
+        "default": true
+    }, {
+        "type": "checkbox",
+        "id": "show_button",
+        "label": "Show Button",
+        "default": true
+    }, {
+        "type": "text",
+        "id": "title",
+        "default": "Tell Me About Dixi Boho Jewelry",
+        "label": "Title"
+    }, {
+        "type": "richtext",
+        "id": "description",
+        "label": "Description",
+        "default": "<p>This is your About section. It’s a great space to tell your story and to describe who you are and what you do. If you're a business, talk about how you started and tell the story of your professional journey. People want to know the real you, so don't be afraid to share personal anecdotes. Explain your core values and how you, your organization, or your business stand out from the crowd. <br><br> This is a great space to write long text about your company and your services. You can use this space to go into a little more detail about your company. Talk about your team and what services you provide. Tell your visitors the story </p>"
+    }, {
+        "type": "text",
+        "id": "button_label",
+        "label": "Button label",
+        "default": "Read About Me"
+    }, {
+        "type": "url",
+        "id": "button_link",
+        "label": "Button link"
+    }, {
+        "type": "image_picker",
+        "id": "photo",
+        "label": "Photo"
+    }],
+    "presets": [{
+        "name": "Tell Story",
+        "category": "Text",
+        "settings": {
+            "title": "Tell Me About Dixi Boho Jewelry",
+            "description": "<p>This is your About section. It’s a great space to tell your story and to describe who you are and what you do. If you're a business, talk about how you started and tell the story of your professional journey. People want to know the real you, so don't be afraid to share personal anecdotes. Explain your core values and how you, your organization, or your business stand out from the crowd. <br><br> This is a great space to write long text about your company and your services. You can use this space to go into a little more detail about your company. Talk about your team and what services you provide. Tell your visitors the story </p>",
+            "button_label": "Read About Me"
+        }
+    }]
+}
+{% endschema %}

@@ -59,7 +59,8 @@
             "title": "Search",
             "placeholder": "Search",
             "submit": "Submit",
-            "close": "Close search"
+            "close": "Close search",
+            "hint": "Type your keyword, product or blog in the search field below"            
         },
         "meta": {
             "tagged": "tagged",
@@ -326,34 +327,6 @@
             "price": "Price",
             "quantity": "Quantity",
             "total": "Total"
-        }
-    },
-    "home_page": {
-        "onboarding": {
-            "product_title": "Your product's name",
-            "product_description": "This area is used to describe your product’s details. Tell customers about the look, feel, and style of your product. Add details on color, materials used, sizing, and where it was made.",
-            "collection_title": "Your collection's name",
-            "blog_title": "Your post's title",
-            "blog_excerpt": "Your store hasn’t published any blog posts yet. A blog can be used to talk about new product launches, tips, or other news you want to share with your customers. You can check out Shopify’s ecommerce blog for inspiration and advice for your own store and blog.",
-            "blog_author": "Author name",
-            "no_content": "This section doesn’t currently include any content. Add content to this section using the sidebar.",
-            "products_text_html": "It takes less than a minute to <a href=\"\/admin\/products\">add your first product<\/a> to your store. Make sure you add it to the <strong>{{ frontpage }}<\/strong> collection to see it on the home page.",
-            "add_product": "Add a product",
-            "view_sample": "View a sample product",
-            "collections_title": "Almost there...",
-            "collections_text_html": "Now add a product to the <em>{{ frontpage }}<\/em> collection to see it on the home page.",
-            "add_collection": "Add to collection",
-            "learn_collections": "Learn about collections",
-            "example_product_title": "Example Featured Product",
-            "example_product_text": "Your store is looking a little empty! This placeholder will appear until you add your first product.",
-            "page_title": "How to change this section",
-            "page_text": "You can change this area's text by editing the \"Frontpage\" page in your admin's Pages section. You can also replace the \"Frontpage\" page with another page in your Theme Settings.",
-            "edit_page": "Edit \"Frontpage\" page",
-            "view_settings": "View theme settings",
-            "view_product": "View Product"
-        },
-        "products": {
-            "view_product": "View Product"
         }
     },
     "contact": {
