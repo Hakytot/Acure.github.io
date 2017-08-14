@@ -328,7 +328,6 @@
                     }
                 }
             },
-<<<<<<< HEAD
             "services":
             {
                 "type": "services",
@@ -357,7 +356,8 @@
                         },
                         "type": "services"
                     }                
-=======
+                }
+            },          
             "video":
             {
                 "type": "video",
@@ -368,7 +368,6 @@
                     "enable_video_popup": true,
                     "video_title": "Classic Cuts and Straight Shaves in Yorkshire since 2004",
                     "video_url": "https://www.youtube.com/watch?v=_9VUPq3SxOc"
->>>>>>> fc866c032fd606f11c0c0479de9f053ef889196f
                 }
             },
             "collection":
