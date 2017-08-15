@@ -9,8 +9,8 @@
                     </h3>                    
                     {% if section.settings.enable_video_popup and section.settings.video_url != blank %}
                     <div class="product-single__thumbnail_video selectors">
-                        <a class="product_popup_video" href="{{ section.settings.product_video_url }}">
-                            <span class="lnr lnr-film-play"></span>                                    
+                        <a class="popup_video" href="{{ section.settings.video_url }}">
+                            {{ 'homepage.video.button' | t }}                               
                         </a>
                     </div>                
                 {% endif %}
@@ -75,5 +75,4 @@
         }
     ]    
 }
-  
 {% endschema %}
