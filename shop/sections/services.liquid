@@ -1,38 +1,15 @@
 <div class="container">
-    <div class="container-wrapper">
-        <div class="row">
-            <div class="col-lg-5 col-md-5 col-xs-12 text-center">     
-                <div class="tell-story-photo">
-                    {% if section.settings.photo == blank %}
-                        <div class="tell-story-placeholder">
-                            {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
-                        </div>
-                    {% else %}
-                        <img data-src="{{ section.settings.photo | img_url: 'master' }}" src="{{ section.settings.photo | img_url: 'master' }}" alt="photo" class="lazy">
-                    {% endif %}  
-                </div>
+    <div class="row">
+        {% for block in section.blocks %}            
+            <div class="col-lg-6 col-md-6 col-xs-12" {{ block.shopify_attributes }}>
+                {{ block.settings.content }}
             </div>
-            <div class="col-lg-7 col-md-7 col-xs-12">
-                <div class="widget">
-                    {% if section.settings.show_title and section.settings.title != blank %}
-                        <h3 class="widget-small-title text-center">
-                            <span>{{ section.settings.title | escape  }}</span>
-                        </h3>
-                    {% endif %}
-                    {% if section.settings.show_description and section.settings.description != blank %}
-                        <div class="widget-content mp-40">
-                            {{ section.settings.description }}
-                        </div>
-                    {% endif %}     
-                    {% if section.settings.show_button and section.settings.button_link != blank and section.settings.button_label != blank %}
-                        <div class="widget-button text-center">                          
-                            <a href="{{ section.settings.button_link }}" target="_blank" class="btn btn--primary"><span>{{ section.settings.button_label | escape }}</span></a>
-                        </div>
-                    {% endif %}                        
-                </div>  
-            </div>
-        </div>
-    </div>
+        {% endfor %}
+        
+        <div class="col-lg-6 col-md-6 col-xs-12">     
+            
+        </div>            
+    </div>    
 </div>
 
 {% schema %}
