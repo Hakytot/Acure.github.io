@@ -25,7 +25,7 @@
         "button-border-hover": "#ff7055",
         "button_second_color": "#ff7055",
         "button_second_hover_color": "#ff7055",
-        "button_second_bg_color": "#ff7055",
+        "button_second_bg_color": "rgba(255, 255, 255, 0)",
         "button_second_bg_hover_color": "#ff7055",
         "button-font": "Google_Sintony_400,700_sans",
         "button-font-size": "14px",
@@ -344,12 +344,16 @@
                     "button_link": "shopify://pages/our-services"
                 },
                 "block_order": [
-                    "services_0"
+                    "services_0",
+                    "services_1",
+                    "services_2",
+                    "services_3",
+                    "services_4",
+                    "services_5"
                 ],
                 "blocks":
                 {
-                    "services_0":
-                    {
+                    "services_0": {                    
                         "settings":
                         {
                             "description": "<p>All haircuts include a consultation, shampoo, haircut, and blow dry & style.</p>",
@@ -357,7 +361,52 @@
                             "price": "€34+"
                         },
                         "type": "services"
-                    }                
+                    },
+                    "services_1": {                    
+                        "settings":
+                        {
+                            "description": "<p>1</p>",
+                            "title": "Woman’s Shampoo, Cut & Style",
+                            "price": "€34+"
+                        },
+                        "type": "services"
+                    }, 
+                    "services_2": {                    
+                        "settings":
+                        {
+                            "description": "<p>2</p>",
+                            "title": "Woman’s Shampoo, Cut & Style",
+                            "price": "€34+"
+                        },
+                        "type": "services"
+                    },    
+                    "services_3": {                    
+                        "settings":
+                        {
+                            "description": "<p>3</p>",
+                            "title": "Woman’s Shampoo, Cut & Style",
+                            "price": "€34+"
+                        },
+                        "type": "services"
+                    },           
+                    "services_4": {                    
+                        "settings":
+                        {
+                            "description": "<p>4</p>",
+                            "title": "Woman’s Shampoo, Cut & Style",
+                            "price": "€34+"
+                        },
+                        "type": "services"
+                    },
+                    "services_5": {                    
+                        "settings":
+                        {
+                            "description": "<p>5</p>",
+                            "title": "Woman’s Shampoo, Cut & Style",
+                            "price": "€34+"
+                        },
+                        "type": "services"
+                    }
                 }
             },          
             "video":

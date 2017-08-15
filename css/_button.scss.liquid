@@ -29,12 +29,11 @@ button:active, button:hover, button:focus,.subscribe-button:hover,
     &.btn--secondary{        
         color: $buttonSecondColor;
         background-color: $buttonSecondBackgroundColor;
+        border: 2px solid $buttonSecondColor;
         &:hover,
         &:active,
         &:focus{        
-            border-color: {{ settings.button_second_bg_color}};
-            color: {{ settings.button_second_hover_color}};      
-            background-color: {{ settings.button_second_bg_hover_color}};
+            border-color: $buttonSecondColor;            
         }
     }   
     &.button-video{
