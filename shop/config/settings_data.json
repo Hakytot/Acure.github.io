@@ -188,12 +188,13 @@
         "slide_4_alt": "",
         "content_for_index": [
             "slideshow",
+            "collection",
             "custom_block",
             "testimonials",
-            "video",
-            "collection",
+            "video",            
             "services",
-            "featured-blog"
+            "featured-blog",
+            "instagram"
         ],
         "sections":
         {
@@ -231,8 +232,9 @@
                         "type": "image"
                     }
                 },
-                "settings":
-                {},
+                "settings":{
+
+                },                
                 "type": "slideshow"
             },
             "custom_block":
@@ -388,6 +390,15 @@
                     "shorthand_letter_lable": "j"
                 }
             },
+
+            "instagram": {            
+                "type": "instagram",
+                "settings":
+                {
+                    "instagram_enable": true                    
+                }
+            },
+
             "list-collections-template":
             {
                 "type": "list-collections-template",

@@ -1,13 +1,4 @@
-<!-- Begin footer -->
-<footer id="{{ section.id }}" class="volus-{{ section.id }} {{ section.id }}">
-    {% if section.settings.footer_instagram_enable %}
-        <div class="footer-instagram">        
-            <aside class="instagram--inside">  
-                {% include "instagram-feed" %}            
-            </aside>        
-        </div>
-    {% endif %} 
-
+<footer id="{{ section.id }}" class="shopify-section-{{ section.id }}" data-section-id="{{ section.id }}" data-section-type="{{ section.id }}-section">
     {% if section.settings.footer_newsletter_enable %}
         <div class="footer-newsletter">        
             <aside class="newsletter--inside">  
@@ -81,10 +72,11 @@
     {% endif %}    
 </footer>
 
+
 {% schema %}
 {
     "name": "Footer",
-    "class": "shopify-section__footer",
+    "class": "footer",
     "settings": [{
         "type": "checkbox",
         "id": "footer_instagram_enable",

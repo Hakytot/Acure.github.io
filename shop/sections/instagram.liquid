@@ -1,0 +1,56 @@
+{% if section.settings.instagram_enable %}
+    <div id="{{ section.id }}" class="shopify-section-{{ section.id }}" data-section-id="{{ section.id }}" data-section-type="{{ section.id }}-section">
+        <div class="container">
+
+            {% assign url     = '{{image}}' %}
+            {% assign caption = '{{caption}}' %}
+            {% assign link    = '{{link}}' %}
+            {% assign id      = '{{id}}' %}
+            {% assign width   = '{{width}}' %}
+            {% assign height  = '{{height}}' %}
+
+            <div id="instagram-card" class="{{ section.id }}__container">
+                {% if settings.enable_instagram_widget_title %}
+                    <div class="section-header text-center">
+                        <h3 class="section-title {{ settings.instagram_widget_title_align | escape }}">
+                            <a href="http://instagram.com/{{ settings.instagram_name }}" target="_blank">
+                                <span>{{ settings.instagram_widget_title | escape }}</span>
+                                {% if settings.show_instagram_name %}
+                                    <small class="section-title__small">{{ settings.instagram_name | escape }}</small>
+                                {% endif %}                        
+                            </a>
+                        </h3>
+                    </div>
+                {% endif %}        
+                <div class="section-content">
+                    <div id="instafeed" class="row"></div>
+                </div>
+                {{ 'instafeed.min.js' | asset_url | script_tag }}
+                <script>
+                    var feed = new Instafeed({
+                        get: 'user',
+                        userId: {{ settings.instagram_user_id }},
+                        accessToken: '{{ settings.instagram-access-token }}',
+                        limit: {{ settings.instagram_limit }},
+                        resolution: 'low_resolution',
+                        template: '<div class="col-lg-2 col-md-2 col-sm-4 col-xs-6 instgaram-item"> <a href="{{link}}" rel="ig" target="_blank" class="instgaram-item--image"><img class="images lazyload" data-src="{{ url }}" id="{{id}}" alt="{{caption}}" height="{{height}}" width="{{width}}" /> <span class="caption"><span class="caption-inside"> <i class="flaticon social instagram"></i></span></span> </a></div>'
+                    });
+                    feed.run();
+                </script>
+            </div>
+        </div>
+    </div>
+{% endif %} 
+
+{% schema %}
+{    
+    "name": "Instagram",
+    "class": "index-section",
+    "settings": [{
+        "type": "checkbox",
+        "id": "instagram_enable",
+        "label": "Enable Instagram",
+        "default": true
+    }]
+}
+{% endschema %}
