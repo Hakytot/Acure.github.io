@@ -1,41 +1,27 @@
 {% unless collection_image_size %}
-{%- assign collection_image_size = '782x550' -%}
+{%- assign collection_image_size = '340x340' -%}
 {% endunless %}
-{%- assign collection_image_scale = '1' -%}
+{%- assign collection_image_scale = '2' -%}
 
 {% if collection.image %}
-{% capture collection_image_url %}{{ collection | img_url: collection_image_size, scale: collection_image_scale, crop: 'top' }}{% endcapture %}
+  {% capture collection_image_url %}{{ collection | img_url: collection_image_size, scale: collection_image_scale, crop: 'top' }}{% endcapture %}
 {% elsif collection.products.first and collection.products.first.images != empty %}
-{% capture collection_image_url %}{{ collection.products.first | img_url: collection_image_size, scale: collection_image_scale, crop: 'top' }}{% endcapture %}
+  {% capture collection_image_url %}{{ collection.products.first | img_url: collection_image_size, scale: collection_image_scale, crop: 'top' }}{% endcapture %}
 {% else %}
-{% assign collection_image_url = blank %}
+  {% assign collection_image_url = blank %}
 {% endif %}
 
-<article class="collection-grid-item">
-    <figure class="collection-item-image">
-        <a href="{% if collection.products == empty %}#{% else %}{{ collection.url }}{% endif %}" class="collection-grid-item__link collection-grid-height__{{ collection_image_size }}">
-            <div class="collection-grid-item__overlay">
-                {% unless collection_image_url == blank %}                    
-                    <img data-src="{{ collection_image_url }}" src="{{ collection_image_url }}" alt="{{ collection.title }}" class="lazy">
-                {% endunless %}
-                {% if collection_image_url == blank %}
-                    <div class="product-item__placeholder">
-                        {% capture current %}{% cycle 1, 2, 3, 4, 5, 6 %}{% endcapture %}
-                        {{ 'collection-' | append: current | placeholder_svg_tag: 'placeholder-svg' }}                
-                    </div>                    
-                {% endif %}
-            </div>   
-        </a>
-    </figure>
-    <div class="collection-item-info">        
-        <h3 class="collection-item-title">
-            <a href="{{ collection.url }}">           
+<div class="collection-grid-item">
+    <a href="{% if collection.products == empty %}#{% else %}{{ collection.url }}{% endif %}" class="collection-grid-item__link">
+        <div class="collection-grid-item__overlay"{% unless collection_image_url == blank %} style="background-image: url({{ collection_image_url }})"{% endunless %}></div>
+        <div class="collection-grid-item__title-wrapper">
+            <h3 class="collection-grid-item__title">
                 {% if collection.title == blank %}
                     {{ 'homepage.onboarding.collection_title' | t }}
                 {% else %}
                     {{ collection.title }}
                 {% endif %}
-            </a>
-        </h3>        
-    </div>
-</article>
+            </h3>
+        </div>
+    </a>
+</div>
