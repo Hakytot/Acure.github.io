@@ -36,7 +36,29 @@ button:active, button:hover, button:focus,.subscribe-button:hover,
             color: {{ settings.button_second_hover_color}};      
             background-color: {{ settings.button_second_bg_hover_color}};
         }
-    }    
+    }   
+    &.button-video{
+        background: transparent;
+        text-transform: $bodyTransform;
+        font-size: $bodyFontSize;
+        font-family: $bodyFontStack;
+        font-weight: $bodyFontWeight;                
+        letter-spacing: $bodyLetterSpacing;  
+        @include rem(line-height, 38px);    
+        @include rem(padding,20px 40px);  
+        color: $bodyColor;
+        .video-icon{
+            color: $primaryColor;
+            border: 3px solid $primaryColor;
+            @include rem(width,38px);            
+            @include rem(height,38px);          
+            @include rtl-float-left();
+            @include border-radius(100%);  
+            @include rem(padding, 0px 14px);
+            @include rem(line-height, 34px);               
+            @include rem(margin-right, 14px);
+        }
+    } 
 }
 
 .search__submit{

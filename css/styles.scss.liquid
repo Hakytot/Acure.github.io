@@ -107,50 +107,9 @@
   color: $linkColor;
 }
 
-
-/* Apply Type Style */
-.widget-title{  
-  color: $headingColor;
-  font-family: $headerFontStack;
-  font-weight: $headerFontWeight;      
-  text-transform: $headerTransform;
-  letter-spacing: $headerLetterSpacing;
-  @include desktop-small{
-    @include rem(font-size, $headerFontSize - 20px);  
-  }
-  @include rem(font-size, $headerFontSize);  
-  @include mobile-small{
-    font-size: 24px !important;
-    @include rem(margin-bottom, 40px);  
-  }  
-  span::before{
-    
-}
-&.widget-title__light{
-        span::before{
-            
-        }    
-    }
-}
-
-.widget-small-title{
-  color: $headingColor;
-  font-family: $headerFontStack;
-  font-weight: $headerFontWeight;      
-  text-transform: $headerTransform;  
-   span::before{
-    
-  }
-}
-
 .blog-article-meta{
   font-family: $buttonFontStack;
 }
-
-h1 .note a, h2 .note a, h3 .note a, h4 .note a, h5 .note a, h6 .note a {
-  color: {{ settings.link_color }};
-}
-
 
 /*================ Header ================*/
 
@@ -180,19 +139,17 @@ h1 .note a, h2 .note a, h3 .note a, h4 .note a, h5 .note a, h6 .note a {
 
 @import url('_testimonials.scss.liquid');
 
+/*================ Video ================*/
 
-.page{
-  #customer_register_link{
-    font-family: $buttonFontStack;
-    font-size: $buttonFontSize;
-    font-weight: $buttonFontWeight;
-    text-transform: $buttonTransform;
-    letter-spacing: $buttonLetterSpacing;
-    background-color: $buttonBackgroundHover;
-    color: $buttonHover;    
-    @include rem(padding, 14px 40px);
-  }
-}
+@import url('_video.scss.liquid');
+
+/*================ Services ================*/
+
+@import url('_services.scss.liquid');
+
+/*================ Pages ================*/
+
+@import url('_pages.scss.liquid');
 
 
 /* Products */
@@ -231,9 +188,6 @@ select{
 .product-price{
     color: {{ settings.product-price-color}};  
 }
-.product-item__placeholder{
-    @include overlay(1);
-}
 .product__title{
     color: {{ settings.product-name-label}};  
     &:hover{
@@ -255,34 +209,10 @@ select{
   }
 }
 
-.product-single__placeholder,.tell-story-placeholder{
-  @include overlay(1);
-}
 
-/* Featured Blog */
-.featured-blog{
-  background-color: $featuredBlog;
-  color: $featuredBlogLabel;
-  .entry-title{   
-     @include tablet{
-      @include rem(font-size, 24px);      
-      @include rem(line-height, 34px);
-    } 
-    @include mobile{
-      @include rem(font-size, 18px);      
-      @include rem(line-height, 28px);
-    }
-    font-family: $blogFontStack;
-    font-weight: $blogFontWeight;
-    @include rem(font-size, $blogFontSize);
-    text-transform: $blogTransform;
-    letter-spacing: $blogLetterSpacing;
-    line-height: $blogLineHeight;    
-    a{      
-      color: $featuredBlogLabel;      
-  }    
-}  
-}
+/*================ Blogs ================*/
+
+@import url('_blogs.scss.liquid');
 
 /* Collections */
 .collection-list{
@@ -290,10 +220,7 @@ select{
     background-color: rgba($collectionListBgColor, $collectionListOverlayOpacity); 
     .widget-title{
         color: $collectionListColor;
-    }
-    .collection-grid-item__overlay{  
-        @include overlay_light(1);        
-    }
+    }    
     .collection-grid-item__title{
         color: $collectionListColor;
     }
@@ -312,31 +239,12 @@ select{
   }    
 }
 
-.collection-grid-item{
-  .collection-grid-item__overlay{  
-    @include overlay(1); 
-  }
-}
-
 /* Newsletter */
 #CoverPop-cover{
     .newsletter-form-field{
         color:darken($borderColor, 10%);
         border-color: $borderColor;
     }
-}
-
-
-/* Mimic a background image by wrapping the placeholder svg with this class */
-.placeholder-background {
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  .icon {
-      border: 0;
-  }
 }
 
 .cart-table .product-name{

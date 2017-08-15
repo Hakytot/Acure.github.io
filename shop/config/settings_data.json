@@ -365,9 +365,9 @@
                 {
                     "enable_video": true,
                     "enable_video_title": true,
-                    "enable_video_popup": true,
-                    "video_title": "Classic Cuts and Straight Shaves in Yorkshire since 2004",
-                    "video_url": "https://www.youtube.com/watch?v=_9VUPq3SxOc"
+                    "enable_video_banner": true,
+                    "video_title": "Best Shampoo and Conditioner Acure Organics - How to Videos",
+                    "video_url": "https://vimeo.com/154224789"
                 }
             },
             "collection":

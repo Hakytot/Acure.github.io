@@ -1,16 +1,41 @@
-<div class="container">
-    <div class="row">
-        {% for block in section.blocks %}            
-            <div class="col-lg-6 col-md-6 col-xs-12" {{ block.shopify_attributes }}>
-                {{ block.settings.content }}
+<div id="{{ section.id }}" class="shopify-section-{{ section.id }}" data-section-id="{{ section.id }}" data-section-type="{{ section.id }}-section">    
+    <div class="container">
+        {% if section.settings.title != blank and section.settings.show_title %}
+            <div class="section-header text-center">
+                <h3 class="section-title">
+                    <span>{{ section.settings.title | escape }}</span>                    
+                </h3>
+                {% if section.settings.show_description %}
+                    <div class="section-description">
+                        {{ section.settings.description }}
+                    </div>
+                {% endif %}
             </div>
-        {% endfor %}
-        
-        <div class="col-lg-6 col-md-6 col-xs-12">     
-            
-        </div>            
-    </div>    
+        {% endif %}
+
+        <div class="row">
+            {% if section.blocks.size > 0 %}
+                <ul class="list-unstyled list-services" data-count="{{ section.blocks.size }}">                
+                    {% for block in section.blocks %}            
+                        <li>
+                            <h3 class="list-services__title">{{ block.settings.title }}</h3>
+                            <div class="list-services__price">
+                                <span>{{ block.settings.price }}</span>
+                            </div>
+                            <div class="list-services__description">
+                                {{ block.settings.description }}
+                            </div>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% endif %}          
+            {% if section.blocks.size == 0 %}
+                {% include 'no-blocks' %}
+            {% endif %}         
+        </div>    
+    </div>
 </div>
+
 
 {% schema %}
     {

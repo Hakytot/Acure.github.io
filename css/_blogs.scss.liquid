@@ -1,0 +1,23 @@
+.featured-blog{
+    background-color: $featuredBlog;
+    color: $featuredBlogLabel;
+    .entry-title{   
+        @include tablet{
+            @include rem(font-size, 24px);      
+            @include rem(line-height, 34px);
+        } 
+        @include mobile{
+            @include rem(font-size, 18px);      
+            @include rem(line-height, 28px);
+        }
+        font-family: $blogFontStack;
+        font-weight: $blogFontWeight;
+        @include rem(font-size, $blogFontSize);
+        text-transform: $blogTransform;
+        letter-spacing: $blogLetterSpacing;
+        line-height: $blogLineHeight;    
+        a{      
+            color: $featuredBlogLabel;      
+        }    
+    }  
+}

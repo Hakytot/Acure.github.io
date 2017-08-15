@@ -1,35 +1,49 @@
 {% if section.settings.enable_video %}
-    <div class="container">
-        <div class="row">
-         {% if section.settings.enable_video_title != blank and section.settings.enable_video_title %}
-                <div class="col-lg-6 col-md-6 col-xs-12">
-                    <h3 class="section-title">
-                        <span>{{ section.settings.video_title | escape }}</span>
-                        
-                    </h3>                    
-                    {% if section.settings.enable_video_popup and section.settings.video_url != blank %}
-                    <div class="product-single__thumbnail_video selectors">
-                        <a class="popup_video" href="{{ section.settings.video_url }}">
-                            {{ 'homepage.video.button' | t }}                               
-                        </a>
-                    </div>                
-                {% endif %}
-                </div>
-         {% endif %} 
-                <div class="col-lg-6 col-md-6 col-xs-12">
-                    {% if section.settings.video_image_background %}
-                        <img src="{{ section.settings.video_image_background | img_url: '570x670' }}">
-                    {% endif %}
-                    {% if section.settings.video_image_background == blank %}
-                    <div class="placeholder-background">
-                        {% capture current %}{% cycle 1, 2 %}{% endcapture %}
-                        {{ 'lifestyle-' | append: current | placeholder_svg_tag: 'placeholder-svg' }}
+    <div id="{{ section.id }}" class="shopify-section-{{ section.id }}" data-section-id="{{ section.id }}" data-section-type="{{ section.id }}-section">    
+        <div class="container">
+            <div class="row">
+                {% if section.settings.video_title != blank and section.settings.enable_video_title %}
+                    <div class="col-lg-6 col-md-6 col-xs-12">
+                        <div class="video-title-container text-center aligner"> 
+                            <div class="video-title-content">
+                                <div class="section-header">
+                                    <h3 class="section-title">
+                                        <span>{{ section.settings.video_title | escape }}</span>                        
+                                    </h3>  
+                                </div>
+                                <div class="section-content">
+                                    {% if section.settings.video_url != blank %}
+                                        <a class="popup_video btn button-video" href="{{ section.settings.video_url }}">
+                                            <span class="video-icon">
+                                                <i class="icon ion-play"></i>
+                                            </span>
+                                            <span>{{ 'homepage.video.button' | t }}</span>
+                                        </a>
+                                    {% endif %}    
+                                </div>
+                            </div>             
+                        </div>
                     </div>
-                    {% endif %}
-                        
-                </div>
+                {% endif %} 
+                {% if section.settings.enable_video_banner %}
+                    <div class="col-lg-6 col-md-6 col-xs-12">
+                        <div class="video-image">
+                            {% if section.settings.video_image_background %}
+                                <figure>        
+                                    <img src="{{ section.settings.video_image_background | img_url: '570x670' }}">
+                                </figure>                        
+                            {% endif %}
+                            {% if section.settings.video_image_background == blank %}
+                                <div class="placeholder-background">                                
+                                    {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+                                </div>                            
+                            {% endif %}
+                        </div>
+                    </div>
+                {% endif %}                
+            </div>
         </div>
-    </div>
+    </div>   
 {% endif %}
 
 {% schema %}
@@ -51,14 +65,14 @@
         },
         {
             "type": "checkbox",
-            "id": "enable_video_popup",
-            "label": "Enable Video Popup",
+            "id": "enable_video_banner",
+            "label": "Enable Video Banner",
             "default": true
         },
         {
             "type": "text",
             "id": "video_title",
-            "default": "Classic Cuts and Straight Shaves in Yorkshire since 2004",
+            "default": "Best Shampoo and Conditioner Acure Organics - How to Videos",
             "label": "Title"
         },       
         {
@@ -66,7 +80,7 @@
             "type": "video_url",
             "label": "Video URL",
             "accept": ["youtube", "vimeo"],
-            "default": "https://www.youtube.com/watch?v=_9VUPq3SxOc"
+            "default": "https://vimeo.com/154224789"
         },
         {
             "type": "image_picker",
