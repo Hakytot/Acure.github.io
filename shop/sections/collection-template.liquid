@@ -244,115 +244,137 @@
     {% if paginate.pages > 1 %}
       {% include 'pagination' %}
     {% endif %}
+
+    
+
+    
+    <aside class="col-lg-3 col-md-4 col-xl-2 collection-list">
+        {% include "collection-sidebar" %}
+    </aside>
+    
+
+
+
   </div>
 </div>
 
 {% endpaginate %}
 
 {% schema %}
-  {
+    {
     "name": "Collection pages",
     "settings": [
-      {
-        "type": "select",
-        "id": "layout",
-        "label": "Layout",
-        "default": "grid",
-        "options": [
-          {
-            "value": "grid",
-            "label": "Grid"
-          },
-          {
-            "value": "list",
-            "label": "List"
-          }
-        ]
-      },
-      {
-        "type": "select",
-        "id": "grid",
-        "label": "Products per row (grid only)",
-        "default": "4",
-        "options": [
-          {
-            "value": "2",
-            "label": "2"
-          },
-          {
-            "value": "3",
-            "label": "3"
-          },
-          {
-            "value": "4",
-            "label": "4"
-          },
-          {
-            "value": "5",
-            "label": "5"
-          }
-        ]
-      },
-      {
-        "type": "select",
-        "id": "rows",
-        "label": "Rows per page (grid only)",
-        "default": "2",
-        "options": [
-          {
-            "value": "2",
-            "label": "2"
-          },
-          {
-            "value": "3",
-            "label": "3"
-          },
-          {
-            "value": "4",
-            "label": "4"
-          },
-          {
-            "value": "5",
-            "label": "5"
-          },
-          {
-            "value": "6",
-            "label": "6"
-          },
-          {
-            "value": "7",
-            "label": "7"
-          },
-          {
-            "value": "8",
-            "label": "8"
-          }
-        ]
-      },
-      {
-        "type": "checkbox",
-        "id": "show_collection_image",
-        "label": "Show collection image",
-        "default": true
-      },
-      {
-        "type": "checkbox",
-        "id": "show_vendor",
-        "label": "Show product vendors",
-        "default": false
-      },
-      {
-        "type": "checkbox",
-        "id": "sort_enable",
-        "label": "Enable sorting",
-        "default": true
-      },
-      {
-        "type": "checkbox",
-        "id": "tags_enable",
-        "label": "Enable tag filtering",
-        "default": true
-      }
+
+        {
+            "default": true,
+            "id": "show_shopby_size_filter",
+            "label": "Show List Sizes",
+            "type": "checkbox",
+            "default": true
+        },
+        {
+            "id": "shopby_size_filter",
+            "info": "Example: 180ml, 118ml, 235ml, 260ml , 320ml, 340ml",
+            "label": "List Sizes",
+            "type": "textarea"
+        },
+        {
+            "type": "select",
+            "id": "layout",
+            "label": "Layout",
+            "default": "grid",
+            "options": [
+            {
+                "value": "grid",
+                "label": "Grid"
+            },
+            {
+                "value": "list",
+                "label": "List"
+            }]
+        },
+        {
+            "type": "select",
+            "id": "grid",
+            "label": "Products per row (grid only)",
+            "default": "4",
+            "options": [
+            {
+                "value": "2",
+                "label": "2"
+            },
+            {
+                "value": "3",
+                "label": "3"
+            },
+            {
+                "value": "4",
+                "label": "4"
+            },
+            {
+                "value": "5",
+                "label": "5"
+            }]
+        },
+        {
+            "type": "select",
+            "id": "rows",
+            "label": "Rows per page (grid only)",
+            "default": "2",
+            "options": [
+            {
+                "value": "2",
+                "label": "2"
+            },
+            {
+                "value": "3",
+                "label": "3"
+            },
+            {
+                "value": "4",
+                "label": "4"
+            },
+            {
+                "value": "5",
+                "label": "5"
+            },
+            {
+                "value": "6",
+                "label": "6"
+            },
+            {
+                "value": "7",
+                "label": "7"
+            },
+            {
+                "value": "8",
+                "label": "8"
+            }]
+        },
+        {
+            "type": "checkbox",
+            "id": "show_collection_image",
+            "label": "Show collection image",
+            "default": true
+        },
+        {
+            "type": "checkbox",
+            "id": "show_vendor",
+            "label": "Show product vendors",
+            "default": false
+        },
+        {
+            "type": "checkbox",
+            "id": "sort_enable",
+            "label": "Enable sorting",
+            "default": true
+        },
+        {
+            "type": "checkbox",
+            "id": "tags_enable",
+            "label": "Enable tag filtering",
+            "default": true
+        }
     ]
-  }
+}
 {% endschema %}

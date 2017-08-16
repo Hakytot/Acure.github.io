@@ -49,6 +49,9 @@
         }
         document.documentElement.className = document.documentElement.className.replace('no-js', 'js');
     </script>
+    
+    {{ 'jquery-2.1.4.min.js' | asset_url | script_tag }}
+    {{ 'jquery.cookie.js' | asset_url | script_tag }}
 
     <!--[if (lte IE 9) ]>{{ 'match-media.min.js' | asset_url | script_tag }}<![endif]-->
 
@@ -65,9 +68,16 @@
 
     <!--[if (gt IE 9)|!(IE)]><!--><script src="{{ 'lazysizes.min.js' | asset_url }}" defer="defer"></script><!--<![endif]-->
     <!--[if lte IE 9]><script src="{{ 'lazysizes.min.js' | asset_url }}"></script><![endif]-->
+    
+    <!--[if (gt IE 9)|!(IE)]><!--><script src="{{ 'jquery.history.js' | asset_url }}" defer="defer"></script><!--<![endif]-->
+    <!--[if lte IE 9]><script src="{{ 'jquery.history.js' | asset_url }}"></script><![endif]-->
+
+    <!--[if (gt IE 9)|!(IE)]><!--><script src="{{ 'collection.js' | asset_url }}" defer="defer"></script><!--<![endif]-->
+    <!--[if lte IE 9]><script src="{{ 'collection.js' | asset_url }}"></script><![endif]-->
 
     <!--[if (gt IE 9)|!(IE)]><!--><script src="{{ 'custom.js' | asset_url }}" defer="defer"></script><!--<![endif]-->
     <!--[if lte IE 9]><script src="{{ 'custom.js' | asset_url }}"></script><![endif]-->
+
   {{ content_for_header }}
 </head>
 

@@ -531,23 +531,8 @@
                 "type": "collection-template",
                 "settings":
                 {
-                    "show_breadcrumb": true,
-                    "show_collection_image": true,
-                    "show_vendor": true,
-                    "show_collection_pagination": true,
-                    "sort_enable": true,
-                    "collection_view_layout_enable": true,
-                    "tags_enable": true,
-                    "show_shorthand": true,
-                    "sidebar_layout": "fullwidth",
-                    "show_sidebar_categires": true,
-                    "show_sidebar_types": true,
-                    "show_sidebar_vendors": true,
-                    "show_sidebar_tags": true,
-                    "grid": "3",
-                    "rows": "3",
-                    "col_width": "large",
-                    "shorthand_letter_lable": "j"
+                    "show_shopby_size_filter": true,
+                    "shopby_size_filter": "180ml, 118ml, 235ml, 260ml , 320ml, 340ml"
                 }
             },
             "search-template":
